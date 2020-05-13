@@ -1,5 +1,5 @@
 {
-  "name": "first-nproject",
+  "name": "mvc-slider",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -61,5 +61,9 @@
     "jquery.maskedinput": "^1.4.1",
     "material-icons": "^0.3.1",
     "webpack-jquery-ui": "^2.0.1"
-  }
+  },
+  "keywords": [
+    "mvc",
+    "slider"
+  ]
 }
