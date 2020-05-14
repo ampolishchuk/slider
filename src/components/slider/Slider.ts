@@ -6,8 +6,7 @@ export class Slider {
   constructor(state?: object) {
     this.controller = new SliderController(state);
   }
-  public render(): any {
-    // Node element
+  public render(): HTMLElement {
     return this.controller.render();
   }
   public slideTo(position: number): void {

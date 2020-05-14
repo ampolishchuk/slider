@@ -1,6 +1,6 @@
 export class View {
   private template: Function;
-  public node: any; // Node element
+  public node: HTMLElement; // Node element
 
   constructor(template: Function) {
     this.template = template;
@@ -11,7 +11,7 @@ export class View {
     try {
       this.node.innerHTML = this.template ? this.template(state) : "";
 
-      this.node = this.node.firstChild || this.node;
+      this.node = (this.node.firstChild as HTMLElement) || this.node;
     } catch (e) {
       console.error("Creating node error: " + e);
     }

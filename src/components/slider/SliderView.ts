@@ -1,7 +1,7 @@
 import { View } from "../../services/js/View";
 
 export class SliderView extends View {
-  public button: any; // Node element
+  public button: HTMLElement;
 
   constructor() {
     require("./slider.sass");
