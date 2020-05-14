@@ -1,6 +1,6 @@
 export class Model {
-  protected state: object;
-  private observerList: Array<Function>;
+  protected state: object = {};
+  private observerList: Array<Function> = [];
 
   protected setState(state: object): void {
     this.state = { ...this.state, ...state };
