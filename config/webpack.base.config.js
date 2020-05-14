@@ -11,14 +11,14 @@ function getEntires(pages) {
       if (!template) return {};
 
       return {
-        [template]: [`./src/templates/${template}/${template}.js`],
+        [template]: [`./src/templates/${template}/${template}.ts`],
       };
     }),
     ...pages.map(({ name }) => {
       if (!name) return {};
 
       return {
-        [name]: ["@babel/polyfill", `./src/pages/${name}/${name}.js`],
+        [name]: ["@babel/polyfill", `./src/pages/${name}/${name}.ts`],
       };
     })
   );
@@ -34,6 +34,7 @@ module.exports = {
   output: {
     filename: "js/[name].[hash].js", // Точка выхода
   },
+  devtool: "inline-source-map",
   resolve: {
     extensions: [".js", ".ts"],
     alias: {
@@ -70,26 +71,9 @@ module.exports = {
         ],
       },
       {
-        test: /\.ts$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-typescript"],
-            plugins: ["@babel/plugin-proposal-class-properties"],
-          },
-        },
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-proposal-class-properties"],
-          },
-        },
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.pug/, // Регулярное выражение для обробатываемых файлов
