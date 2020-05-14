@@ -1,17 +1,17 @@
 export class Model {
-	_state = {};
-	_observerList = [];
+  protected state: object;
+  private observerList: Array<Function>;
 
-	set state(state) {
-		this._state = { ...this._state, ...state };
+  public setState(state: object): void {
+    this.state = { ...this.state, ...state };
 
-		this._observerList.length &&
-			this._observerList.forEach((callback) => callback(this.state));
-	}
-	get state() {
-		return this._state;
-	}
-	addObserver(callback) {
-		this._observerList.push(callback);
-	}
+    this.observerList.length &&
+      this.observerList.forEach((callback: Function) => callback(this.state));
+  }
+  public getState(): object {
+    return this.state;
+  }
+  public addObserver(callback: Function): void {
+    this.observerList.push(callback);
+  }
 }

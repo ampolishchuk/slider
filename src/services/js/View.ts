@@ -6,7 +6,7 @@ interface ParamsInterface {
 export class View {
   private template: Function;
   protected state: object;
-  protected node: any;
+  protected node: any; // Node element
 
   constructor({ template, state = {} }: ParamsInterface) {
     this.template = template;

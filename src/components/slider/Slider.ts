@@ -1,15 +1,15 @@
 import { SliderController } from "./SliderController";
 
 export class Slider {
-  controller: SliderController;
+  private controller: SliderController;
 
-  constructor(state) {
+  constructor(state?: object) {
     this.controller = new SliderController(state);
   }
-  render() {
+  public render(): any {
     return this.controller.render();
   }
-  slideTo(position: number) {
+  public slideTo(position: number): void {
     this.controller.slideTo(position);
   }
 }

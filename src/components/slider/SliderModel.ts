@@ -1,32 +1,42 @@
 import { Model } from "../../services/js/Model";
 
+interface StateInterface {
+  max: number;
+  min: number;
+  step: number;
+  position: number;
+  clickPosition: number;
+  showInfo: boolean;
+}
+
 export class SliderModel extends Model {
-  constructor(state) {
+  protected state: StateInterface = {
+    min: -Infinity,
+    max: Infinity,
+    step: 1,
+    position: 0,
+    clickPosition: null,
+    showInfo: true,
+  };
+
+  constructor(state?: object) {
     super();
 
-    this.state = {
-      min: -Infinity,
-      max: Infinity,
-      step: 1,
-      position: 0,
-      clickPosition: null,
-      showInfo: true,
-      ...state,
-    };
+    this.setState(state);
   }
-  setPosition(position) {
+  public setPosition(position: number): void {
     if (position > this.state.max) position = this.state.max;
     if (position < this.state.min) position = this.state.min;
 
-    this.state = { position };
+    this.setState({ position });
   }
-  getPosition() {
+  public getPosition(): number {
     return this.state.position;
   }
-  setClickPosition(event) {
-    this._state.clickPosition = this.state.position - event.clientX;
+  public setClickPosition(event: MouseEvent): void {
+    this.setState({ clickPosition: this.state.position - event.clientX });
   }
-  getDragPosition(event) {
+  public getDragPosition(event: MouseEvent): number {
     return this.state.clickPosition + event.clientX;
   }
 }
