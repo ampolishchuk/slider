@@ -1,18 +1,11 @@
-interface ParamsInterface {
-  template: Function;
-  state?: object;
-}
-
 export class View {
   private template: Function;
-  protected state: object;
-  protected node: any; // Node element
+  public node: any; // Node element
 
-  constructor({ template, state = {} }: ParamsInterface) {
+  constructor(template: Function) {
     this.template = template;
-    this.state = state;
   }
-  protected createNode(state: object): void {
+  protected createNode(state = {}): void {
     this.node = document.createElement("div");
 
     try {

@@ -2,7 +2,7 @@ export class Model {
   protected state: object;
   private observerList: Array<Function>;
 
-  public setState(state: object): void {
+  protected setState(state: object): void {
     this.state = { ...this.state, ...state };
 
     this.observerList.length &&

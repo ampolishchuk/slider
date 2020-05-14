@@ -1,15 +1,14 @@
 import { View } from "../../services/js/View";
 
 export class SliderView extends View {
-  protected node: any; // Node element
-  private button: any; // Node element
+  public button: any; // Node element
 
   constructor() {
     require("./slider.sass");
 
-    super({
-      template: require("./slider.pug"),
-    });
+    const template: Function = require("./slider.pug");
+
+    super(template);
   }
   private appendButton(): void {
     this.button = document.createElement("button");

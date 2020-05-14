@@ -1,6 +1,6 @@
 import { Slider } from "../../components/slider/Slider";
 
-const slider = new Slider();
+const slider: Slider = new Slider();
 
 document.body.appendChild(slider.render());
 

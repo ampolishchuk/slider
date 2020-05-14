@@ -2,26 +2,26 @@ import { SliderModel } from "./SliderModel";
 import { SliderView } from "./SliderView";
 
 export class SliderController {
-  model: SliderModel;
-  view: SliderView;
+  private model: SliderModel;
+  private view: SliderView;
 
   constructor(state?: object) {
     this.model = new SliderModel(state);
     this.view = new SliderView();
   }
-  render(): Node {
-    this.view.createNode(this.model.state);
+  public render(): any {
+    this.view.createNode(this.model.getState());
 
     this.addHandlers();
 
     return this.view.node;
   }
-  slideTo(position) {
+  public slideTo(position: number): void {
     this.model.setPosition(position);
     this.view.changeButtonPosition(this.model.getPosition());
   }
-  addHandlers() {
-    this.view.button.addEventListener("mousedown", (event) => {
+  private addHandlers(): void {
+    this.view.button.addEventListener("mousedown", (event: MouseEvent) => {
       this.model.setClickPosition(event);
 
       document.addEventListener("mousemove", this.mouseMoveHandler);
@@ -30,7 +30,7 @@ export class SliderController {
       document.removeEventListener("mousemove", this.mouseMoveHandler);
     });
   }
-  mouseMoveHandler = (event) => {
+  private mouseMoveHandler = (event: MouseEvent): void => {
     const position = this.model.getDragPosition(event);
 
     this.slideTo(position);

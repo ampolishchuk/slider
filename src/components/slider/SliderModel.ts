@@ -18,12 +18,12 @@ export class SliderModel extends Model {
     clickPosition: null,
     showInfo: true,
   };
-
   constructor(state?: object) {
     super();
 
     this.setState(state);
   }
+
   public setPosition(position: number): void {
     if (position > this.state.max) position = this.state.max;
     if (position < this.state.min) position = this.state.min;
