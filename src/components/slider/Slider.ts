@@ -1,6 +1,6 @@
-import { SliderController } from "./SliderController";
+import SliderController from "./SliderController";
 
-export class Slider {
+export default class Slider {
   private controller: SliderController;
 
   constructor(state?: object) {

@@ -1,4 +1,4 @@
-export class Model {
+export default class Model {
   protected state: object = {};
   private observerList: Array<Function> = [];
 

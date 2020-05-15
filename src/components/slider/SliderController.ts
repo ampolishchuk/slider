@@ -1,7 +1,7 @@
-import { SliderModel } from "./SliderModel";
-import { SliderView } from "./SliderView";
+import SliderModel from "./SliderModel";
+import SliderView from "./SliderView";
 
-export class SliderController {
+export default class SliderController {
   private model: SliderModel;
   private view: SliderView;
 
@@ -9,7 +9,7 @@ export class SliderController {
     this.model = new SliderModel(state);
     this.view = new SliderView();
   }
-  public render(): any {
+  public render(): HTMLElement {
     this.view.createNode(this.model.getState());
 
     this.addHandlers();

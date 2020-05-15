@@ -1,4 +1,4 @@
-import { Model } from "../../services/js/Model";
+import Model from "../../services/js/Model";
 
 interface StateInterface {
   max: number;
@@ -9,7 +9,7 @@ interface StateInterface {
   showInfo: boolean;
 }
 
-export class SliderModel extends Model {
+export default class SliderModel extends Model {
   protected state: StateInterface = {
     min: -Infinity,
     max: Infinity,

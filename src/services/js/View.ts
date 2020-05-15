@@ -1,4 +1,4 @@
-export class View {
+export default class View {
   private template: Function;
   public node: HTMLElement; // Node element
 

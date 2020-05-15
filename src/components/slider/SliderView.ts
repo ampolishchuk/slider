@@ -1,6 +1,6 @@
-import { View } from "../../services/js/View";
+import View from "../../services/js/View";
 
-export class SliderView extends View {
+export default class SliderView extends View {
   public button: HTMLElement;
 
   constructor() {
