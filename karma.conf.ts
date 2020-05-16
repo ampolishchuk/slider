@@ -17,7 +17,8 @@ module.exports = (config: any) => {
     ],
     exclude: [],
     preprocessors: {
-      "**/*.ts": ["karma-typescript", "coverage"],
+      "src/components/**/*.ts": ["karma-typescript", "coverage"],
+      "src/services/**/*.ts": ["karma-typescript"],
     },
 
     reporters: ["kjhtml", "coverage"],
