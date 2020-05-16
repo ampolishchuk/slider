@@ -29,9 +29,9 @@ export default class SliderModel extends Model {
     return this.state.position;
   }
   public setClickPosition(event: MouseEvent): void {
-    this.setState({ clickPosition: this.state.position - event.clientX });
+    this.setState({ clickPosition: event.clientX });
   }
   public getDragPosition(event: MouseEvent): number {
-    return this.state.clickPosition + event.clientX;
+    return this.state.position - this.state.clickPosition + event.clientX;
   }
 }
