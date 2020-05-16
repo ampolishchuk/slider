@@ -39,7 +39,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -130,29 +130,23 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -191,9 +185,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -203,9 +194,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,41 +205,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import SliderModel from "./Slider.model";
 &nbsp;
-describe("Testing SliderModel.ts", () =&gt; {
+describe("Model creating", () =&gt; {
   const sliderModel = new SliderModel();
 &nbsp;
   describe("Test setting and getting position value to state", () =&gt; {
-    beforeEach(() =&gt; {
+    it("setPosition(): succesful setting position", () =&gt; {
       sliderModel.setPosition(200);
-    });
 &nbsp;
-    it("is setting position to state", () =&gt; {
       const state = sliderModel.getState();
 &nbsp;
       expect(state.position).toBe(200);
     });
 &nbsp;
-    it("is getting position from state", () =&gt; {
+    it("getPosition(): succesful return position", () =&gt; {
+      sliderModel.setPosition(200);
+&nbsp;
       const position = sliderModel.getPosition();
 &nbsp;
       expect(position).toBe(200);
     });
   });
 &nbsp;
-  describe("Verify position after setting less then min and more then max value", () =&gt; {
+  describe("Replace position value if send less then min and more then max value", () =&gt; {
     beforeAll(() =&gt; {
-      sliderModel.setState({ min: 0, max: 100 });
+      sliderModel.setState({ min: 0, max: 200 });
     });
 &nbsp;
-    it("Set position more then max", () =&gt; {
-      sliderModel.setPosition(200);
+    it("Setting max value instead sended", () =&gt; {
+      sliderModel.setPosition(300);
 &nbsp;
       const state = sliderModel.getState();
 &nbsp;
-      expect(state.position).toBe(100);
+      expect(state.position).toBe(200);
     });
 &nbsp;
-    it("Set position less then min", () =&gt; {
+    it("Setting min value instead sended", () =&gt; {
       sliderModel.setPosition(-100);
 &nbsp;
       const state = sliderModel.getState();
@@ -260,16 +248,13 @@ describe("Testing SliderModel.ts", () =&gt; {
     });
   });
 &nbsp;
-  describe("Test events actions", () =&gt; {
+  describe("Event handlers working", () =&gt; {
     beforeEach(() =&gt; {
       sliderModel.setState({ position: 0, clickPosition: 0 });
     });
 &nbsp;
-    it("is set clickPosition to state on click event", async () =&gt; {
+    it("setClickPosition(): setting clickPosition on button click", async () =&gt; {
       const clickEvent = new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-        view: window,
         clientX: 200,
       });
 &nbsp;
@@ -280,11 +265,8 @@ describe("Testing SliderModel.ts", () =&gt; {
       expect(state.clickPosition).toBe(200);
     });
 &nbsp;
-    it("getDragPosition(): return position on mousemove event ", () =&gt; {
+    it("getDragPosition(): return new position on mousemove event ", () =&gt; {
       const moveEvent = new MouseEvent("move", {
-        bubbles: true,
-        cancelable: true,
-        view: window,
         clientX: 200,
       });
 &nbsp;
@@ -301,7 +283,7 @@ describe("Testing SliderModel.ts", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat May 16 2020 17:08:10 GMT+0300 (GMT+03:00)
+                at Sat May 16 2020 18:56:41 GMT+0300 (GMT+03:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>
