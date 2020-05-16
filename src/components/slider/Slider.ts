@@ -1,4 +1,4 @@
-import SliderController from "./SliderController";
+import SliderController from "./Slider.controller";
 
 export default class Slider {
   private controller: SliderController;
@@ -7,7 +7,7 @@ export default class Slider {
     this.controller = new SliderController(state);
   }
   public render(): HTMLElement {
-    return this.controller.render();
+    return this.controller.getNode();
   }
   public slideTo(position: number): void {
     this.controller.slideTo(position);
