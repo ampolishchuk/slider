@@ -1,40 +1,40 @@
 import SliderModel from "./Slider.model";
 
-describe("Testing SliderModel.ts", () => {
+describe("Model creating", () => {
   const sliderModel = new SliderModel();
 
   describe("Test setting and getting position value to state", () => {
-    beforeEach(() => {
+    it("setPosition(): succesful setting position", () => {
       sliderModel.setPosition(200);
-    });
 
-    it("is setting position to state", () => {
       const state = sliderModel.getState();
 
       expect(state.position).toBe(200);
     });
 
-    it("is getting position from state", () => {
+    it("getPosition(): succesful return position", () => {
+      sliderModel.setPosition(200);
+
       const position = sliderModel.getPosition();
 
       expect(position).toBe(200);
     });
   });
 
-  describe("Verify position after setting less then min and more then max value", () => {
+  describe("Replace position value if send less then min and more then max value", () => {
     beforeAll(() => {
-      sliderModel.setState({ min: 0, max: 100 });
+      sliderModel.setState({ min: 0, max: 200 });
     });
 
-    it("Set position more then max", () => {
-      sliderModel.setPosition(200);
+    it("Setting max value instead sended", () => {
+      sliderModel.setPosition(300);
 
       const state = sliderModel.getState();
 
-      expect(state.position).toBe(100);
+      expect(state.position).toBe(200);
     });
 
-    it("Set position less then min", () => {
+    it("Setting min value instead sended", () => {
       sliderModel.setPosition(-100);
 
       const state = sliderModel.getState();
@@ -43,12 +43,12 @@ describe("Testing SliderModel.ts", () => {
     });
   });
 
-  describe("Test events actions", () => {
+  describe("Event handlers working", () => {
     beforeEach(() => {
       sliderModel.setState({ position: 0, clickPosition: 0 });
     });
 
-    it("is set clickPosition to state on click event", async () => {
+    it("setClickPosition(): setting clickPosition on button click", async () => {
       const clickEvent = new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
@@ -63,7 +63,7 @@ describe("Testing SliderModel.ts", () => {
       expect(state.clickPosition).toBe(200);
     });
 
-    it("getDragPosition(): return position on mousemove event ", () => {
+    it("getDragPosition(): return new position on mousemove event ", () => {
       const moveEvent = new MouseEvent("move", {
         bubbles: true,
         cancelable: true,
