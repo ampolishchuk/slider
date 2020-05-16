@@ -1,5 +1,6 @@
-import SliderModel from "./SliderModel";
-import SliderView from "./SliderView";
+import SliderModel from "./Slider.model";
+import SliderModelInterface from "./Slider.model.interface";
+import SliderView from "./Slider.view";
 
 export default class SliderController {
   private model: SliderModel;
@@ -9,12 +10,15 @@ export default class SliderController {
     this.model = new SliderModel(state);
     this.view = new SliderView();
   }
-  public render(): HTMLElement {
+  public getNode(): HTMLElement {
     this.view.createNode(this.model.getState());
 
     this.addHandlers();
 
     return this.view.node;
+  }
+  public getState(): SliderModelInterface {
+    return this.model.getState();
   }
   public slideTo(position: number): void {
     this.model.setPosition(position);

@@ -10,16 +10,14 @@ export default class SliderView extends View {
 
     super(template);
   }
-  private appendButton(): void {
+  public createNode(state?: object): void {
+    this.node = document.createElement("section");
+    this.node.classList.add("slider");
+
     this.button = document.createElement("button");
     this.button.classList.add("slider-button");
 
     this.node.appendChild(this.button);
-  }
-  public createNode(state?: object): void {
-    super.createNode(state);
-
-    this.appendButton();
   }
   public changeButtonPosition(position: number): void {
     this.button.style.left = position + "px";
