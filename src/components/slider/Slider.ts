@@ -1,15 +1,49 @@
-import SliderController from "./Slider.controller";
+import SliderModel from "./Slider.model";
+import SliderModelInterface from "./Slider.model.interface";
+import SliderView from "./Slider.view";
 
 export default class Slider {
-  private controller: SliderController;
+  private model: SliderModel;
+  private view: SliderView;
 
   constructor(state?: object) {
-    this.controller = new SliderController(state);
+    this.model = new SliderModel(state);
+    this.view = new SliderView();
   }
-  public render(): HTMLElement {
-    return this.controller.getNode();
+  public getNode(): HTMLElement {
+    this.view.createNode(this.model.getState());
+
+    this.addHandlers();
+
+    return this.view.node;
+  }
+  public getState(): SliderModelInterface {
+    return this.model.getState();
   }
   public slideTo(position: number): void {
-    this.controller.slideTo(position);
+    this.model.setPosition(position);
+    this.view.changeButtonPosition(this.model.getPosition());
   }
+  public addObserver(callback: Function): void {
+    this.model.addObserver(callback);
+  }
+  public getObservers(): Array<object> {
+    return this.model.getObservers();
+  }
+
+  private addHandlers(): void {
+    this.view.button.addEventListener("mousedown", (event: MouseEvent) => {
+      this.model.setClickPosition(event);
+
+      document.addEventListener("mousemove", this.mouseMoveHandler);
+    });
+    document.addEventListener("mouseup", () => {
+      document.removeEventListener("mousemove", this.mouseMoveHandler);
+    });
+  }
+  private mouseMoveHandler = (event: MouseEvent): void => {
+    const position = this.model.getDragPosition(event);
+
+    this.slideTo(position);
+  };
 }
