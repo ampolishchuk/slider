@@ -1,6 +1,6 @@
 export default class Model {
   protected state: object = {};
-  private observerList: Array<Function> = [];
+  protected observerList: Array<Function> = [];
 
   public setState(state: object): void {
     this.state = { ...this.state, ...state };
@@ -13,5 +13,8 @@ export default class Model {
   }
   public addObserver(callback: Function): void {
     this.observerList.push(callback);
+  }
+  public getObservers(): Array<object> {
+    return this.observerList;
   }
 }
