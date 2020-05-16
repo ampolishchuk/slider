@@ -50,9 +50,6 @@ describe("Model creating", () => {
 
     it("setClickPosition(): setting clickPosition on button click", async () => {
       const clickEvent = new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-        view: window,
         clientX: 200,
       });
 
@@ -65,9 +62,6 @@ describe("Model creating", () => {
 
     it("getDragPosition(): return new position on mousemove event ", () => {
       const moveEvent = new MouseEvent("move", {
-        bubbles: true,
-        cancelable: true,
-        view: window,
         clientX: 200,
       });
 
