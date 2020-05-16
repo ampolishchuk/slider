@@ -1,14 +1,9 @@
-import View from "../../services/js/View";
-
-export default class SliderView extends View {
+export default class SliderView {
+  public node: HTMLElement;
   public button: HTMLElement;
 
   constructor() {
     require("./slider.sass");
-
-    const template: Function = require("./slider.pug");
-
-    super(template);
   }
   public createNode(state?: object): void {
     this.node = document.createElement("section");
