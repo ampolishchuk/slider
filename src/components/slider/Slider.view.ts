@@ -20,6 +20,9 @@ export default class SliderView {
 
     return this.node;
   }
+  public changeButtonPosition(position: number): void {
+    this.button.style.left = position + "px";
+  }
   public onMouseMove(callback: Function): void {
     this.onMouseMoveList.push(callback);
   }
@@ -37,8 +40,5 @@ export default class SliderView {
     this.changeButtonPosition(event.pageX);
 
     this.onMouseMoveList.forEach((callback: Function) => callback(event.pageX));
-  }
-  private changeButtonPosition(position: number): void {
-    this.button.style.left = position + "px";
   }
 }

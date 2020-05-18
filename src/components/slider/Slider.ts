@@ -21,27 +21,9 @@ export default class Slider {
   public refresh(state?: object) {
     state && this.model.setState(state);
 
-    this.node = this.render();
+    return this.render();
   }
-
   public render(): HTMLElement {
-    this.view.createNode(this.model.getState());
-
-    this.addViewHandlers();
-
-    return this.view.node;
+    return this.view.createNode(this.model.getState());
   }
-  private addViewHandlers(): void {
-    this.view.button.addEventListener("mousedown", (event: MouseEvent) => {
-      document.addEventListener("mousemove", this.onMouseMove);
-    });
-
-    document.addEventListener("mouseup", () => {
-      document.removeEventListener("mousemove", this.onMouseMove);
-    });
-  }
-  private onMouseMove = (event: MouseEvent): void => {
-    console.log(event);
-    this.slideTo(event.pageX);
-  };
 }
