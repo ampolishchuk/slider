@@ -3,8 +3,9 @@ export default class SliderView {
   public button: HTMLElement;
 
   constructor() {
-    require("./slider.sass");
+    require("./Slider.sass");
   }
+
   public createNode(state?: object): void {
     this.node = document.createElement("section");
     this.node.classList.add("slider");

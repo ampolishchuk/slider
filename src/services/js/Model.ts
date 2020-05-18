@@ -1,20 +1,17 @@
 export default class Model {
   protected state: object = {};
-  protected observerList: Array<Function> = [];
+  protected observersList: Array<Function> = [];
 
   public setState(state: object): void {
     this.state = { ...this.state, ...state };
 
-    this.observerList.length &&
-      this.observerList.forEach((callback: Function) => callback(this.state));
+    this.observersList.length &&
+      this.observersList.forEach((callback: Function) => callback(this.state));
   }
   public getState(): object {
     return this.state;
   }
   public addObserver(callback: Function): void {
-    this.observerList.push(callback);
-  }
-  public getObservers(): Array<object> {
-    return this.observerList;
+    this.observersList.push(callback);
   }
 }
