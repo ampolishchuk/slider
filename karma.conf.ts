@@ -11,12 +11,13 @@ module.exports = (config: any) => {
     ],
 
     files: [
-      { pattern: "src/components/**/*.spec.ts" },
+      { pattern: "tests/components/**/*.spec.ts" },
       { pattern: "src/components/**/*.ts" },
       { pattern: "src/services/**/*.ts" },
     ],
     exclude: [],
     preprocessors: {
+      "tests/components/**/*.spec.ts": ["karma-typescript"],
       "src/components/**/*.ts": ["karma-typescript", "coverage"],
       "src/services/**/*.ts": ["karma-typescript"],
     },
