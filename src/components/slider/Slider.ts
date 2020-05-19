@@ -4,26 +4,45 @@ import SliderView from "./Slider.view";
 export default class Slider {
   private model: SliderModel;
   private view: SliderView;
+  private onMouseMoveList: Array<Function> = [];
   public node: HTMLElement;
 
   constructor(state?: object) {
     this.model = new SliderModel(state);
     this.view = new SliderView();
+
+    this.addObservers();
   }
 
-  public addObserver(callback: Function): void {
-    this.model.addObserver(callback);
+  public onMouseMove(callback: Function): void {
+    this.onMouseMoveList.push(callback);
   }
+
   public slideTo(position: number): void {
     this.model.setPosition(position);
-    this.view.changeButtonPosition(this.model.getPosition());
   }
-  public refresh(state?: object) {
-    state && this.model.setState(state);
 
-    return this.render();
+  public render(state?: object): HTMLElement {
+    this.model.setState(state);
+
+    const { position, className } = this.model.getState();
+
+    return this.view.createNode({ position, className });
   }
-  public render(): HTMLElement {
-    return this.view.createNode(this.model.getState());
+
+  private addObservers() {
+    this.model.addObserver(({ position }: { position: number }) => {
+      this.view.changeButtonPosition(position);
+      this.updateObservers();
+    });
+
+    this.view.onMouseMove((position: number) => {
+      this.model.setPosition(position);
+    });
+  }
+  private updateObservers() {
+    const { position } = this.model.getState();
+
+    this.onMouseMoveList.forEach((callback: Function) => callback(position));
   }
 }
