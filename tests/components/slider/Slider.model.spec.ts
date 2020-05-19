@@ -1,45 +1,47 @@
 import SliderModel from "../../../src/components/slider/Slider.model";
 
 describe("Slider.model.spec.ts", () => {
-  const model = new SliderModel({ min: 0, max: 100 });
+  let model: SliderModel;
 
-  it("model.state is setted;", () => {
-    const { min, max } = model["state"];
-
-    expect({ min, max }).toEqual({ min: 0, max: 100 });
+  beforeAll(() => {
+    model = new SliderModel({ min: 0, max: 200 });
   });
 
-  describe("Testing setters and getters:", () => {
-    beforeEach(() => {
-      model.setState({ position: 100 });
+  describe("validatePosition(): Position validating:", () => {
+    it("valid value passed;", () => {
+      const position = model.validatePosition(100);
+
+      expect(position).toEqual(100);
     });
 
-    it("getState(): is working;", () => {
-      const { position } = model.getState();
+    it("less then min value passed;", () => {
+      const position = model.validatePosition(-100);
 
-      expect(position).toBe(100);
+      expect(position).toEqual(0);
     });
 
-    it("getPosition(): is working;", () => {
-      const { position } = model["state"];
+    it("more then max value passed;", () => {
+      const position = model.validatePosition(300);
 
-      expect(position).toBe(100);
+      expect(position).toEqual(200);
+    });
+  });
+
+  it("getState(): state returning", () => {
+    const state = model.getState();
+
+    expect(state).toEqual(model["state"]);
+  });
+
+  it("addObserver(): observers calling and getting values;", () => {
+    let testPosition: number;
+
+    model.addObserver(({ position }: { position: number }) => {
+      testPosition = position;
     });
 
-    it("setPosition() more then max working;", () => {
-      model.setPosition(300);
+    model.setPosition(100);
 
-      const { position } = model["state"];
-
-      expect(position).toBe(100);
-    });
-
-    it("setPosition() less then min working;", () => {
-      model.setPosition(-100);
-
-      const { position } = model["state"];
-
-      expect(position).toBe(0);
-    });
+    expect(testPosition).toBe(100);
   });
 });

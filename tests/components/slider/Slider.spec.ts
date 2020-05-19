@@ -1,52 +1,42 @@
 import Slider from "../../../src/components/slider/Slider";
 
 describe("Slider.spec.ts", () => {
-  const controller = new Slider();
-  const node = controller.render();
+  let controller: Slider;
 
-  it("controller.node rendered;", () => {
-    expect(node).toBeDefined();
+  beforeAll(() => {
+    controller = new Slider();
   });
 
-  describe("Testing handlers on view.button:", () => {
-    beforeAll(() => {
-      const mousemove = new MouseEvent("mousemove", {
-        clientX: 300,
-      });
-
-      controller["onMouseMove"](mousemove);
+  it("render(): node element returning;", () => {
+    spyOn(controller["model"], "setState").and.stub();
+    spyOn(controller["model"], "getState").and.returnValue(<any>{
+      position: 0,
+      className: "test",
+    });
+    spyOn(controller["view"], "createNode").and.callFake((state) => {
+      const node = document.createElement("div");
+      state.className && node.classList.add(state.className);
+      return node;
     });
 
-    it("model.position correctly updated;", () => {
-      const { position } = controller["model"]["state"];
+    const renderNode = controller.render();
 
-      expect(position).toBe(300);
-    });
-
-    it("view.button correctly updated;", () => {
-      expect(controller["view"].button.style.left).toBe(300 + "px");
-    });
+    expect(renderNode.classList.contains("test")).toBeTruthy();
   });
 
-  describe("refresh(): set model.state if exist and render controller.node", () => {
-    beforeAll(() => {
-      controller.refresh({ position: 100 });
+  it("onMouseMove(): observers setting and calling", () => {
+    spyOn(controller["model"], "getState").and.returnValue(<any>{
+      position: 100,
     });
 
-    it("model.state updated correctly", () => {
-      const { position } = controller["model"]["state"];
+    let testPosition: number;
 
-      expect(position).toBe(100);
+    controller.onMouseMove((position: number) => {
+      testPosition = position;
     });
-  });
 
-  describe("addObserver(): append callback functions to model observerList array:", () => {
-    controller.addObserver(() => {});
+    controller["updateObservers"]();
 
-    it("callback function appends;", () => {
-      const observersList = controller["model"]["observersList"];
-
-      expect(observersList.length).toBeGreaterThan(0);
-    });
+    expect(testPosition).toBe(100);
   });
 });

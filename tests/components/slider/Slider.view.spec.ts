@@ -1,25 +1,44 @@
 import SliderView from "../../../src/components/slider/Slider.view";
 
 describe("Slider.view.spec.ts", () => {
-  const view = new SliderView();
+  let view: SliderView;
 
-  describe("Testing creating node and changing position:", () => {
-    view.createNode();
+  beforeAll(() => {
+    view = new SliderView();
+  });
 
-    it("view.node created;", () => {
-      expect(view.node).not.toBe(undefined);
+  describe("createNode(): node element creating and returning:", () => {
+    it("without params;", () => {
+      const node = view.createNode();
+
+      expect(node).toBeDefined();
     });
 
-    it("view.button created;", () => {
-      expect(view.button).not.toBe(undefined);
+    it("with position;", () => {
+      const node = view.createNode({ position: 100 });
+      const button = node.querySelector("button");
+
+      expect(button.style.left).toBeTruthy(100 + "px");
     });
 
-    describe("changeButtonPosition(): must set view.button inline-styles:", () => {
-      view.changeButtonPosition(20);
+    it("with className;", () => {
+      const node = view.createNode({ className: "test" });
 
-      it("view.button inline-styles set;", () => {
-        expect(view.button.style.left).toBe("20px");
-      });
+      expect(node.classList.contains("test")).toBeTruthy();
     });
+  });
+
+  it("onMouseMove(): observers adding and getting values;", () => {
+    let testPosition: number;
+
+    view.onMouseMove((position: number) => {
+      testPosition = position;
+    });
+
+    const mousemoveEvent = new MouseEvent("mousemove", { clientX: 100 });
+
+    view["mouseMoveEvent"](mousemoveEvent);
+
+    expect(testPosition).toBe(100);
   });
 });
