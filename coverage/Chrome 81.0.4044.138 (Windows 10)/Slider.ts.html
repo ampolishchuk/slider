@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.86% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/28</span>
+                <span class='fraction'>25/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">70% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>7/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.59% </span>
+                <span class="strong">84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/27</span>
+                <span class='fraction'>21/25</span>
             </div>
         
             
@@ -104,25 +104,16 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -131,23 +122,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -157,46 +159,47 @@ import SliderView from "./Slider.view";
 export default class Slider {
   private model: SliderModel;
   private view: SliderView;
+  private onMouseMoveList: Array&lt;Function&gt; = [];
   public node: HTMLElement;
 &nbsp;
   constructor(state?: object) {
     this.model = new SliderModel(state);
     this.view = new SliderView();
+&nbsp;
+    this.addObservers();
   }
 &nbsp;
-  public addObserver(callback: Function): void {
-    this.model.addObserver(callback);
-  }
-  public slideTo(position: number): void {
-    this.model.setPosition(position);
-    this.view.changeButtonPosition(this.model.getPosition());
-  }
-  public refresh(state?: object) {
-    state &amp;&amp; this.model.setState(state);
-&nbsp;
-    this.node = this.render();
+  public onMouseMove(callback: Function): void {
+    this.onMouseMoveList.push(callback);
   }
 &nbsp;
-  public render(): HTMLElement {
-    this.view.createNode(this.model.getState());
-&nbsp;
-    this.addViewHandlers();
-&nbsp;
-    return this.view.node;
+<span class="fstat-no" title="function not covered" >  public s</span>lideTo(position: number): void {
+<span class="cstat-no" title="statement not covered" >    this.model.setPosition(position);</span>
   }
-  private addViewHandlers(): void {
-    this.view.button.addEventListener("mousedown", <span class="fstat-no" title="function not covered" >(e</span>vent: MouseEvent) =&gt; {
-<span class="cstat-no" title="statement not covered" >      document.addEventListener("mousemove", this.onMouseMove);</span>
+&nbsp;
+  public render(state?: object): HTMLElement {
+    this.model.setState(state);
+&nbsp;
+    const { position, className } = this.model.getState();
+&nbsp;
+    return this.view.createNode({ position, className });
+  }
+&nbsp;
+  private addObservers() {
+    this.model.addObserver(<span class="fstat-no" title="function not covered" >({</span> position<span class="cstat-no" title="statement not covered" > }: { position: number })</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.view.changeButtonPosition(position);</span>
+<span class="cstat-no" title="statement not covered" >      this.updateObservers();</span>
     });
 &nbsp;
-    document.addEventListener("mouseup", <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      document.removeEventListener("mousemove", this.onMouseMove);</span>
+    this.view.onMouseMove(<span class="fstat-no" title="function not covered" >(p</span>osition: number) =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.model.setPosition(position);</span>
     });
   }
-  private onMouseMove = (event: MouseEvent): void =&gt; {
-    console.log(event);
-    this.slideTo(event.pageX);
-  };
+  private updateObservers() {
+    const { position } = this.model.getState();
+&nbsp;
+    this.onMouseMoveList.forEach((callback: Function) =&gt; callback(position));
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -205,7 +208,7 @@ export default class Slider {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon May 18 2020 10:37:07 GMT+0300 (GMT+03:00)
+                at Tue May 19 2020 10:58:43 GMT+0300 (GMT+03:00)
             </div>
         </div>
         <script src="prettify.js"></script>
