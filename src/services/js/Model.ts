@@ -5,10 +5,9 @@ export default class Model {
   public setState(state: object): void {
     this.state = { ...this.state, ...state };
 
-    this.observersList.length &&
-      this.observersList.forEach((callback: Function) => callback(this.state));
+    this.observersList.forEach((callback: Function) => callback(this.state));
   }
-  public getState(): object {
+  public getState(): any {
     return this.state;
   }
   public addObserver(callback: Function): void {
