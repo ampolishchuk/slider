@@ -11,15 +11,22 @@ mainContainer.innerHTML = html;
 
 document.body.appendChild(mainContainer);
 
-const slider1: Slider = new Slider();
-const slider2: Slider = new Slider();
-const slider3: Slider = new Slider();
+const slider1 = new Slider({ position: 100 });
+const slider2 = new Slider();
+const slider3 = new Slider();
 
-const slider1Contaner = document.querySelector(".slider-1");
-const slider2Contaner = document.querySelector(".slider-2");
-const slider3Contaner = document.querySelector(".slider-3");
+const contaner1 = document.querySelector(".index-conainer_1");
+const contaner2 = document.querySelector(".index-conainer_2");
+const contaner3 = document.querySelector(".index-conainer_3");
 
-slider1Contaner.appendChild(slider1.render());
-slider2Contaner.appendChild(slider2.render());
-slider3Contaner.appendChild(slider3.render());
-slider3Contaner.appendChild(slider3.render());
+contaner1.appendChild(slider1.render());
+contaner2.appendChild(slider2.render());
+contaner3.appendChild(slider3.render());
+
+slider3.slideTo(199);
+
+// slider3.addObserver("position", (position: number) => {
+//   console.log(position);
+// });
+
+// slider2.slideTo(300);

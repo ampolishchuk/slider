@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Slider.ts</title>
+    <title>Code coverage report for Observer.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> Slider.ts</h1>
+        <h1><a href="index.html">All files</a> Observer.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/15</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/15</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
@@ -77,74 +77,44 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ControllerIntarface } from "./Interfaces";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">type ObserverType = {
+  action: string;
+  callback: Function;
+};
 &nbsp;
-import Observer from "./Observer";
-import SliderController from "./Slider.controller";
-import SliderModel from "./Slider.model";
-import SliderView from "./Slider.view";
+export default class Observer {
+  private list: Array&lt;ObserverType&gt; = [];
 &nbsp;
-export default class Slider {
-  private controller: ControllerIntarface;
+<span class="fstat-no" title="function not covered" >  public a</span>dd(action: string, callback: Function): void {
+    const observer = <span class="cstat-no" title="statement not covered" >{ action, callback };</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor(<span class="cstat-no" title="statement not covered" >s</span>tate: object = {}) {</span>
-    const observer = <span class="cstat-no" title="statement not covered" >new Observer();</span>
-    const model = <span class="cstat-no" title="statement not covered" >new SliderModel({ observer }, state);</span>
-    const view = <span class="cstat-no" title="statement not covered" >new SliderView({ observer });</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    this.controller = new SliderController({</span>
-      observer,
-      model,
-      view,
-    });
+<span class="cstat-no" title="statement not covered" >    this.list.push(observer);</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  public r</span>ender() {
-<span class="cstat-no" title="statement not covered" >    return this.controller.render();</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  public s</span>lideTo(position: number) {
-<span class="cstat-no" title="statement not covered" >    this.controller.slideTo(position);</span>
+<span class="fstat-no" title="function not covered" >  public n</span>otify(action: string, value: any): void {
+<span class="cstat-no" title="statement not covered" >    this.list</span>
+      .filter(<span class="fstat-no" title="function not covered" >(o</span>bserver) =&gt; <span class="cstat-no" title="statement not covered" >observer.action == action)</span>
+      .forEach(<span class="fstat-no" title="function not covered" >(o</span>bserver) =&gt; <span class="cstat-no" title="statement not covered" >observer.callback(value));</span>
   }
 }
 &nbsp;</pre></td></tr></table></pre>

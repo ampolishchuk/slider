@@ -1,44 +1,98 @@
-import SliderView from "../../../src/components/slider/Slider.view";
+// import SliderView from "../../../src/components/slider/Slider.view";
 
-describe("Slider.view.spec.ts", () => {
-  let view: SliderView;
+// describe("Testing SliderView:", () => {
+//   const view = new SliderView();
 
-  beforeAll(() => {
-    view = new SliderView();
-  });
+//   beforeAll(() => {
+//     spyOn(view["container"], "render").and.callFake((className: string) => {
+//       const element = document.createElement("section");
+//       element.classList.add(className);
+//       return element;
+//     });
+//     spyOn(view["button"], "render").and.callFake((position: number) => {
+//       const element = document.createElement("button");
+//       element.style.left = position + "px";
+//       return element;
+//     });
+//     spyOn(view["button"], "setPosition").and.stub();
 
-  describe("createNode(): node element creating and returning:", () => {
-    it("without params;", () => {
-      const node = view.createNode();
+//     spyOn(view["observer"], "add").and.stub();
+//     spyOn(view["observer"], "notify").and.stub();
 
-      expect(node).toBeDefined();
-    });
+//     spyOn(view, <any>"addHandlers").and.stub();
+//   });
 
-    it("with position;", () => {
-      const node = view.createNode({ position: 100 });
-      const button = node.querySelector("button");
+//   it("Returns node element;", () => {
+//     expect(view.render()).toBeDefined();
+//   });
 
-      expect(button.style.left).toBeTruthy(100 + "px");
-    });
+//   it("Returns node element with params;", () => {
+//     const element = view.render({ className: "test", position: 100 });
+//     const button = element.querySelector("button");
 
-    it("with className;", () => {
-      const node = view.createNode({ className: "test" });
+//     expect(element).toBeDefined();
+//     expect(element.classList.contains("test")).toBeTrue();
+//     expect(button.style.left).toBe("100px");
+//   });
 
-      expect(node.classList.contains("test")).toBeTruthy();
-    });
-  });
+//   it("Sets position", () => {
+//     view.setPosition(100);
 
-  it("onMouseMove(): observers adding and getting values;", () => {
-    let testPosition: number;
+//     expect(view.button.setPosition).toHaveBeenCalledTimes(1);
+//   });
 
-    view.onMouseMove((position: number) => {
-      testPosition = position;
-    });
+//   it("Sets observers", () => {
+//     view.addObserver("test", () => {});
 
-    const mousemoveEvent = new MouseEvent("mousemove", { clientX: 100 });
+//     expect(view["observer"].add).toHaveBeenCalledTimes(1);
+//   });
 
-    view["mouseMoveEvent"](mousemoveEvent);
+//   // describe("Called with params:", () => {
+//   //   const view = new SliderView();
 
-    expect(testPosition).toBe(100);
-  });
-});
+//   //   setViewSpies(view);
+
+//   //   it("Returns node element;", () => {
+//   //     expect(view.render()).toBeDefined();
+//   //   });
+//   // });
+
+//   // it("Sets position value", () => {
+//   //   spyOn(view.button, "setPosition");
+//   //   view.setPosition(100);
+
+//   //   expect(view.button.setPosition).toHaveBeenCalledTimes(1);
+//   // });
+
+//   // describe("Returns node element:", () => {
+//   //   it("Called without params;", () => {
+//   //     const container = view.render();
+//   //     expect(container).toBeDefined();
+//   //   });
+
+//   //   it("Called with params;", () => {
+//   //     const container = view.render({ className: "test" });
+//   //     expect(container.classList.contains("test")).toBeTrue();
+//   //   });
+//   // });
+
+//   // describe("Observer:", () => {
+//   //   let testPosition: number;
+
+//   //   beforeAll(() => {
+//   //     testPosition = 0;
+//   //     view.addObserver("changePosition", (position: number) => {
+//   //       testPosition = position;
+//   //     });
+//   //   });
+
+//   //   it("Adds;", () => {
+//   //     expect(view["observer"]["list"].length).toBe(1);
+//   //   });
+
+//   //   it("Notifies;", () => {
+//   //     view["observer"]["notify"]("changePosition", 200);
+//   //     expect(testPosition).toBe(200);
+//   //   });
+//   // });
+// });

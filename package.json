@@ -5,8 +5,7 @@
   "scripts": {
     "webpack:build": "webpack --config ./config/webpack.build.config.js",
     "webpack:dev": "webpack-dev-server --config ./config/webpack.dev.config.js",
-    "karma:test": "karma start karma.conf.ts",
-    "jest:test": "jest"
+    "karma:test": "karma start karma.conf.ts"
   },
   "author": "Alexey Polishchuk",
   "license": "ISC",

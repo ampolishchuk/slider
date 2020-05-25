@@ -1,45 +1,55 @@
-interface StateModelInterface {
+import { SliderObserverInterface } from "./Slider.interfaces";
+
+type StateType = {
   className?: string;
+  element?: HTMLElement;
   max: number;
   min: number;
   step: number;
   position: number;
   showInfo: boolean;
+};
+
+interface DependenciesInterface {
+  observer: SliderObserverInterface;
 }
 
 export default class SliderModel {
-  protected state: StateModelInterface = {
-    min: -Infinity,
-    max: Infinity,
-    step: 1,
-    position: 0,
-    showInfo: true,
-  };
-  protected observersList: Array<Function> = [];
+  private $: DependenciesInterface;
+  private state: StateType;
 
-  constructor(state?: object) {
-    this.setState(state);
+  constructor(dependencies: DependenciesInterface, state?: object) {
+    this.$ = dependencies;
+
+    this.state = {
+      min: -Infinity,
+      max: Infinity,
+      step: 1,
+      position: 0,
+      showInfo: true,
+
+      ...state,
+    };
   }
 
-  public setState(state: object = {}): void {
+  public setState(state?: StateType): void {
     this.state = { ...this.state, ...state };
   }
-  public getState(): StateModelInterface {
+
+  public getState() {
     return this.state;
   }
 
-  public addObserver(callback: Function): void {
-    this.observersList.push(callback);
+  public setPosition(position: number): void {
+    this.state.position = this.validatePosition(position);
+
+    this.$.observer.notify("positionChanged", this.state.position);
   }
-  public validatePosition(position: number): number {
+
+  private validatePosition(position: number): number {
     if (position > this.state.max) return this.state.max;
     if (position < this.state.min) return this.state.min;
 
     return position;
-  }
-  public setPosition(position: number): void {
-    this.state.position = this.validatePosition(position);
-
-    this.observersList.forEach((callback: Function) => callback(this.state));
   }
 }

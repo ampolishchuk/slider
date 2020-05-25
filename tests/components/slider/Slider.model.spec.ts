@@ -1,47 +1,53 @@
-import SliderModel from "../../../src/components/slider/Slider.model";
+// import SliderModel from "../../../src/components/slider/Slider.model";
 
-describe("Slider.model.spec.ts", () => {
-  let model: SliderModel;
+// describe("Testing SliderModel:", () => {
+//   const model = new SliderModel();
 
-  beforeAll(() => {
-    model = new SliderModel({ min: 0, max: 200 });
-  });
+//   it("Returns state;", () => {
+//     model.setState({ position: 400 });
 
-  describe("validatePosition(): Position validating:", () => {
-    it("valid value passed;", () => {
-      const position = model.validatePosition(100);
+//     const { position } = model.getState();
 
-      expect(position).toEqual(100);
-    });
+//     expect(position).toBe(400);
+//   });
 
-    it("less then min value passed;", () => {
-      const position = model.validatePosition(-100);
+//   describe("Validates position value on set:", () => {
+//     model.setState({ max: 200, min: 0 });
 
-      expect(position).toEqual(0);
-    });
+//     it("Valid value passed;", () => {
+//       model.setPosition(100);
 
-    it("more then max value passed;", () => {
-      const position = model.validatePosition(300);
+//       expect(model["state"].position).toEqual(100);
+//     });
 
-      expect(position).toEqual(200);
-    });
-  });
+//     it("Less then min value passed;", () => {
+//       model.setPosition(-100);
 
-  it("getState(): state returning", () => {
-    const state = model.getState();
+//       expect(model["state"].position).toEqual(0);
+//     });
 
-    expect(state).toEqual(model["state"]);
-  });
+//     it("More then max value passed;", () => {
+//       model.setPosition(300);
 
-  it("addObserver(): observers calling and getting values;", () => {
-    let testPosition: number;
+//       expect(model["state"].position).toEqual(200);
+//     });
+//   });
 
-    model.addObserver(({ position }: { position: number }) => {
-      testPosition = position;
-    });
+//   describe("Observer:", () => {
+//     let testPosition: number;
 
-    model.setPosition(100);
+//     model.addObserver("position", (position: number) => {
+//       testPosition = position;
+//     });
 
-    expect(testPosition).toBe(100);
-  });
-});
+//     it("Adds;", () => {
+//       expect(model["observer"]["list"].length).toBe(1);
+//     });
+
+//     it("Notifies;", () => {
+//       model["observer"]["notify"]("position", 100);
+
+//       expect(testPosition).toBe(100);
+//     });
+//   });
+// });
