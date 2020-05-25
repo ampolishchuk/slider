@@ -1,7 +1,11 @@
 import { SliderModelInterface } from "../Slider.interfaces";
-import { ButtonViewInterface } from "./Button.interfaces";
+import {
+  ButtonViewInterface,
+  ButtonObserverInterface,
+} from "./Button.interfaces";
 
 interface DependenciesInterface {
+  observer: ButtonObserverInterface;
   model: SliderModelInterface;
   view: ButtonViewInterface;
 }
@@ -11,6 +15,10 @@ export default class ButtonController {
 
   constructor(depenencies: DependenciesInterface) {
     this.$ = depenencies;
+
+    this.$.observer.add("positionChanged", (position: number) => {
+      this.setPosition(position);
+    });
   }
 
   public render() {

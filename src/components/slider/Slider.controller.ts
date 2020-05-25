@@ -19,22 +19,15 @@ export default class SliderController {
 
   constructor(dependencies: DependenciesInterface) {
     this.$ = dependencies;
-
-    this.$.observer.add("positionChanged", (position: number) => {
-      this.$.button.setPosition(position);
-    });
   }
 
   public render(): HTMLElement {
-    const { className } = this.$.model.getState();
     const slider = this.$.view.render();
     const scale = this.$.scale.render();
     const button = this.$.button.render();
 
     slider.appendChild(scale);
     slider.appendChild(button);
-
-    if (className) this.addClass(className);
 
     return slider;
   }

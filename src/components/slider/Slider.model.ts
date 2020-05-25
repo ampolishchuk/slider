@@ -1,8 +1,7 @@
 import { SliderObserverInterface } from "./Slider.interfaces";
 
 type StateType = {
-  className?: string;
-  element?: HTMLElement;
+  className: string;
   max: number;
   min: number;
   step: number;
@@ -22,6 +21,7 @@ export default class SliderModel {
     this.$ = dependencies;
 
     this.state = {
+      className: "",
       min: -Infinity,
       max: Infinity,
       step: 1,
@@ -32,7 +32,7 @@ export default class SliderModel {
     };
   }
 
-  public setState(state?: StateType): void {
+  public setState(state: object): void {
     this.state = { ...this.state, ...state };
   }
 

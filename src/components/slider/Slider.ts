@@ -15,7 +15,7 @@ export default class Slider {
     const model = new SliderModel({ observer }, state);
     const view = new SliderView();
     const scale = new Scale({ model });
-    const button = new Button({ model });
+    const button = new Button({ observer, model });
 
     this.controller = new SliderController({
       observer,
