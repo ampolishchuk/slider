@@ -33,4 +33,8 @@ export default class Slider {
   public slideTo(position: number) {
     this.controller.setPosition(position);
   }
+
+  public addClass(className: string) {
+    this.controller.addClass(className);
+  }
 }
