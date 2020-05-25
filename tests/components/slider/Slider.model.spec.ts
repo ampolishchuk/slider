@@ -1,53 +1,55 @@
-// import SliderModel from "../../../src/components/slider/Slider.model";
+import SliderModel from "../../../src/components/slider/Slider.model";
+import Observer from "../../../src/components/slider/services/Observer";
 
-// describe("Testing SliderModel:", () => {
-//   const model = new SliderModel();
+describe("Testing SliderModel:", () => {
+  const observer = new Observer();
+  let model: SliderModel;
 
-//   it("Returns state;", () => {
-//     model.setState({ position: 400 });
+  beforeAll(() => {
+    spyOnAllFunctions(observer);
 
-//     const { position } = model.getState();
+    model = new SliderModel({ observer }, { min: 0, max: 200 });
+  });
 
-//     expect(position).toBe(400);
-//   });
+  beforeEach(() => {
+    model["state"].position = 0;
+  });
 
-//   describe("Validates position value on set:", () => {
-//     model.setState({ max: 200, min: 0 });
+  it("Sets state;", () => {
+    model.setState({ position: 100 });
 
-//     it("Valid value passed;", () => {
-//       model.setPosition(100);
+    expect(model["state"].position).toBe(100);
+  });
+  it("Returns state;", () => {
+    const { position } = model.getState();
 
-//       expect(model["state"].position).toEqual(100);
-//     });
+    expect(position).not.toBeNull();
+  });
 
-//     it("Less then min value passed;", () => {
-//       model.setPosition(-100);
+  describe("Testing a position setting:", () => {
+    beforeEach(() => {
+      model["state"].position = 0;
+    });
 
-//       expect(model["state"].position).toEqual(0);
-//     });
+    it("Sets valide position;", () => {
+      model.setPosition(100);
 
-//     it("More then max value passed;", () => {
-//       model.setPosition(300);
+      expect(model["state"].position).toBe(100);
+    });
+    it("Sets more then max position;", () => {
+      model.setPosition(300);
 
-//       expect(model["state"].position).toEqual(200);
-//     });
-//   });
+      expect(model["state"].position).toBe(200);
+    });
+    it("Sets less then min position;", () => {
+      model.setPosition(-100);
 
-//   describe("Observer:", () => {
-//     let testPosition: number;
+      expect(model["state"].position).toBe(0);
+    });
+    it("Notifies observers on position changed;", () => {
+      model.setPosition(100);
 
-//     model.addObserver("position", (position: number) => {
-//       testPosition = position;
-//     });
-
-//     it("Adds;", () => {
-//       expect(model["observer"]["list"].length).toBe(1);
-//     });
-
-//     it("Notifies;", () => {
-//       model["observer"]["notify"]("position", 100);
-
-//       expect(testPosition).toBe(100);
-//     });
-//   });
-// });
+      expect(model["$"].observer.notify).toHaveBeenCalled();
+    });
+  });
+});

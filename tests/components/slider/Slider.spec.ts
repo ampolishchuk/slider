@@ -11,7 +11,7 @@ describe("Testing Slider:", () => {
     spyOn(slider["controller"], "addClass").and.stub();
   });
 
-  it("Return node element on render", () => {
+  it("Return node element on render;", () => {
     const element = slider.render();
 
     expect(element.nodeType).toBe(Node.ELEMENT_NODE);
