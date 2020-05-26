@@ -1,12 +1,12 @@
-import { SliderModelInterface } from "../Slider.interfaces";
 import {
+  ButtonModelInterface,
   ButtonViewInterface,
   ButtonObserverInterface,
 } from "./Button.interfaces";
 
 interface DependenciesInterface {
   observer: ButtonObserverInterface;
-  model: SliderModelInterface;
+  model: ButtonModelInterface;
   view: ButtonViewInterface;
 }
 
@@ -17,22 +17,19 @@ export default class ButtonController {
     this.$ = depenencies;
 
     this.$.observer.add("positionChanged", (position: number) => {
-      this.setPosition(position);
+      this.$.view.setPosition(position);
     });
   }
 
   public render() {
-    const { position } = this.$.model.getState();
+    const element = this.$.view.render();
+    const position = this.$.model.getPosition();
 
-    const element = this.$.view.render(position);
+    this.$.view.setPosition(position);
 
     this.addEventHandlers(element);
 
     return element;
-  }
-
-  public setPosition(position: number) {
-    this.$.view.setPosition(position);
   }
 
   private addEventHandlers(element: HTMLElement) {
