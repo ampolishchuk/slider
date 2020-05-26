@@ -1,16 +1,15 @@
-import { SliderModelInterface } from "../Slider.interfaces";
 import {
+  ButtonModelInterface,
   ButtonControllerInterface,
   ButtonObserverInterface,
 } from "./Button.interfaces";
 
 import ButtonView from "./Button.view";
 import ButtonController from "./Button.controller";
-import Observer from "../services/Observer";
 
 interface DependenciesInterface {
   observer: ButtonObserverInterface;
-  model: SliderModelInterface;
+  model: ButtonModelInterface;
 }
 
 export default class Button {
@@ -18,13 +17,12 @@ export default class Button {
   private controller: ButtonControllerInterface;
 
   constructor(dependencies: DependenciesInterface) {
-    const observer = new Observer();
     const view = new ButtonView();
 
     this.$ = dependencies;
 
     this.controller = new ButtonController({
-      observer,
+      observer: this.$.observer,
       model: this.$.model,
       view,
     });
@@ -32,9 +30,5 @@ export default class Button {
 
   public render() {
     return this.controller.render();
-  }
-
-  public setPosition(position: number) {
-    this.controller.setPosition(position);
   }
 }
