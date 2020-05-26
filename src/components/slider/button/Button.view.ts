@@ -6,9 +6,7 @@ export default class ButtonView {
     this.element.classList.add("slider-button");
   }
 
-  public render(position: number): HTMLElement {
-    if (position) this.element.style.left = position + "px";
-
+  public render(): HTMLElement {
     return this.element;
   }
 
