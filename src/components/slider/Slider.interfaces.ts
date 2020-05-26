@@ -1,7 +1,8 @@
+export interface SliderInterface extends SliderControllerIntarface {}
+
 export interface SliderModelInterface {
-  setState(state: object): void;
-  getState(): any;
   setPosition(position: number): void;
+  getPosition(): number;
 }
 
 export interface SliderViewInterface {
@@ -26,5 +27,4 @@ export interface SliderScaleInterface {
 
 export interface SliderButtonInterface {
   render(): HTMLElement;
-  setPosition(position: number): void;
 }
