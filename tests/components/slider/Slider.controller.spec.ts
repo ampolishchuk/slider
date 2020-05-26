@@ -1,38 +1,26 @@
-import Observer from "../../../src/components/slider/services/Observer";
 import SliderController from "../../../src/components/slider/Slider.controller";
-import SliderModel from "../../../src/components/slider/Slider.model";
-import SliderView from "../../../src/components/slider/Slider.view";
-import Scale from "../../../src/components/slider/scale/Scale";
-import Button from "../../../src/components/slider/button/Button";
 
 describe("Tesing SliderController:", () => {
-  const observer = new Observer();
-  const model = new SliderModel({ observer });
-  const view = new SliderView();
-  const scale = new Scale({ model });
-  const button = new Button({ model, observer });
+  const observer = jasmine.createSpyObj("observer", ["add"]);
+  const model = jasmine.createSpyObj("model", ["setPosition"]);
+  const view = jasmine.createSpyObj("view", {
+    render: document.createElement("div"),
+    addClass: "",
+  });
+  const scale = jasmine.createSpyObj("scale", {
+    render: document.createElement("div"),
+  });
+  const button = jasmine.createSpyObj("scale", {
+    render: document.createElement("button"),
+    setPosition: "",
+  });
 
-  let controller: SliderController;
-
-  beforeAll(() => {
-    spyOnAllFunctions(observer);
-
-    spyOn(model, "getState").and.returnValue(<any>{ className: "test" });
-    spyOn(model, "setPosition").and.stub();
-
-    spyOn(view, "render").and.returnValue(document.createElement("section"));
-    spyOn(view, "addClass").and.stub();
-
-    spyOn(scale, "render").and.returnValue(document.createElement("div"));
-    spyOn(button, "render").and.returnValue(document.createElement("button"));
-
-    controller = new SliderController({
-      observer,
-      model,
-      view,
-      scale,
-      button,
-    });
+  const controller = new SliderController({
+    observer,
+    model,
+    view,
+    scale,
+    button,
   });
 
   it("Returns node element on render;", () => {

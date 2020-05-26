@@ -1,29 +1,19 @@
 import SliderModel from "../../../src/components/slider/Slider.model";
-import Observer from "../../../src/components/slider/services/Observer";
 
 describe("Testing SliderModel:", () => {
-  const observer = new Observer();
-  let model: SliderModel;
-
-  beforeAll(() => {
-    spyOnAllFunctions(observer);
-
-    model = new SliderModel({ observer }, { min: 0, max: 200 });
+  const observer = jasmine.createSpyObj("observer", {
+    notify: "",
   });
+  const model = new SliderModel({ observer }, { min: 0, max: 200 });
 
   beforeEach(() => {
     model["state"].position = 0;
   });
 
-  it("Sets state;", () => {
-    model.setState({ position: 100 });
+  it("Returns position;", () => {
+    const position = model.getPosition();
 
-    expect(model["state"].position).toBe(100);
-  });
-  it("Returns state;", () => {
-    const { position } = model.getState();
-
-    expect(position).not.toBeNull();
+    expect(position).toBe(0);
   });
 
   describe("Testing a position setting:", () => {

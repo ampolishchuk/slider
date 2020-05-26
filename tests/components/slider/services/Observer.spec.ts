@@ -1,20 +1,17 @@
-// import Observer from "../../../src/components/slider/Observer";
+import Observer from "../../../../src/components/slider/services/Observer";
 
-// describe("Testing Observer:", () => {
-//   const observer: Observer = new Observer();
+describe("Testing Observer:", () => {
+  const observer = new Observer();
 
-//   let testValue: number;
+  it("Adds and notifies observers;", () => {
+    let testValue;
 
-//   observer.add("test", (value: number) => {
-//     testValue = value;
-//   });
+    observer.add("test", (value: any) => {
+      testValue = value;
+    });
 
-//   it("Adds;", () => {
-//     expect(observer["list"].length).toBe(1);
-//   });
+    observer.notify("test", "test");
 
-//   it("Notifies;", () => {
-//     observer.notify("test", 100);
-//     expect(testValue).toBe(100);
-//   });
-// });
+    expect(testValue).toBe("test");
+  });
+});
