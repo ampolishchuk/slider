@@ -32,18 +32,13 @@ export default class SliderModel {
     };
   }
 
-  public setState(state: object): void {
-    this.state = { ...this.state, ...state };
-  }
-
-  public getState() {
-    return this.state;
-  }
-
   public setPosition(position: number): void {
     this.state.position = this.validatePosition(position);
 
     this.$.observer.notify("positionChanged", this.state.position);
+  }
+  public getPosition(): number {
+    return this.state.position;
   }
 
   private validatePosition(position: number): number {
