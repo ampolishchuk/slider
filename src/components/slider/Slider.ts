@@ -1,40 +1,25 @@
-import { SliderControllerIntarface } from "./Slider.interfaces";
+import SliderControllerInterface from "./interfaces/SliderController.interface";
+import container from "./services/IOCContainer";
+import SliderController from "./controller/Slider.controller";
+import SliderModel from "./model/Slider.model";
+import SliderView from "./view/Slider.view";
 
-import Observer from "./services/Observer";
-import SliderModel from "./Slider.model";
-import SliderView from "./Slider.view";
-import SliderController from "./Slider.controller";
-import Scale from "./scale/Scale";
-import Button from "./button/Button";
+container.set("SliderModel", SliderModel);
+container.set("SliderView", SliderView);
+container.set("SliderController", SliderController);
 
 export default class Slider {
-  private controller: SliderControllerIntarface;
+  private controller: SliderControllerInterface;
 
   constructor(state?: object) {
-    const observer = new Observer();
-    const model = new SliderModel({ observer }, state);
-    const view = new SliderView();
-    const scale = new Scale({ model });
-    const button = new Button({ observer, model });
-
-    this.controller = new SliderController({
-      observer,
-      model,
-      view,
-      scale,
-      button,
-    });
+    this.controller = container.get("SliderController");
   }
 
-  public render() {
+  public render(): HTMLElement {
     return this.controller.render();
   }
 
   public slideTo(position: number) {
-    this.controller.setPosition(position);
-  }
-
-  public addClass(className: string) {
-    this.controller.addClass(className);
+    this.controller.slideTo(position);
   }
 }
