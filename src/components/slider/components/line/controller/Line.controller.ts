@@ -1,12 +1,12 @@
-import ScaleViewInterface from "../interfaces/ScaleView.interface";
-import ScaleObserverInterface from "../interfaces/ScaleObserver.interface";
+import LineViewInterface from "../interfaces/LineView.interface";
+import LineObserverInterface from "../interfaces/LineObserver.interface";
 
 interface DependenciesInterface {
-  observer: ScaleObserverInterface;
-  view: ScaleViewInterface;
+  observer: LineObserverInterface;
+  view: LineViewInterface;
 }
 
-export default class ScaleController {
+export default class LineController {
   private $: DependenciesInterface;
 
   constructor(dependencies: DependenciesInterface) {
@@ -23,7 +23,7 @@ export default class ScaleController {
 
   private addHandlers = (element: HTMLElement): void => {
     element.addEventListener("click", (event) => {
-      this.$.observer.notify("scaleController:click", event.pageX);
+      this.$.observer.notify("lineController:click", event.pageX);
     });
   };
 }

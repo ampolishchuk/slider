@@ -1,17 +1,21 @@
 import ScaleControllerInterface from "./interfaces/ScaleController.interface";
 
-import container from "../../services/IOCContainer";
 import ScaleView from "./view/Scale.view";
 import ScaleController from "./controller/Scale.controller";
+import ScaleObserverInterface from "./interfaces/ScaleObserver.interface";
 
-container.set("ScaleView", ScaleView);
-container.set("ScaleController", ScaleController);
+interface DependenciesInterface {
+  observer: ScaleObserverInterface;
+}
 
 export default class Scale {
+  private $: DependenciesInterface;
   private controller: ScaleControllerInterface;
 
-  constructor() {
-    this.controller = container.get("ScaleController");
+  constructor(dependencies: DependenciesInterface) {
+    this.$ = dependencies;
+    const view = new ScaleView();
+    this.controller = new ScaleController({ observer: this.$.observer, view });
   }
 
   public render(): HTMLElement {

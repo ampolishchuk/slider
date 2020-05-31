@@ -1,5 +1,5 @@
 export default class View {
-  private element: HTMLElement;
+  protected element: HTMLElement;
 
   constructor(tag: string, className: string) {
     this.element = document.createElement(tag);

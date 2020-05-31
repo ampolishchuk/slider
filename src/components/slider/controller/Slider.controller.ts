@@ -1,34 +1,54 @@
-import ButtonInterface from "../interfaces/Button.interface";
+import SliderObserverInterface from "../interfaces/SliderObserver.interface";
+import SliderModelInterface from "../interfaces/SliderModel.interface";
+import SliderViewInterface from "../interfaces/SliderView.interface";
+import SliderButtonInterface from "../interfaces/SliderButton.interface";
+import SliderLineInterface from "../interfaces/SliderLine.interface";
+import SliderScaleInterface from "../interfaces/SliderScale.interface";
 
-import container from "../services/IOCContainer";
-import Button from "../components/button/Button";
-import Scale from "../components/scale/Scale";
-import ScaleInterface from "../interfaces/Scale.interface";
-
-container.set("Button", Button);
-container.set("Scale", Scale);
+interface DependenciesInterface {
+  observer: SliderObserverInterface;
+  model: SliderModelInterface;
+  view: SliderViewInterface;
+  button: SliderButtonInterface;
+  line: SliderLineInterface;
+  scale: SliderScaleInterface;
+}
 
 export default class SliderController {
-  private button: ButtonInterface;
-  private scale: ScaleInterface;
+  private $: DependenciesInterface;
 
-  constructor() {
-    this.button = container.get("Button");
-    this.scale = container.get("Scale");
+  constructor(dependencies: DependenciesInterface) {
+    this.$ = dependencies;
+
+    this.$.observer.add(
+      "buttonController:mousemove",
+      (mousePosition: number) => {
+        this.setPosition(mousePosition);
+      }
+    );
+
+    this.$.observer.add("lineController:click", (clickPosition: number) => {
+      this.setPosition(clickPosition);
+    });
+
+    this.$.observer.add("scaleController:click", (clickPosition: number) => {
+      this.setPosition(clickPosition);
+    });
   }
 
   public render(): HTMLElement {
-    const slider = container.get("SliderView");
+    const container = this.$.view.render();
+    const line = this.$.line.render();
 
-    const sliderContainer = slider.render();
+    line.appendChild(this.$.button.render());
+    container.appendChild(line);
 
-    sliderContainer.appendChild(this.button.render());
-    sliderContainer.appendChild(this.scale.render());
+    container.appendChild(this.$.scale.render());
 
-    return sliderContainer;
+    return container;
   }
 
   public setPosition(position: number) {
-    this.button.setPosition(position);
+    this.$.model.setPosition(position);
   }
 }

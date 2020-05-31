@@ -15,9 +15,9 @@ const slider1 = new Slider({ position: 100 });
 const slider2 = new Slider();
 const slider3 = new Slider();
 
-const contaner1 = document.querySelector(".index-conainer_1");
-const contaner2 = document.querySelector(".index-conainer_2");
-const contaner3 = document.querySelector(".index-conainer_3");
+const contaner1 = document.querySelector(".index-container_1");
+const contaner2 = document.querySelector(".index-container_2");
+const contaner3 = document.querySelector(".index-container_3");
 
 contaner1.appendChild(slider1.render());
 contaner2.appendChild(slider2.render());

@@ -5,7 +5,7 @@ class IOCCOntainer {
     this.dependencies.push({ name, Dep });
   }
 
-  get(depName: string): any {
+  get(depName: string) {
     const { Dep } = this.dependencies.find(({ name }) => name === depName);
 
     return new Dep();

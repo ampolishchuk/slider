@@ -1,18 +1,45 @@
-import ButtonModelInterface from "../interfaces/ButtonModel.interface";
 import ButtonViewInterface from "../interfaces/ButtonView.interface";
+import ButtonObserverInterface from "../interfaces/ButtonObserver.interface";
 
-import container from "../../../services/IOCContainer";
+interface DependenciesInterface {
+  observer: ButtonObserverInterface;
+  view: ButtonViewInterface;
+}
 
 export default class ButtonController {
-  private model: ButtonModelInterface;
-  private view: ButtonViewInterface;
+  private $: DependenciesInterface;
 
-  constructor() {
-    this.model = container.get("SliderModel");
-    this.view = container.get("ButtonView");
+  constructor(dependencies: DependenciesInterface) {
+    this.$ = dependencies;
+
+    this.$.observer.add("sliderModel:positionChanged", (position: number) => {
+      this.setPosition(position);
+    });
   }
 
   render(): HTMLElement {
-    return this.view.render();
+    const element = this.$.view.render();
+
+    this.addHanlders(element);
+
+    return element;
   }
+
+  public setPosition(position: number): void {
+    this.$.view.setPosition(position);
+  }
+
+  private addHanlders(element: HTMLElement) {
+    element.addEventListener("mousedown", () => {
+      document.addEventListener("mousemove", this.mouseMoveHandler);
+
+      document.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", this.mouseMoveHandler);
+      });
+    });
+  }
+
+  private mouseMoveHandler = (event: MouseEvent) => {
+    this.$.observer.notify("buttonController:mousemove", event.pageX);
+  };
 }

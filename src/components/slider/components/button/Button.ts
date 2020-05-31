@@ -1,24 +1,31 @@
+import ButtonModelInterface from "./interfaces/ButtonModel.interface";
 import ButtonControllerInterface from "./interfaces/ButtonController.interface";
 
-import container from "../../services/IOCContainer";
-import ButtonController from "./controller/Button.controller";
 import ButtonView from "./view/Button.view";
+import ButtonController from "./controller/Button.controller";
+import ButtonObserverInterface from "./interfaces/ButtonObserver.interface";
 
-container.set("ButtonView", ButtonView);
-container.set("ButtonController", ButtonController);
+interface DependenciesInterface {
+  observer: ButtonObserverInterface;
+}
 
 export default class Button {
+  private $: DependenciesInterface;
   private controller: ButtonControllerInterface;
 
-  constructor() {
-    this.controller = container.get("ButtonController");
+  constructor(dependencies: DependenciesInterface) {
+    this.$ = dependencies;
+
+    const view = new ButtonView();
+
+    this.controller = new ButtonController({ observer: this.$.observer, view });
   }
 
   public render(): HTMLElement {
     return this.controller.render();
   }
 
-  public setPosition(position: number) {
+  public setPosition(position: number): void {
     this.controller.setPosition(position);
   }
 }

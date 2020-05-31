@@ -4,4 +4,7 @@ export default class ButtonView extends View {
   constructor() {
     super("button", "slider-button");
   }
+  public setPosition(position: number): void {
+    this.element.style.left = position + "px";
+  }
 }

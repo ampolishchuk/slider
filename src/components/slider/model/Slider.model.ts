@@ -1,3 +1,5 @@
+import SliderObserverInterface from "../interfaces/SliderObserver.interface";
+
 type StateType = {
   className: string;
   max: number;
@@ -8,7 +10,7 @@ type StateType = {
 };
 
 interface DependenciesInterface {
-  // observer: SliderObserverInterface;
+  observer: SliderObserverInterface;
 }
 
 export default class SliderModel {
@@ -33,7 +35,7 @@ export default class SliderModel {
   public setPosition(position: number): void {
     this.state.position = this.validatePosition(position);
 
-    // this.$.observer.notify("positionChanged", this.state.position);
+    this.$.observer.notify("sliderModel:positionChanged", this.state.position);
   }
   public getPosition(): number {
     return this.state.position;
