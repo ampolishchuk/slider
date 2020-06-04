@@ -1,8 +1,8 @@
 import ButtonModelInterface from "./interfaces/ButtonModel.interface";
 import ButtonControllerInterface from "./interfaces/ButtonController.interface";
 
-import ButtonView from "./view/Button.view";
-import ButtonController from "./controller/Button.controller";
+import ButtonView from "../../view/Button.view";
+import ButtonController from "../../presenter/Button.presenter";
 import ButtonObserverInterface from "./interfaces/ButtonObserver.interface";
 
 interface DependenciesInterface {

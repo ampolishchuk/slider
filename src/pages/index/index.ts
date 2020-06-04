@@ -24,9 +24,3 @@ contaner2.appendChild(slider2.render());
 contaner3.appendChild(slider3.render());
 
 slider3.slideTo(199);
-
-// slider3.addObserver("position", (position: number) => {
-//   console.log(position);
-// });
-
-// slider2.slideTo(300);

@@ -1,7 +1,7 @@
 import ScaleControllerInterface from "./interfaces/ScaleController.interface";
 
-import ScaleView from "./view/Scale.view";
-import ScaleController from "./controller/Scale.controller";
+import ScaleView from "../../view/Scale.view";
+import ScaleController from "../../presenter/Scale.presenter";
 import ScaleObserverInterface from "./interfaces/ScaleObserver.interface";
 
 interface DependenciesInterface {
@@ -14,8 +14,8 @@ export default class Scale {
 
   constructor(dependencies: DependenciesInterface) {
     this.$ = dependencies;
-    const view = new ScaleView();
-    this.controller = new ScaleController({ observer: this.$.observer, view });
+    const view = new ScaleView({ observer: this.$.observer });
+    this.controller = new ScaleController({ view });
   }
 
   public render(): HTMLElement {
