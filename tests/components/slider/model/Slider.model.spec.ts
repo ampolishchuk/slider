@@ -1,4 +1,4 @@
-import SliderModel from "../../../../src/components/slider/model/Slider.model";
+import SliderModel from "../../../../src/components/slider/models/Slider.model";
 
 describe("Testing SliderModel:", () => {
   const observer = jasmine.createSpyObj("observer", ["add", "notify"]);
