@@ -7,12 +7,6 @@ describe("Testing Observer:", () => {
     observer["observersList"] = [];
   });
 
-  it("Is singleton;", () => {
-    const observer2 = new Observer();
-
-    expect(observer2).toEqual(observer);
-  });
-
   it("Subsribes observers;", () => {
     observer.subscribe("test", () => {});
 
