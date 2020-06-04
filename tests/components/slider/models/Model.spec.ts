@@ -1,4 +1,4 @@
-import Model from "../../../../src/components/slider/services/Model";
+import Model from "../../../../src/components/slider/models/Model";
 
 describe("Testing Model:", () => {
   const observer = jasmine.createSpyObj("observer", ["subscribe, notify"]);
