@@ -1,14 +1,14 @@
-import ObserverSingleton from "../../../../src/components/slider/services/Observer";
+import Observer from "../../../../src/components/slider/services/Observer";
 
 describe("Testing Observer:", () => {
-  const observer = new ObserverSingleton();
+  const observer = new Observer();
 
   beforeEach(() => {
     observer["observersList"] = [];
   });
 
   it("Is singleton;", () => {
-    const observer2 = new ObserverSingleton();
+    const observer2 = new Observer();
 
     expect(observer2).toEqual(observer);
   });
