@@ -1,20 +1,8 @@
-import ObserverInterface from "../interfaces/Observer.interace";
-import ViewInterface from "../interfaces/View.interace";
+import View from "../services/View";
 
-interface DependenciesInterface {
-  observer: ObserverInterface;
-}
-
-export default class LineView implements ViewInterface {
-  private $: DependenciesInterface;
-  private element: HTMLElement;
-
-  constructor(dependencies: DependenciesInterface) {
-    this.$ = dependencies;
-  }
-
+export default class LineView extends View {
   render(): HTMLElement {
-    this.element = document.createElement("section");
+    this.element = document.createElement("div");
     this.element.classList.add("slider-line");
 
     return this.element;

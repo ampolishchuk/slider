@@ -1,20 +1,8 @@
-import ObserverInterface from "../interfaces/Observer.interace";
-import ViewInterface from "../interfaces/View.interace";
+import View from "../services/View";
 
-interface DependenciesInterface {
-  observer: ObserverInterface;
-}
-
-export default class ScaleView implements ViewInterface {
-  private $: DependenciesInterface;
-  private element: HTMLElement;
-
-  constructor(dependencies: DependenciesInterface) {
-    this.$ = dependencies;
-  }
-
+export default class ScaleView extends View {
   render(): HTMLElement {
-    this.element = document.createElement("section");
+    this.element = document.createElement("div");
     this.element.classList.add("slider-scale");
 
     return this.element;
