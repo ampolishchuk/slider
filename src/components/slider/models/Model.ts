@@ -31,5 +31,7 @@ export default class Model implements ModelInterface {
       ...this.state,
       ...state,
     };
+
+    this.$.observer.notify("model:change", this.state);
   }
 }
