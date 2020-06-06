@@ -5,15 +5,31 @@ interface DependenciesInterface {
   observer: ObserverInterface;
 }
 
+interface StateInterface {
+  position: number;
+  value: number | string;
+}
+
 export default class Model implements ModelInterface {
   private $: DependenciesInterface;
-  private position: number = 0;
+  private state: StateInterface = {
+    position: 0,
+    value: 0,
+  };
 
-  constructor(dependencies: DependenciesInterface) {
+  constructor(dependencies: DependenciesInterface, state?: object) {
     this.$ = dependencies;
+    this.setState(state);
   }
 
-  setPosition(position: number): void {
-    this.position = position;
+  public setPosition(position: number): void {
+    this.setState({ position });
+  }
+
+  public setState(state: object): void {
+    this.state = {
+      ...this.state,
+      ...state,
+    };
   }
 }

@@ -5,9 +5,15 @@ describe("Testing Model:", () => {
 
   const model = new Model({ observer });
 
+  it("Sets state;", () => {
+    model.setState({ value: 100 });
+
+    expect(model["state"].value).toBe(100);
+  });
+
   it("Sets position value;", () => {
     model.setPosition(100);
 
-    expect(model["position"]).toBe(100);
+    expect(model["state"].position).toBe(100);
   });
 });
