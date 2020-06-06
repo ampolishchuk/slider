@@ -17,7 +17,7 @@ export default class Model implements ModelInterface {
     value: 0,
   };
 
-  constructor(dependencies: DependenciesInterface, state?: object) {
+  constructor(dependencies: DependenciesInterface, state: object = {}) {
     this.$ = dependencies;
     this.setState(state);
   }
