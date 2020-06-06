@@ -17,6 +17,8 @@ export default class Slider {
   private presenters: { [key: string]: PresenterInterface };
 
   constructor(config?: object) {
+    require("./css/Slider.sass");
+
     this.observer = new Observer();
     this.model = new Model({ observer: this.observer });
 
