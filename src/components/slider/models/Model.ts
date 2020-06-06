@@ -26,6 +26,10 @@ export default class Model implements ModelInterface {
     this.setState({ position });
   }
 
+  public setValue(value: number | string): void {
+    this.setState({ value });
+  }
+
   public setState(state: object): void {
     this.state = {
       ...this.state,

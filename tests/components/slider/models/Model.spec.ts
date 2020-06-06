@@ -25,4 +25,10 @@ describe("Testing Model:", () => {
 
     expect(observer.notify).toHaveBeenCalled();
   });
+
+  it("Sets values;", () => {
+    model.setValue("test");
+
+    expect(model["state"].value).toBe("test");
+  });
 });
