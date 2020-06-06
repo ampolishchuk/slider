@@ -1,6 +1,6 @@
 import View from "../../../../src/components/slider/services/View";
 
-describe("Testing SliderView:", () => {
+describe("Testing abstract View:", () => {
   const observer = jasmine.createSpyObj("observer", ["subscribe", "notify"]);
 
   class TestView extends View {}

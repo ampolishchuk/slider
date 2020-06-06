@@ -1,6 +1,6 @@
 import LineView from "../../../../src/components/slider/views/Line.view";
 
-describe("Testing SliderView:", () => {
+describe("Testing LineView:", () => {
   const observer = jasmine.createSpyObj("observer", ["subscribe", "notify"]);
   const view = new LineView({ observer });
 

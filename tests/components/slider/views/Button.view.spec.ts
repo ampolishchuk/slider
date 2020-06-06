@@ -1,6 +1,6 @@
 import ButtonView from "../../../../src/components/slider/views/Button.view";
 
-describe("Testing SliderView:", () => {
+describe("Testing ButtonView:", () => {
   const observer = jasmine.createSpyObj("observer", ["subscribe", "notify"]);
   const view = new ButtonView({ observer });
 
