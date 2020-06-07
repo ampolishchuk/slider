@@ -10,7 +10,7 @@ describe("Testing SliderPresenter:", () => {
   const presenter = new SliderPresenter({ observer, model, view });
 
   it("Sets value to model;", () => {
-    presenter.setValue(100);
+    presenter.slideTo(100);
 
     expect(model.setValue).toHaveBeenCalledTimes(1);
   });
