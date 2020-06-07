@@ -64,5 +64,7 @@ export default class Slider {
     return sliderElement;
   }
 
-  slideTo(value: number | string): void {}
+  slideTo(value: number | string): void {
+    this.presenters.slider.slideTo(value);
+  }
 }
