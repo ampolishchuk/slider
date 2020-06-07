@@ -16,11 +16,11 @@ export default class Slider {
   private views: { [key: string]: ViewInterface };
   private presenters: { [key: string]: PresenterInterface };
 
-  constructor(config?: object) {
+  constructor(state?: object) {
     require("./css/Slider.sass");
 
     this.observer = new Observer();
-    this.model = new Model({ observer: this.observer });
+    this.model = new Model({ observer: this.observer }, state);
 
     this.views = {
       slider: new SliderView({ observer: this.observer }),
@@ -63,4 +63,6 @@ export default class Slider {
 
     return sliderElement;
   }
+
+  slideTo(value: number | string): void {}
 }
