@@ -10,7 +10,7 @@ interface DependenciesInterface {
 }
 
 export default abstract class Presenter implements PresenterInterface {
-  private $: DependenciesInterface;
+  protected $: DependenciesInterface;
 
   constructor(dependencies: DependenciesInterface) {
     this.$ = dependencies;
