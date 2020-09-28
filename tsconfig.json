@@ -7,6 +7,6 @@
     "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
-    "types": ["jasmine", "node"]
+    "types": ["jasmine", "node", "jquery"]
   }
 }
