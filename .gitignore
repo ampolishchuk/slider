@@ -1,6 +1,8 @@
 #folders
 node_modules
 .vscode
+.idea
+coverage
 
 #files
 vscode.code-workspace
