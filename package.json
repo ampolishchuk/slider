@@ -41,6 +41,7 @@
     "mini-css-extract-plugin": "^0.8.2",
     "node-sass": "^4.14.0",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.1.2",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "react": "^16.13.1",
@@ -68,6 +69,7 @@
   "description": "My first project",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "@types/jquery": "^3.5.1",
     "anychart": "^8.7.1",
     "apexcharts": "^3.19.0",
     "chart.js": "^2.9.3",
