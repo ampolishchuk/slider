@@ -32,11 +32,13 @@ export default class Presenter implements PresenterInterface {
     });
   }
 
-  public render() {
-    this.viewFacade.render();
+  public render(): HTMLElement {
+    return this.viewFacade.render();
   }
 
   public setValues(values: any[]) {
+    values = this.isValidValues(values) ? values : [];
+
     this.modelFacade.setValues(values);
   }
 
@@ -50,5 +52,17 @@ export default class Presenter implements PresenterInterface {
 
   public hideScale() {
     this.viewFacade.hideScale();
+  }
+
+  private isValidValues(values: any[]): boolean {
+    if (!values || !Array.isArray(values)) {
+      console.error(
+        `The values to be set must be an array. Recieved: ${values} (${typeof values});`
+      );
+
+      return false;
+    }
+
+    return true;
   }
 }

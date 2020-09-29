@@ -4,7 +4,7 @@ export default class Model implements ModelInterface {
   private readonly points: number[];
   private values: any[] = [];
 
-  constructor(points = [0, 100]) {
+  constructor(points: number[]) {
     this.points = points;
   }
 

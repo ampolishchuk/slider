@@ -1,5 +1,5 @@
 export default interface ViewFacadeInterface {
-  render(): void;
+  render(): HTMLElement;
   setPositions(positions: number[]): void;
   showScale(): void;
   hideScale(): void;
