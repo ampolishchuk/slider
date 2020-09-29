@@ -1,41 +1,27 @@
-import Slider from "../../components/slider/Slider";
-
+require("../../components/slider/jqSlider");
 require("./index.sass");
 
 const html = require("./index.pug")();
 const mainContainer = document.createElement("main");
 mainContainer.classList.add("index");
-
 mainContainer.innerHTML = html;
-
 document.body.appendChild(mainContainer);
 
-const container1 = document.querySelector(".index-container_1");
-const container2 = document.querySelector(".index-container_2");
-const container3 = document.querySelector(".index-container_3");
-
-const slider1 = new Slider(container1);
-
-const slider2 = new Slider(container2, {
+const slider1 = $(".index-container_1").jqSlider();
+const slider2 = $(".index-container_2").jqSlider({
   scale: true,
   points: [0, 100],
   values: [50, 75],
 });
-
-const slider3 = new Slider(container3, {
+const slider3 = $(".index-container_3").jqSlider({
   scale: true,
   range: true,
   points: [20, 80],
   values: 25,
 });
 
-slider1.onChange((values: any[]) => {
-  console.log(values);
-});
-slider2.onChange((values: any[]) => {
-  console.log(values);
-});
+slider1.setValues([50]);
 
-slider3.onChange((values: any[]) => {
+slider1.onChange((values: any[]) => {
   console.log(values);
 });
