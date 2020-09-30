@@ -1,8 +1,9 @@
 module.exports = (config: any) => {
   config.set({
     basePath: "",
-    frameworks: ["jasmine", "karma-typescript"],
+    frameworks: ["jasmine-jquery", "jasmine", "karma-typescript"],
     plugins: [
+      "karma-jasmine-jquery",
       "karma-jasmine",
       "karma-typescript",
       "karma-chrome-launcher",
@@ -13,7 +14,7 @@ module.exports = (config: any) => {
     files: [
       { pattern: "tests/components/**/*.spec.ts" },
       { pattern: "src/components/**/*.ts" },
-      { pattern: "src/services/**/*.ts" },
+      // { pattern: "src/services/**/*.ts" },
     ],
     exclude: [],
     preprocessors: {
