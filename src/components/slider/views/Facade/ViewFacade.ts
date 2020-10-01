@@ -4,6 +4,7 @@ import ViewFacadeInterface from "../../interfaces/ViewFacade.interface";
 import MovableViewInterface from "../../interfaces/MovableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
+  private positions: number[];
   private observer: ObserverInterface;
   private element: HTMLElement;
   private buttons: MovableViewInterface[] = [];
@@ -19,6 +20,7 @@ export default class ViewFacade implements ViewFacadeInterface {
     this.element = element;
     this.buttons = buttons;
     this.scale = scale;
+    this.positions = this.getPositions();
 
     this.addButtonsListeners();
   }
@@ -42,11 +44,11 @@ export default class ViewFacade implements ViewFacadeInterface {
   }
 
   private addButtonsListeners() {
-    this.buttons.forEach((button) => {
-      button.addListener("onMove", () => {
-        const positions = this.getPositions();
+    this.buttons.forEach((button, index) => {
+      button.addListener("mouseMove", (position: number) => {
+        this.positions[index] = position;
 
-        this.observer.notify("view:positions", positions);
+        this.observer.notify("view:positions", this.positions);
       });
     });
   }

@@ -26,17 +26,17 @@ export default class ButtonView extends AbstractMovableView {
   private mouseMoveEvent = (event: MouseEvent) => {
     this.setPositionByClientX(event.clientX);
 
-    this.onMove();
+    this.onMouseMove();
   };
 
-  private mouseUpEvent = (event: MouseEvent) => {
+  private mouseUpEvent = () => {
     document.removeEventListener("mousemove", this.mouseMoveEvent);
     document.removeEventListener("mouseup", this.mouseUpEvent);
   };
 
-  private onMove() {
+  private onMouseMove() {
     this.listeners.forEach((listener) => {
-      if (listener.type === "onMove") listener.callback();
+      if (listener.type === "mouseMove") listener.callback(this.getPosition());
     });
   }
 }
