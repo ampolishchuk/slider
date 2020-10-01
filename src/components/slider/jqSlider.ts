@@ -98,7 +98,7 @@ import ViewInterface from "./interfaces/View.interface";
     const lineRender = line.render();
     const scaleRender = scale.render();
 
-    this.buttons.forEach((buttonRender: ViewInterface) => {
+    buttons.forEach((buttonRender: ViewInterface) => {
       lineRender.appendChild(buttonRender.render());
     });
 
