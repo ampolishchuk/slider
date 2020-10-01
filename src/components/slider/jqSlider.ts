@@ -8,6 +8,7 @@ import Model from "./models/Model";
 import ModelFacade from "./models/Facade/ModelFacade";
 import Presenter from "./presenters/Presenter";
 import PresenterInterface from "./interfaces/Presenter.interface";
+import ViewInterface from "./interfaces/View.interface";
 
 (function ($) {
   require("./css/Slider.sass");
@@ -82,7 +83,29 @@ import PresenterInterface from "./interfaces/Presenter.interface";
       buttons.push(viewFactory.createButton());
     }
 
-    return new ViewFacade(observer, slider, line, buttons, scale);
+    const element = renderViewElement(slider, line, buttons, scale);
+
+    return new ViewFacade(observer, element, buttons, scale);
+  }
+
+  function renderViewElement(
+    slider: ViewInterface,
+    line: ViewInterface,
+    buttons: ViewInterface[],
+    scale: ViewInterface
+  ): HTMLElement {
+    const sliderRender = slider.render();
+    const lineRender = line.render();
+    const scaleRender = scale.render();
+
+    this.buttons.forEach((buttonRender: ViewInterface) => {
+      lineRender.appendChild(buttonRender.render());
+    });
+
+    sliderRender.appendChild(lineRender);
+    sliderRender.appendChild(scaleRender);
+
+    return sliderRender;
   }
 
   function createPresenter(

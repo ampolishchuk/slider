@@ -5,22 +5,18 @@ import MovalableViewInterface from "../../interfaces/MovalableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
   private observer: ObserverInterface;
-  private slider: ViewInterface;
-  private line: ViewInterface;
+  private element: HTMLElement;
   private buttons: MovalableViewInterface[] = [];
   private scale: ViewInterface;
 
   constructor(
     observer: ObserverInterface,
-    slider: ViewInterface,
-    line: ViewInterface,
+    element: HTMLElement,
     buttons: MovalableViewInterface[],
     scale: ViewInterface
   ) {
     this.observer = observer;
-
-    this.slider = slider;
-    this.line = line;
+    this.element = element;
     this.buttons = buttons;
     this.scale = scale;
 
@@ -28,18 +24,7 @@ export default class ViewFacade implements ViewFacadeInterface {
   }
 
   public render(): HTMLElement {
-    const slider = this.slider.render();
-    const line = this.line.render();
-    const scale = this.scale.render();
-
-    this.buttons.forEach((button) => {
-      line.appendChild(button.render());
-    });
-
-    slider.appendChild(line);
-    slider.appendChild(scale);
-
-    return slider;
+    return this.element;
   }
 
   public setPositions(positions: number[]) {
