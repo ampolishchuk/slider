@@ -32,9 +32,30 @@ describe("Testing AbstractMovableView.ts", () => {
     expect(movableView.getPosition()).toEqual(100);
   });
 
-  it("Should add listeners", () => {
-    movableView.addListener("test", () => {});
+  it("Should add event listeners", () => {
+    movableView.addEventListener("test", () => {});
 
     expect((movableView as any).listeners.length).toEqual(1);
+  });
+
+  it("Should return position on mouseMove event", () => {
+    const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
+    const element = movableView.render();
+    const mousedownEvent = new MouseEvent("mousedown");
+    const mousemoveEvent = new MouseEvent("mousemove", {
+      clientX: documentWidth,
+    });
+
+    let position: number = 0;
+
+    movableView.addEventListener("dragging", (pos: number) => {
+      position = pos;
+    });
+
+    document.body.appendChild(element);
+    element.dispatchEvent(mousedownEvent);
+    document.dispatchEvent(mousemoveEvent);
+
+    expect(position).toEqual(100);
   });
 });
