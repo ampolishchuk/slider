@@ -38,7 +38,7 @@ describe("Testing AbstractMovableView.ts", () => {
     expect((movableView as any).listeners.length).toEqual(1);
   });
 
-  it("Should return position on mouseMove event", () => {
+  it("Should return position on dragging event", () => {
     const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
     const element = movableView.render();
     const mousedownEvent = new MouseEvent("mousedown");
