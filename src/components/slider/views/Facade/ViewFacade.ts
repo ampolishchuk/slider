@@ -1,18 +1,18 @@
 import ViewInterface from "../../interfaces/View.interface";
 import ObserverInterface from "../../interfaces/Observer.interface";
 import ViewFacadeInterface from "../../interfaces/ViewFacade.interface";
-import MovalableViewInterface from "../../interfaces/MovalableView.interface";
+import MovableViewInterface from "../../interfaces/MovableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
   private observer: ObserverInterface;
   private element: HTMLElement;
-  private buttons: MovalableViewInterface[] = [];
+  private buttons: MovableViewInterface[] = [];
   private scale: ViewInterface;
 
   constructor(
     observer: ObserverInterface,
     element: HTMLElement,
-    buttons: MovalableViewInterface[],
+    buttons: MovableViewInterface[],
     scale: ViewInterface
   ) {
     this.observer = observer;

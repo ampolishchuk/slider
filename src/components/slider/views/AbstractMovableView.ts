@@ -1,9 +1,9 @@
 import AbstractView from "./AbstractView";
-import MovalableViewInterface from "../interfaces/MovalableView.interface";
+import MovableViewInterface from "../interfaces/MovableView.interface";
 
-export default abstract class AbstractMovalableView
+export default abstract class AbstractMovableView
   extends AbstractView
-  implements MovalableViewInterface {
+  implements MovableViewInterface {
   private position: number = 0;
   protected listeners: { type: string; callback: Function }[] = [];
 

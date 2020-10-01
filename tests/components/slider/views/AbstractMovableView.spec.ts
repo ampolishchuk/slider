@@ -1,8 +1,8 @@
-import AbstractMovalableView from "../../../../src/components/slider/views/AbstractMovalableView";
-import MovalableViewInterface from "../../../../src/components/slider/interfaces/MovalableView.interface";
+import AbstractMovableView from "../../../../src/components/slider/views/AbstractMovableView";
+import MovableViewInterface from "../../../../src/components/slider/interfaces/MovableView.interface";
 
 describe("Testing AbstractMovableView.ts", () => {
-  class MovableViewTest extends AbstractMovalableView {
+  class MovableViewTest extends AbstractMovableView {
     constructor() {
       super();
       this.element = document.createElement("div");
@@ -10,7 +10,7 @@ describe("Testing AbstractMovableView.ts", () => {
     }
   }
   ``;
-  let movableView: MovalableViewInterface;
+  let movableView: MovableViewInterface;
 
   beforeEach(() => {
     movableView = new MovableViewTest();

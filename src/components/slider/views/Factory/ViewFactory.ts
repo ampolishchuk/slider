@@ -4,7 +4,7 @@ import SliderView from "../SliderView";
 import ButtonView from "../ButtonView";
 import ScaleView from "../ScaleView";
 import LineView from "../LineView";
-import MovalableViewInterface from "../../interfaces/MovalableView.interface";
+import MovableViewInterface from "../../interfaces/MovableView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private range: boolean;
@@ -21,7 +21,7 @@ export default class ViewFactory implements ViewFactoryInterface {
     return new LineView();
   }
 
-  public createButton(): MovalableViewInterface {
+  public createButton(): MovableViewInterface {
     return new ButtonView();
   }
 

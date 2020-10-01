@@ -1,6 +1,6 @@
 import ViewInterface from "./View.interface";
 
-export default interface MovalableViewInterface extends ViewInterface {
+export default interface MovableViewInterface extends ViewInterface {
   setPosition(position: number): void;
   setPositionByClientX(clientX: number): void;
   getPosition(): number;

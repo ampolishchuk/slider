@@ -5,14 +5,14 @@ import ViewFacade from "../../../../../src/components/slider/views/Facade/ViewFa
 
 import ObserverInterface from "../../../../../src/components/slider/interfaces/Observer.interface";
 import ViewFacadeInterface from "../../../../../src/components/slider/interfaces/ViewFacade.interface";
-import MovalableViewInterface from "../../../../../src/components/slider/interfaces/MovalableView.interface";
+import MovableViewInterface from "../../../../../src/components/slider/interfaces/MovableView.interface";
 import ViewInterface from "../../../../../src/components/slider/interfaces/View.interface";
 
 describe("Testing ViewFacade.ts", () => {
   const element = document.createElement("div");
   element.classList.add("test");
   let observer: ObserverInterface;
-  let button: MovalableViewInterface;
+  let button: MovableViewInterface;
   let scale: ViewInterface;
   let viewFacade: ViewFacadeInterface;
 
