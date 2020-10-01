@@ -4,6 +4,11 @@ import MovableViewInterface from "../interfaces/MovableView.interface";
 export default abstract class AbstractMovableView
   extends AbstractView
   implements MovableViewInterface {
+  constructor() {
+    super();
+
+    this.addEvents();
+  }
   private position: number = 0;
   protected listeners: { type: string; callback: Function }[] = [];
 
@@ -46,5 +51,36 @@ export default abstract class AbstractMovableView
     const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
 
     return position - relativeWidth / 2;
+  }
+
+  private addEvents() {
+    this.element.addEventListener("click", () => {
+      document.removeEventListener("mousemove", this.mouseMoveEvent);
+      document.removeEventListener("mouseup", this.mouseUpEvent);
+    });
+
+    this.element.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+
+      document.addEventListener("mousemove", this.mouseMoveEvent);
+      document.addEventListener("mouseup", this.mouseUpEvent);
+    });
+  }
+
+  private mouseMoveEvent = (event: MouseEvent) => {
+    this.setPositionByClientX(event.clientX);
+
+    this.onMouseMove();
+  };
+
+  private mouseUpEvent = () => {
+    document.removeEventListener("mousemove", this.mouseMoveEvent);
+    document.removeEventListener("mouseup", this.mouseUpEvent);
+  };
+
+  private onMouseMove() {
+    this.listeners.forEach((listener) => {
+      if (listener.type === "mouseMove") listener.callback(this.getPosition());
+    });
   }
 }
