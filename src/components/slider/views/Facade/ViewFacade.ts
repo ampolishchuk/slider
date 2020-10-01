@@ -45,7 +45,7 @@ export default class ViewFacade implements ViewFacadeInterface {
 
   private addButtonsListeners() {
     this.buttons.forEach((button, index) => {
-      button.addListener("mouseMove", (position: number) => {
+      button.addEventListener("dragging", (position: number) => {
         this.positions[index] = position;
 
         this.observer.notify("view:positions", this.positions);

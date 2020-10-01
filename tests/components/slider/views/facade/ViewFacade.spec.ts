@@ -23,7 +23,7 @@ describe("Testing ViewFacade.ts", () => {
 
     spyOnAllFunctions(observer);
     spyOn(button, "setPosition").and.stub();
-    spyOn(button, "addListener").and.stub();
+    spyOn(button, "addEventListener").and.stub();
     spyOnAllFunctions(scale);
 
     viewFacade = new ViewFacade(observer, element, [button], scale);

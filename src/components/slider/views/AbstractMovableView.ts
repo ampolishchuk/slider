@@ -4,13 +4,15 @@ import MovableViewInterface from "../interfaces/MovableView.interface";
 export default abstract class AbstractMovableView
   extends AbstractView
   implements MovableViewInterface {
-  constructor() {
-    super();
-
-    this.addEvents();
-  }
+  private listeners: { type: string; callback: Function }[] = [];
   private position: number = 0;
-  protected listeners: { type: string; callback: Function }[] = [];
+
+  public render(): HTMLElement {
+    this.removeEvents();
+    this.addEvents();
+
+    return super.render();
+  }
 
   public setPosition(position: number) {
     this.position = this.verifyPosition(position);
@@ -31,7 +33,7 @@ export default abstract class AbstractMovableView
     return this.position;
   }
 
-  public addListener(type: string, callback: Function): void {
+  public addEventListener(type: string, callback: Function): void {
     this.listeners.push({ type, callback });
   }
 
@@ -54,23 +56,33 @@ export default abstract class AbstractMovableView
   }
 
   private addEvents() {
-    this.element.addEventListener("click", () => {
-      document.removeEventListener("mousemove", this.mouseMoveEvent);
-      document.removeEventListener("mouseup", this.mouseUpEvent);
-    });
-
-    this.element.addEventListener("mousedown", (event) => {
-      event.preventDefault();
-
-      document.addEventListener("mousemove", this.mouseMoveEvent);
-      document.addEventListener("mouseup", this.mouseUpEvent);
-    });
+    this.element.addEventListener("click", this.mouseClickEvent);
+    this.element.addEventListener("mousedown", this.mouseDownEvent);
   }
+
+  private removeEvents() {
+    this.element.removeEventListener("click", this.mouseClickEvent);
+    this.element.removeEventListener("mousedown", this.mouseDownEvent);
+  }
+
+  private mouseClickEvent = (event: MouseEvent) => {
+    event.preventDefault();
+
+    document.removeEventListener("mousemove", this.mouseMoveEvent);
+    document.removeEventListener("mouseup", this.mouseUpEvent);
+  };
+
+  private mouseDownEvent = (event: MouseEvent) => {
+    event.preventDefault();
+
+    document.addEventListener("mousemove", this.mouseMoveEvent);
+    document.addEventListener("mouseup", this.mouseUpEvent);
+  };
 
   private mouseMoveEvent = (event: MouseEvent) => {
     this.setPositionByClientX(event.clientX);
 
-    this.onMouseMove();
+    this.onDragging();
   };
 
   private mouseUpEvent = () => {
@@ -78,9 +90,9 @@ export default abstract class AbstractMovableView
     document.removeEventListener("mouseup", this.mouseUpEvent);
   };
 
-  private onMouseMove() {
+  private onDragging() {
     this.listeners.forEach((listener) => {
-      if (listener.type === "mouseMove") listener.callback(this.getPosition());
+      if (listener.type === "dragging") listener.callback(this.position);
     });
   }
 }
