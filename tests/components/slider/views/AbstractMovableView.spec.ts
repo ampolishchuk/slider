@@ -45,6 +45,7 @@ describe("Testing AbstractMovableView.ts", () => {
     const mousemoveEvent = new MouseEvent("mousemove", {
       clientX: documentWidth,
     });
+    const mouseupEvent = new MouseEvent("mouseup");
 
     let position: number = 0;
 
@@ -55,6 +56,7 @@ describe("Testing AbstractMovableView.ts", () => {
     document.body.appendChild(element);
     element.dispatchEvent(mousedownEvent);
     document.dispatchEvent(mousemoveEvent);
+    document.dispatchEvent(mouseupEvent);
 
     expect(position).toEqual(100);
   });
