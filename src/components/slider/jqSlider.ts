@@ -78,29 +78,28 @@ import DraggableViewInterface from "./interfaces/DraggableView.interface";
     const line = factory.createLine();
     const buttons = factory.createButtons();
     const scale = factory.createScale();
-    const element = renderViewElement(slider, line, buttons, scale);
+    const element = createElement(slider, line, buttons, scale);
 
     return new ViewFacade(observer, element, buttons, scale);
   }
 
-  function renderViewElement(
+  function createElement(
     slider: ViewInterface,
     line: ViewInterface,
     buttons: DraggableViewInterface[],
     scale: ViewInterface
   ): HTMLElement {
-    const sliderRender = slider.render();
+    const element = slider.render();
     const lineRender = line.render();
-    const scaleRender = scale.render();
 
     buttons.forEach((buttonRender: DraggableViewInterface) => {
       lineRender.appendChild(buttonRender.render());
     });
 
-    sliderRender.appendChild(lineRender);
-    sliderRender.appendChild(scaleRender);
+    element.appendChild(lineRender);
+    element.appendChild(scale.render());
 
-    return sliderRender;
+    return element;
   }
 
   function createPresenter(
