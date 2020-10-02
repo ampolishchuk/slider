@@ -1,6 +1,6 @@
-import AbstractMovableView from "./AbstractMovableView";
+import AbstractDraggableView from "./AbstractDraggableView";
 
-export default class ButtonView extends AbstractMovableView {
+export default class ButtonView extends AbstractDraggableView {
   constructor() {
     super();
     this.element = document.createElement("button");

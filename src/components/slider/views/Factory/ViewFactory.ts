@@ -1,10 +1,10 @@
-import ViewFactoryInterface from "../../interfaces/ViewFactory.interface";
-import ViewInterface from "../../interfaces/View.interface";
 import SliderView from "../SliderView";
 import ButtonView from "../ButtonView";
 import ScaleView from "../ScaleView";
 import LineView from "../LineView";
-import MovableViewInterface from "../../interfaces/MovableView.interface";
+import ViewFactoryInterface from "../../interfaces/ViewFactory.interface";
+import ViewInterface from "../../interfaces/View.interface";
+import DraggableViewInterface from "../../interfaces/DraggableView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private range: boolean;
@@ -21,7 +21,7 @@ export default class ViewFactory implements ViewFactoryInterface {
     return new LineView();
   }
 
-  public createButton(): MovableViewInterface {
+  public createButton(): DraggableViewInterface {
     return new ButtonView();
   }
 
