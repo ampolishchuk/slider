@@ -7,12 +7,6 @@ import ViewInterface from "../../interfaces/View.interface";
 import DraggableViewInterface from "../../interfaces/DraggableView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
-  private range: boolean;
-
-  constructor(range: boolean = false) {
-    this.range = range;
-  }
-
   public createSlider(): ViewInterface {
     return new SliderView();
   }
