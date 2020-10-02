@@ -1,8 +1,9 @@
 import AbstractActiveView from "./AbstractActiveView";
 import DraggableViewInterface from "../interfaces/DraggableView.interface";
+import AbstractMovableView from "./AbstractMovableView";
 
 export default abstract class AbstractDraggableView
-  extends AbstractActiveView
+  extends AbstractMovableView
   implements DraggableViewInterface {
   render(): HTMLElement {
     this.removeDraggingEvents();
@@ -11,25 +12,8 @@ export default abstract class AbstractDraggableView
     return super.render();
   }
 
-  public setPosition(position: number) {
-    super.setPosition(position);
-
-    this.updateView();
-  }
-
-  private updateView() {
-    this.element.style.left = this.centerPositionOnMouse(this.position) + "%";
-  }
-
-  private centerPositionOnMouse(position: number): number {
-    const parentWidth = this.element.parentElement.offsetWidth;
-    const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
-
-    return position - relativeWidth / 2;
-  }
-
   private addDraggingEvents() {
-    this.element.addEventListener("click", this.mouseClickEvent); // Fixing single click event
+    this.element.addEventListener("click", this.mouseClickEvent);
     this.element.addEventListener("mousedown", this.draggingEvent);
   }
 
@@ -39,11 +23,7 @@ export default abstract class AbstractDraggableView
   }
 
   private mouseClickEvent = (event: MouseEvent) => {
-    // When a single mouse click happens it's removed events for dragging
     event.preventDefault();
-
-    document.removeEventListener("mousemove", this.mouseMoveEvent);
-    document.removeEventListener("mouseup", this.mouseUpEvent);
   };
 
   private draggingEvent = (event: MouseEvent) => {
