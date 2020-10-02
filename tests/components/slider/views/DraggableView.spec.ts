@@ -1,15 +1,7 @@
-import AbstractDraggableView from "../../../../src/components/slider/views/AbstractDraggableView";
+import DraggableView from "../../../../src/components/slider/views/DraggableView";
 
-describe("Testing AbstractDraggableView.ts", () => {
-  class DraggableView extends AbstractDraggableView {
-    constructor() {
-      super();
-      this.element = document.createElement("div");
-      this.element.classList.add("test");
-    }
-  }
-
-  const draggableView = new DraggableView();
+describe("Testing DraggableView.ts", () => {
+  const draggableView = new DraggableView("button", "test");
   const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
   const mousedownEvent = new MouseEvent("mousedown");
   const mousemoveEvent = new MouseEvent("mousemove", {

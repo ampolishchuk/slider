@@ -9,6 +9,7 @@ import ModelFacade from "./models/Facade/ModelFacade";
 import Presenter from "./presenters/Presenter";
 import PresenterInterface from "./interfaces/Presenter.interface";
 import ViewInterface from "./interfaces/View.interface";
+import DraggableViewInterface from "./interfaces/DraggableView.interface";
 
 (function ($) {
   require("./css/Slider.sass");
@@ -72,17 +73,11 @@ import ViewInterface from "./interfaces/View.interface";
     observer: ObserverInterface,
     range: boolean
   ): ViewFacadeInterface {
-    const viewFactory = new ViewFactory();
-    const slider = viewFactory.createSlider();
-    const line = viewFactory.createLine();
-    const buttons = [];
-    const buttonsAmount = range ? 2 : 1;
-    const scale = viewFactory.createScale();
-
-    for (let i = 0; i < buttonsAmount; i++) {
-      buttons.push(viewFactory.createButton());
-    }
-
+    const factory = new ViewFactory(range);
+    const slider = factory.createSlider();
+    const line = factory.createLine();
+    const buttons = factory.createButtons();
+    const scale = factory.createScale();
     const element = renderViewElement(slider, line, buttons, scale);
 
     return new ViewFacade(observer, element, buttons, scale);
@@ -91,14 +86,14 @@ import ViewInterface from "./interfaces/View.interface";
   function renderViewElement(
     slider: ViewInterface,
     line: ViewInterface,
-    buttons: ViewInterface[],
+    buttons: DraggableViewInterface[],
     scale: ViewInterface
   ): HTMLElement {
     const sliderRender = slider.render();
     const lineRender = line.render();
     const scaleRender = scale.render();
 
-    buttons.forEach((buttonRender: ViewInterface) => {
+    buttons.forEach((buttonRender: DraggableViewInterface) => {
       lineRender.appendChild(buttonRender.render());
     });
 

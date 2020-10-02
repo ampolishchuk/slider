@@ -1,9 +1,8 @@
-import AbstractActiveView from "./AbstractActiveView";
+import MovableView from "./MovableView";
 import DraggableViewInterface from "../interfaces/DraggableView.interface";
-import AbstractMovableView from "./AbstractMovableView";
 
-export default abstract class AbstractDraggableView
-  extends AbstractMovableView
+export default class DraggableView
+  extends MovableView
   implements DraggableViewInterface {
   render(): HTMLElement {
     this.removeDraggingEvents();

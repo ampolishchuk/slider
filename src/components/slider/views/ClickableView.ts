@@ -1,8 +1,8 @@
-import AbstractActiveView from "./AbstractActiveView";
+import ActiveView from "./ActiveView";
 import ClickableViewInterface from "../interfaces/ClickableView.interface";
 
-export default abstract class AbstractClickableView
-  extends AbstractActiveView
+export default class ClickableView
+  extends ActiveView
   implements ClickableViewInterface {
   protected listeners: { type: string; callback: Function }[] = [];
   protected position: number = 0;

@@ -1,15 +1,7 @@
-import AbstractClickableView from "../../../../src/components/slider/views/AbstractClickableView";
+import ClickableView from "../../../../src/components/slider/views/ClickableView";
 
-describe("Testing AbstractClickableView.ts", () => {
-  class ClickableView extends AbstractClickableView {
-    constructor() {
-      super();
-      this.element = document.createElement("div");
-      this.element.classList.add("test");
-    }
-  }
-
-  const clickableView = new ClickableView();
+describe("Testing ClickableView.ts", () => {
+  const clickableView = new ClickableView("div", "test");
   const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
   const clickEvent = new MouseEvent("click", {
     clientX: documentWidth,

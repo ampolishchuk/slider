@@ -1,9 +1,7 @@
-import AbstractView from "./AbstractView";
+import View from "./View";
 import ActiveViewInterface from "../interfaces/ActiveView.interface";
 
-export default abstract class AbstractActiveView
-  extends AbstractView
-  implements ActiveViewInterface {
+export default class ActiveView extends View implements ActiveViewInterface {
   protected listeners: { type: string; callback: Function }[] = [];
   protected position: number = 0;
 

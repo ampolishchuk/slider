@@ -4,11 +4,11 @@ import ViewFacadeInterface from "../../interfaces/ViewFacade.interface";
 import DraggableViewInterface from "../../interfaces/DraggableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
-  private positions: number[];
   private observer: ObserverInterface;
   private element: HTMLElement;
   private buttons: DraggableViewInterface[] = [];
   private scale: ViewInterface;
+  private positions: number[];
 
   constructor(
     observer: ObserverInterface,

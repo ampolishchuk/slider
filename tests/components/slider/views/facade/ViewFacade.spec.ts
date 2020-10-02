@@ -1,6 +1,5 @@
+import ViewFactory from "../../../../../src/components/slider/views/Factory/ViewFactory";
 import Observer from "../../../../../src/components/slider/observer/Observer";
-import ButtonView from "../../../../../src/components/slider/views/ButtonView";
-import ScaleView from "../../../../../src/components/slider/views/ScaleView";
 import ViewFacade from "../../../../../src/components/slider/views/Facade/ViewFacade";
 
 import ObserverInterface from "../../../../../src/components/slider/interfaces/Observer.interface";
@@ -9,6 +8,7 @@ import ViewInterface from "../../../../../src/components/slider/interfaces/View.
 import DraggableViewInterface from "../../../../../src/components/slider/interfaces/DraggableView.interface";
 
 describe("Testing ViewFacade.ts", () => {
+  const factory = new ViewFactory();
   const element = document.createElement("div");
   element.classList.add("test");
   let observer: ObserverInterface;
@@ -18,8 +18,9 @@ describe("Testing ViewFacade.ts", () => {
 
   beforeEach(() => {
     observer = new Observer();
-    button = new ButtonView();
-    scale = new ScaleView();
+
+    button = factory.createButtons()[0];
+    scale = factory.createScale();
 
     spyOnAllFunctions(observer);
     spyOn(button, "setPosition").and.stub();

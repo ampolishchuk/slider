@@ -1,19 +1,11 @@
-import AbstractView from "../../../../src/components/slider/views/AbstractView";
+import View from "../../../../src/components/slider/views/View";
 import ViewInterface from "../../../../src/components/slider/interfaces/View.interface";
 
-describe("Testing AbstractView.ts", () => {
-  class AbstractViewTest extends AbstractView {
-    constructor() {
-      super();
-      this.element = document.createElement("div");
-      this.element.classList.add("test");
-    }
-  }
-
+describe("Testing View.ts", () => {
   let abstractView: ViewInterface;
 
   beforeEach(() => {
-    abstractView = new AbstractViewTest();
+    abstractView = new View("div", "test");
   });
 
   it("Should return HTMLElement on render", () => {

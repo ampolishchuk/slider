@@ -1,25 +1,33 @@
-import SliderView from "../SliderView";
-import ButtonView from "../ButtonView";
-import ScaleView from "../ScaleView";
-import LineView from "../LineView";
+import View from "../View";
+import DraggableView from "../DraggableView";
 import ViewFactoryInterface from "../../interfaces/ViewFactory.interface";
 import ViewInterface from "../../interfaces/View.interface";
 import DraggableViewInterface from "../../interfaces/DraggableView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
+  private isRange: boolean;
+  constructor(isRange: boolean = false) {
+    this.isRange = isRange;
+  }
   public createSlider(): ViewInterface {
-    return new SliderView();
+    return new View("section", "slider");
   }
 
   public createLine(): ViewInterface {
-    return new LineView();
+    return new View("div", "slider-line");
   }
 
-  public createButton(): DraggableViewInterface {
-    return new ButtonView();
+  public createButtons(): DraggableViewInterface[] {
+    return Array(this.isRange ? 2 : 1)
+      .fill(null)
+      .reduce((buttons) => {
+        const button = new DraggableView("button", "slider-button");
+        buttons.push(button);
+        return buttons;
+      }, []);
   }
 
   public createScale(): ViewInterface {
-    return new ScaleView();
+    return new View("div", "slider-scale");
   }
 }

@@ -1,8 +1,8 @@
-import AbstractActiveView from "./AbstractActiveView";
+import ActiveView from "./ActiveView";
 import MovableViewInterface from "../interfaces/MovableView.interface";
 
-export default class AbstractMovableView
-  extends AbstractActiveView
+export default class MovableView
+  extends ActiveView
   implements MovableViewInterface {
   public setPosition(position: number) {
     super.setPosition(position);

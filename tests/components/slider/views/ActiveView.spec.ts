@@ -1,19 +1,11 @@
-import AbstractActiveView from "../../../../src/components/slider/views/AbstractActiveView";
+import ActiveView from "../../../../src/components/slider/views/ActiveView";
 import ActiveViewInterface from "../../../../src/components/slider/interfaces/ActiveView.interface";
 
-describe("Testing AbstractActiveView.ts", () => {
-  class ActiveView extends AbstractActiveView {
-    constructor() {
-      super();
-      this.element = document.createElement("div");
-      this.element.classList.add("test");
-    }
-  }
-
+describe("Testing ActiveView.ts", () => {
   let activeView: ActiveViewInterface;
 
   beforeEach(() => {
-    activeView = new ActiveView();
+    activeView = new ActiveView("div", "test");
 
     document.body.appendChild(activeView.render());
   });
