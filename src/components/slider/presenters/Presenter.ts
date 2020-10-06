@@ -1,7 +1,7 @@
-import ObserverInterface from "../interfaces/Observer.interface";
-import ModelFacadeInterface from "../interfaces/ModelFacade.interface";
-import ViewFacadeInterface from "../interfaces/ViewFacade.interface";
-import PresenterInterface from "../interfaces/Presenter.interface";
+import ObserverInterface from "../observer/Interfaces/Observer.interface";
+import ModelFacadeInterface from "../models/Interfaces/ModelFacade.interface";
+import ViewFacadeInterface from "../views/Interfaces/ViewFacade.interface";
+import PresenterInterface from "./Interfaces/Presenter.interface";
 
 interface DependenciesInterface {
   observer: ObserverInterface;

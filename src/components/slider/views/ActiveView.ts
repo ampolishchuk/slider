@@ -1,5 +1,5 @@
 import View from "./View";
-import ActiveViewInterface from "../interfaces/ActiveView.interface";
+import ActiveViewInterface from "./Interfaces/ActiveView.interface";
 
 export default class ActiveView extends View implements ActiveViewInterface {
   protected listeners: { type: string; callback: Function }[] = [];

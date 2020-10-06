@@ -1,4 +1,4 @@
-import ScaleModelInterface from "../interfaces/ScaleModel.interface";
+import ScaleModelInterface from "./Interfaces/ScaleModel.interface";
 
 export default class NumericScaleModel implements ScaleModelInterface {
   private readonly min: number;

@@ -1,5 +1,5 @@
 import ActiveView from "../../../../src/components/slider/views/ActiveView";
-import ActiveViewInterface from "../../../../src/components/slider/interfaces/ActiveView.interface";
+import ActiveViewInterface from "../../../../src/components/slider/views/Interfaces/ActiveView.interface";
 
 describe("Testing ActiveView.ts", () => {
   let activeView: ActiveViewInterface;

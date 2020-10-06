@@ -2,10 +2,10 @@ import ViewFactory from "../../../../../src/components/slider/views/Factory/View
 import Observer from "../../../../../src/components/slider/observer/Observer";
 import ViewFacade from "../../../../../src/components/slider/views/Facade/ViewFacade";
 
-import ObserverInterface from "../../../../../src/components/slider/interfaces/Observer.interface";
-import ViewFacadeInterface from "../../../../../src/components/slider/interfaces/ViewFacade.interface";
-import ViewInterface from "../../../../../src/components/slider/interfaces/View.interface";
-import DraggableViewInterface from "../../../../../src/components/slider/interfaces/DraggableView.interface";
+import ObserverInterface from "../../../../../src/components/slider/observer/Interfaces/Observer.interface";
+import ViewFacadeInterface from "../../../../../src/components/slider/views/Interfaces/ViewFacade.interface";
+import ViewInterface from "../../../../../src/components/slider/views/Interfaces/View.interface";
+import DraggableViewInterface from "../../../../../src/components/slider/views/Interfaces/DraggableView.interface";
 
 describe("Testing ViewFacade.ts", () => {
   const factory = new ViewFactory();

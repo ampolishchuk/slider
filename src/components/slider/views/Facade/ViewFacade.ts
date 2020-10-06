@@ -1,7 +1,7 @@
-import ViewInterface from "../../interfaces/View.interface";
-import ObserverInterface from "../../interfaces/Observer.interface";
-import ViewFacadeInterface from "../../interfaces/ViewFacade.interface";
-import DraggableViewInterface from "../../interfaces/DraggableView.interface";
+import ViewInterface from "../Interfaces/View.interface";
+import ObserverInterface from "../../observer/Interfaces/Observer.interface";
+import ViewFacadeInterface from "../Interfaces/ViewFacade.interface";
+import DraggableViewInterface from "../Interfaces/DraggableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
   private observer: ObserverInterface;

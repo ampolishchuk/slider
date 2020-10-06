@@ -1,4 +1,4 @@
-import PositionsModelInterface from "../interfaces/PositionsModel.interface";
+import PositionsModelInterface from "./Interfaces/PositionsModel.interface";
 
 export default class PositionsModel implements PositionsModelInterface {
   private listeners: Function[] = [];

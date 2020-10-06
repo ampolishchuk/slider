@@ -1,4 +1,4 @@
-import ViewInterface from "../interfaces/View.interface";
+import ViewInterface from "./Interfaces/View.interface";
 
 export default class View implements ViewInterface {
   private readonly tag: string;

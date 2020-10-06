@@ -1,5 +1,5 @@
 import Observer from "../../../../src/components/slider/observer/Observer";
-import ObserverInterface from "../../../../src/components/slider/interfaces/Observer.interface";
+import ObserverInterface from "../../../../src/components/slider/observer/Interfaces/Observer.interface";
 
 describe("Testing Observer.ts", () => {
   let observer: ObserverInterface;

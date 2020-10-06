@@ -1,4 +1,4 @@
-import ObserverInterface from "../interfaces/Observer.interface";
+import ObserverInterface from "./Interfaces/Observer.interface";
 
 export default class Observer implements ObserverInterface {
   private subscribes: Array<{ [name: string]: Function }> = [];

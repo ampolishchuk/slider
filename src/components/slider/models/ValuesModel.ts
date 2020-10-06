@@ -1,4 +1,4 @@
-import ValuesModelInterface from "../interfaces/ValuesModel.interface";
+import ValuesModelInterface from "./Interfaces/ValuesModel.interface";
 
 export default class ValuesModel implements ValuesModelInterface {
   private listeners: Function[] = [];

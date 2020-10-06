@@ -1,5 +1,5 @@
 import ActiveView from "./ActiveView";
-import MovableViewInterface from "../interfaces/MovableView.interface";
+import MovableViewInterface from "./Interfaces/MovableView.interface";
 
 export default class MovableView
   extends ActiveView

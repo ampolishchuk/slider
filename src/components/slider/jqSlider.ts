@@ -6,12 +6,12 @@ import ModelFacade from "./models/Facade/ModelFacade";
 import ViewFactory from "./views/Factory/ViewFactory";
 import ViewFacade from "./views/Facade/ViewFacade";
 import Presenter from "./presenters/Presenter";
-import ObserverInterface from "./interfaces/Observer.interface";
-import ModelFacadeInterface from "./interfaces/ModelFacade.interface";
-import ViewFacadeInterface from "./interfaces/ViewFacade.interface";
-import ViewInterface from "./interfaces/View.interface";
-import DraggableViewInterface from "./interfaces/DraggableView.interface";
-import PresenterInterface from "./interfaces/Presenter.interface";
+import ObserverInterface from "./observer/Interfaces/Observer.interface";
+import ModelFacadeInterface from "./models/Interfaces/ModelFacade.interface";
+import ViewFacadeInterface from "./views/Interfaces/ViewFacade.interface";
+import ViewInterface from "./views/Interfaces/View.interface";
+import DraggableViewInterface from "./views/Interfaces/DraggableView.interface";
+import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
 
 (function ($) {
   require("./css/Slider.sass");

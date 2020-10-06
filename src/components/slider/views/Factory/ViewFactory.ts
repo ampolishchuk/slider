@@ -1,8 +1,8 @@
 import View from "../View";
 import DraggableView from "../DraggableView";
-import ViewFactoryInterface from "../../interfaces/ViewFactory.interface";
-import ViewInterface from "../../interfaces/View.interface";
-import DraggableViewInterface from "../../interfaces/DraggableView.interface";
+import ViewFactoryInterface from "../Interfaces/ViewFactory.interface";
+import ViewInterface from "../Interfaces/View.interface";
+import DraggableViewInterface from "../Interfaces/DraggableView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private isRange: boolean;

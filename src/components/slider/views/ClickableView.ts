@@ -1,5 +1,5 @@
 import ActiveView from "./ActiveView";
-import ClickableViewInterface from "../interfaces/ClickableView.interface";
+import ClickableViewInterface from "./Interfaces/ClickableView.interface";
 
 export default class ClickableView
   extends ActiveView
