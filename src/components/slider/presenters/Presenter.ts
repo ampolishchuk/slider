@@ -1,23 +1,15 @@
-import ObserverInterface from "../observer/Interfaces/Observer.interface";
 import ModelFacadeInterface from "../models/Interfaces/ModelFacade.interface";
 import ViewFacadeInterface from "../views/Interfaces/ViewFacade.interface";
 import PresenterInterface from "./Interfaces/Presenter.interface";
 
-interface DependenciesInterface {
-  observer: ObserverInterface;
-  modelFacade: ModelFacadeInterface;
-  viewFacade: ViewFacadeInterface;
-}
-
 export default class Presenter implements PresenterInterface {
-  private observer: ObserverInterface;
   private modelFacade: ModelFacadeInterface;
   private viewFacade: ViewFacadeInterface;
 
-  constructor(dependencies: DependenciesInterface) {
-    const { observer, modelFacade, viewFacade } = dependencies;
-
-    this.observer = observer;
+  constructor(
+    modelFacade: ModelFacadeInterface,
+    viewFacade: ViewFacadeInterface
+  ) {
     this.modelFacade = modelFacade;
     this.viewFacade = viewFacade;
 
@@ -25,7 +17,7 @@ export default class Presenter implements PresenterInterface {
       this.viewFacade.setPositions(positions);
     });
 
-    this.observer.subscribe("view:positions", (positions: number[]) => {
+    this.viewFacade.onPositionsChange((positions: number[]) => {
       this.modelFacade.setPositions(positions);
     });
   }

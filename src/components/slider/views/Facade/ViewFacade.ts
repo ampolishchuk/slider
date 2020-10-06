@@ -1,22 +1,19 @@
 import ViewInterface from "../Interfaces/View.interface";
-import ObserverInterface from "../../observer/Interfaces/Observer.interface";
 import ViewFacadeInterface from "../Interfaces/ViewFacade.interface";
 import DraggableViewInterface from "../Interfaces/DraggableView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
-  private observer: ObserverInterface;
+  private listeners: Function[] = [];
   private element: HTMLElement;
   private buttons: DraggableViewInterface[] = [];
   private scale: ViewInterface;
   private positions: number[];
 
   constructor(
-    observer: ObserverInterface,
     element: HTMLElement,
     buttons: DraggableViewInterface[],
     scale: ViewInterface
   ) {
-    this.observer = observer;
     this.element = element;
     this.buttons = buttons;
     this.scale = scale;
@@ -43,12 +40,20 @@ export default class ViewFacade implements ViewFacadeInterface {
     this.scale.hide();
   }
 
+  public onPositionsChange(callback: Function) {
+    this.listeners.push(callback);
+  }
+
+  private updatePositions(position: number, index: number) {
+    this.positions[index] = position;
+
+    this.listeners.forEach((callback) => callback(this.positions));
+  }
+
   private addButtonsListeners() {
     this.buttons.forEach((button, index) => {
       button.addEventListener("dragging", (position: number) => {
-        this.positions[index] = position;
-
-        this.observer.notify("view:positions", this.positions);
+        this.updatePositions(position, index);
       });
     });
   }

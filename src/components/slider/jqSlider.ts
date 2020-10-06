@@ -1,4 +1,3 @@
-import Observer from "./observer/Observer";
 import ValuesModel from "./models/ValuesModel";
 import PositionsModel from "./models/PositionsModel";
 import NumericScaleModel from "./models/NumericScaleModel";
@@ -6,7 +5,6 @@ import ModelFacade from "./models/Facade/ModelFacade";
 import ViewFactory from "./views/Factory/ViewFactory";
 import ViewFacade from "./views/Facade/ViewFacade";
 import Presenter from "./presenters/Presenter";
-import ObserverInterface from "./observer/Interfaces/Observer.interface";
 import ModelFacadeInterface from "./models/Interfaces/ModelFacade.interface";
 import ViewFacadeInterface from "./views/Interfaces/ViewFacade.interface";
 import ViewInterface from "./views/Interfaces/View.interface";
@@ -25,10 +23,9 @@ import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
 
   $.fn.jqSlider = function (options = {}) {
     const { scale, range, points, values } = $.extend(defaultOptions, options);
-    const observer = new Observer();
     const modelFacade = createModelFacade(points);
-    const viewFacade = createViewFacade(observer, range);
-    const presenter = createPresenter(observer, modelFacade, viewFacade);
+    const viewFacade = createViewFacade(range);
+    const presenter = createPresenter(modelFacade, viewFacade);
 
     init(presenter, this[0], values, scale);
 
@@ -70,10 +67,7 @@ import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
     return new ModelFacade(valuesModel, positionsModel, scaleModel);
   }
 
-  function createViewFacade(
-    observer: ObserverInterface,
-    range: boolean
-  ): ViewFacadeInterface {
+  function createViewFacade(range: boolean): ViewFacadeInterface {
     const factory = new ViewFactory(range);
     const slider = factory.createSlider();
     const line = factory.createLine();
@@ -81,7 +75,7 @@ import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
     const scale = factory.createScale();
     const element = createElement(slider, line, buttons, scale);
 
-    return new ViewFacade(observer, element, buttons, scale);
+    return new ViewFacade(element, buttons, scale);
   }
 
   function createElement(
@@ -104,15 +98,9 @@ import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
   }
 
   function createPresenter(
-    observer: ObserverInterface,
     modelFacade: ModelFacadeInterface,
-
     viewFacade: ViewFacadeInterface
   ): PresenterInterface {
-    return new Presenter({
-      observer,
-      modelFacade,
-      viewFacade,
-    });
+    return new Presenter(modelFacade, viewFacade);
   }
 })(jQuery);
