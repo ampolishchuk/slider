@@ -1,15 +1,17 @@
 import Observer from "./observer/Observer";
-import ObserverInterface from "./interfaces/Observer.interface";
-import ViewFacadeInterface from "./interfaces/ViewFacade.interface";
+import ValuesModel from "./models/ValuesModel";
+import PositionsModel from "./models/PositionsModel";
+import NumericScaleModel from "./models/NumericScaleModel";
+import ModelFacade from "./models/Facade/ModelFacade";
 import ViewFactory from "./views/Factory/ViewFactory";
 import ViewFacade from "./views/Facade/ViewFacade";
-import ModelFacadeInterface from "./interfaces/ModelFacade.interface";
-import Model from "./models/Model";
-import ModelFacade from "./models/Facade/ModelFacade";
 import Presenter from "./presenters/Presenter";
-import PresenterInterface from "./interfaces/Presenter.interface";
+import ObserverInterface from "./interfaces/Observer.interface";
+import ModelFacadeInterface from "./interfaces/ModelFacade.interface";
+import ViewFacadeInterface from "./interfaces/ViewFacade.interface";
 import ViewInterface from "./interfaces/View.interface";
 import DraggableViewInterface from "./interfaces/DraggableView.interface";
+import PresenterInterface from "./interfaces/Presenter.interface";
 
 (function ($) {
   require("./css/Slider.sass");
@@ -24,7 +26,7 @@ import DraggableViewInterface from "./interfaces/DraggableView.interface";
   $.fn.jqSlider = function (options = {}) {
     const { scale, range, points, values } = $.extend(defaultOptions, options);
     const observer = new Observer();
-    const modelFacade = createModelFacade(observer, points);
+    const modelFacade = createModelFacade(points);
     const viewFacade = createViewFacade(observer, range);
     const presenter = createPresenter(observer, modelFacade, viewFacade);
 
@@ -60,13 +62,12 @@ import DraggableViewInterface from "./interfaces/DraggableView.interface";
     scale ? presenter.showScale() : presenter.hideScale();
   }
 
-  function createModelFacade(
-    observer: ObserverInterface,
-    points: Array<number>
-  ): ModelFacadeInterface {
-    const model = new Model(points);
+  function createModelFacade(scale: number[]): ModelFacadeInterface {
+    const valuesModel = new ValuesModel();
+    const positionsModel = new PositionsModel();
+    const scaleModel = new NumericScaleModel(scale);
 
-    return new ModelFacade(observer, model);
+    return new ModelFacade(valuesModel, positionsModel, scaleModel);
   }
 
   function createViewFacade(

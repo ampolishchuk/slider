@@ -21,14 +21,12 @@ export default class Presenter implements PresenterInterface {
     this.modelFacade = modelFacade;
     this.viewFacade = viewFacade;
 
-    this.observer.subscribe("model:values", () => {
-      const positions = this.modelFacade.getPositions();
-
+    this.modelFacade.onPositionsChange((positions: number[]) => {
       this.viewFacade.setPositions(positions);
     });
 
     this.observer.subscribe("view:positions", (positions: number[]) => {
-      this.modelFacade.setValuesByPositions(positions);
+      this.modelFacade.setPositions(positions);
     });
   }
 
@@ -37,13 +35,11 @@ export default class Presenter implements PresenterInterface {
   }
 
   public setValues(values: any[]) {
-    values = this.isValidValues(values) ? values : [];
-
     this.modelFacade.setValues(values);
   }
 
   public onChange(callback: Function) {
-    this.observer.subscribe("model:values", callback);
+    this.modelFacade.onValuesChange(callback);
   }
 
   public showScale() {
@@ -52,17 +48,5 @@ export default class Presenter implements PresenterInterface {
 
   public hideScale() {
     this.viewFacade.hideScale();
-  }
-
-  private isValidValues(values: any[]): boolean {
-    if (!values || !Array.isArray(values)) {
-      console.error(
-        `The values to be set must be an array. Recieved: ${values} (${typeof values});`
-      );
-
-      return false;
-    }
-
-    return true;
   }
 }

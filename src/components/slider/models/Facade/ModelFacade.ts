@@ -1,29 +1,56 @@
-import ModelInterface from "../../interfaces/Model.interface";
 import ModelFacadeInterface from "../../interfaces/ModelFacade.interface";
-import ObserverInterface from "../../interfaces/Observer.interface";
+import ValuesModelInterface from "../../interfaces/ValuesModel.interface";
+import PositionsModelInterface from "../../interfaces/PositionsModel.interface";
+import ScaleModelInterface from "../../interfaces/ScaleModel.interface";
 
 export default class ModelFacade implements ModelFacadeInterface {
-  private observer: ObserverInterface;
-  private model: ModelInterface;
+  private values: ValuesModelInterface;
+  private positions: PositionsModelInterface;
+  private scale: ScaleModelInterface;
 
-  constructor(observer: ObserverInterface, model: ModelInterface) {
-    this.observer = observer;
-    this.model = model;
+  constructor(
+    valuesModel: ValuesModelInterface,
+    positionsModel: PositionsModelInterface,
+    scaleModel: ScaleModelInterface
+  ) {
+    this.values = valuesModel;
+    this.positions = positionsModel;
+    this.scale = scaleModel;
   }
 
   public setValues(values: any[]) {
-    this.model.setValues(values);
+    this.values.setValues(values);
 
-    this.observer.notify("model:values", values);
+    this.updatePositions();
   }
 
-  public getPositions(): number[] {
-    return this.model.getPositions();
+  public setPositions(positions: number[]): void {
+    this.positions.setPositions(positions);
+
+    this.updateValues();
   }
 
-  public setValuesByPositions(positions: number[]): void {
-    this.model.setValuesByPositions(positions);
+  public onValuesChange(callback: Function) {
+    this.values.onChange(callback);
+  }
 
-    this.observer.notify("model:values", this.model.getValues());
+  public onPositionsChange(callback: Function): void {
+    this.positions.onChange(callback);
+  }
+
+  private updateValues() {
+    const values = this.positions
+      .getPositions()
+      .map((position) => this.scale.getValueByPosition(position));
+
+    this.values.setValues(values);
+  }
+
+  private updatePositions() {
+    const positions = this.values
+      .getValues()
+      .map((value) => this.scale.getPositionOfValue(value));
+
+    this.positions.setPositions(positions);
   }
 }

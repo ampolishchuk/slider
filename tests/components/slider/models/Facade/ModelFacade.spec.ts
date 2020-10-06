@@ -1,42 +1,61 @@
-import ModelFacadeInterface from "../../../../../src/components/slider/interfaces/ModelFacade.interface";
-import Model from "../../../../../src/components/slider/models/Model";
-import Observer from "../../../../../src/components/slider/observer/Observer";
 import ModelFacade from "../../../../../src/components/slider/models/Facade/ModelFacade";
-import ModelInterface from "../../../../../src/components/slider/interfaces/Model.interface";
-import ObserverInterface from "../../../../../src/components/slider/interfaces/Observer.interface";
+import ValuesModel from "../../../../../src/components/slider/models/ValuesModel";
+import PositionsModel from "../../../../../src/components/slider/models/PositionsModel";
+import NumericScaleModel from "../../../../../src/components/slider/models/NumericScaleModel";
+
+import ModelFacadeInterface from "../../../../../src/components/slider/interfaces/ModelFacade.interface";
+import ValuesModelInterface from "../../../../../src/components/slider/interfaces/ValuesModel.interface";
+import PositionsModelInterface from "../../../../../src/components/slider/interfaces/PositionsModel.interface";
+import ScaleModelInterface from "../../../../../src/components/slider/interfaces/ScaleModel.interface";
 
 describe("Testing ModelFacade.ts", () => {
-  let model: ModelInterface;
-  let observer: ObserverInterface;
   let modelFacade: ModelFacadeInterface;
+  let valuesModel: ValuesModelInterface;
+  let positionsModel: PositionsModelInterface;
+  let scaleModel: ScaleModelInterface;
 
   beforeEach(() => {
-    model = new Model([0, 100]);
-    observer = new Observer();
+    valuesModel = new ValuesModel();
+    positionsModel = new PositionsModel();
+    scaleModel = new NumericScaleModel([0, 100]);
 
-    spyOnAllFunctions(model);
-    spyOnAllFunctions(observer);
+    spyOn(valuesModel, "setValues").and.stub();
+    spyOn(valuesModel, "getValues").and.returnValue([0]);
+    spyOn(valuesModel, "onChange").and.stub();
 
-    modelFacade = new ModelFacade(observer, model);
+    spyOn(positionsModel, "setPositions").and.stub();
+    spyOn(positionsModel, "getPositions").and.returnValue([0]);
+    spyOn(positionsModel, "onChange").and.stub();
+
+    spyOn(scaleModel, "getValueByPosition").and.returnValue(0);
+    spyOn(scaleModel, "getPositionOfValue").and.returnValue(0);
+
+    modelFacade = new ModelFacade(valuesModel, positionsModel, scaleModel);
   });
 
-  it("Should call model.setValues and notify by observer.notify on setValues", () => {
+  it("Should set values and update positions on setValues", () => {
     modelFacade.setValues([100]);
 
-    expect(model.setValues).toHaveBeenCalled();
-    expect(observer.notify).toHaveBeenCalled();
+    expect(valuesModel.setValues).toHaveBeenCalled();
+    expect(positionsModel.setPositions).toHaveBeenCalled();
   });
 
-  it("Should call model.getPositions on getPositions", () => {
-    modelFacade.getPositions();
+  it("Should set positions and update values on setPositions", () => {
+    modelFacade.setPositions([100]);
 
-    expect(model.getPositions).toHaveBeenCalled();
+    expect(positionsModel.setPositions).toHaveBeenCalled();
+    expect(valuesModel.setValues).toHaveBeenCalled();
   });
 
-  it("Should call model.setValuesByPositions and notify by observer.notify on setValuesByPositions", () => {
-    modelFacade.setValuesByPositions([100]);
+  it("Should set callback on values change", () => {
+    modelFacade.onValuesChange(() => {});
 
-    expect(model.setValuesByPositions).toHaveBeenCalled();
-    expect(observer.notify).toHaveBeenCalled();
+    expect(valuesModel.onChange).toHaveBeenCalled();
+  });
+
+  it("Should set callback on positions change", () => {
+    modelFacade.onPositionsChange(() => {});
+
+    expect(positionsModel.onChange).toHaveBeenCalled();
   });
 });

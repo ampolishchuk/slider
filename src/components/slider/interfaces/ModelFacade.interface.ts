@@ -1,5 +1,6 @@
 export default interface ModelFacadeInterface {
   setValues(values: any[]): void;
-  setValuesByPositions(positions: number[]): void;
-  getPositions(): number[];
+  setPositions(positions: number[]): void;
+  onValuesChange(callback: Function): void;
+  onPositionsChange(callback: Function): void;
 }
