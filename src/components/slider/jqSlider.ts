@@ -7,8 +7,6 @@ import ViewFacade from "./views/Facade/ViewFacade";
 import Presenter from "./presenters/Presenter";
 import ModelFacadeInterface from "./models/Interfaces/ModelFacade.interface";
 import ViewFacadeInterface from "./views/Interfaces/ViewFacade.interface";
-import ViewInterface from "./views/Interfaces/View.interface";
-import DraggableViewInterface from "./views/Interfaces/DraggableView.interface";
 import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
 
 (function ($) {
@@ -73,28 +71,8 @@ import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
     const line = factory.createLine();
     const buttons = factory.createButtons();
     const scale = factory.createScale();
-    const element = createElement(slider, line, buttons, scale);
 
-    return new ViewFacade(element, buttons, scale);
-  }
-
-  function createElement(
-    slider: ViewInterface,
-    line: ViewInterface,
-    buttons: DraggableViewInterface[],
-    scale: ViewInterface
-  ): HTMLElement {
-    const element = slider.render();
-    const lineRender = line.render();
-
-    buttons.forEach((buttonRender: DraggableViewInterface) => {
-      lineRender.appendChild(buttonRender.render());
-    });
-
-    element.appendChild(lineRender);
-    element.appendChild(scale.render());
-
-    return element;
+    return new ViewFacade(slider, line, buttons, scale);
   }
 
   function createPresenter(

@@ -9,15 +9,27 @@ describe("Testing PositionsModel.ts", () => {
   });
 
   it("Should set positions", () => {
-    model.setPositions([100]);
+    model.setPositions([50]);
+
+    expect((model as any).positions).toEqual([50]);
+  });
+
+  it("Should set position 0 if passed less then 0", () => {
+    model.setPositions([-50]);
+
+    expect((model as any).positions).toEqual([0]);
+  });
+
+  it("Should set position 100 if passed more then 100", () => {
+    model.setPositions([150]);
 
     expect((model as any).positions).toEqual([100]);
   });
 
   it("Should return positions", () => {
-    model.setPositions([200]);
+    model.setPositions([50]);
 
-    expect(model.getPositions()).toEqual([200]);
+    expect(model.getPositions()).toEqual([50]);
   });
 
   it("Should calls callbacks on positions change", () => {
@@ -27,8 +39,8 @@ describe("Testing PositionsModel.ts", () => {
       positions = pos;
     });
 
-    model.setPositions([100]);
+    model.setPositions([50]);
 
-    expect(positions).toEqual([100]);
+    expect(positions).toEqual([50]);
   });
 });

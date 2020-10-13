@@ -1,22 +1,27 @@
-import ActiveView from "./ActiveView";
 import MovableViewInterface from "./Interfaces/MovableView.interface";
+import View from "./View";
 
-export default class MovableView
-  extends ActiveView
-  implements MovableViewInterface {
-  public setPosition(position: number) {
-    super.setPosition(position);
+export default class MovableView extends View implements MovableViewInterface {
+  private position: number = 0;
 
-    this.updateView();
-  }
-  private updateView() {
-    this.element.style.left = this.centerPositionOnMouse(this.position) + "%";
+  public setPosition(position: number): void {
+    this.position = position ?? this.position;
+
+    this.updateStyles();
   }
 
-  private centerPositionOnMouse(position: number): number {
+  public getPosition(): number {
+    return this.position;
+  }
+
+  private updateStyles() {
+    this.element.style.left = this.position - this.elementCenter() + "%";
+  }
+
+  private elementCenter(): number {
     const parentWidth = this.element.parentElement.offsetWidth;
     const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
 
-    return position - relativeWidth / 2;
+    return relativeWidth / 2;
   }
 }

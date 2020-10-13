@@ -1,9 +1,9 @@
 import ViewInterface from "./View.interface";
-import DraggableViewInterface from "./DraggableView.interface";
+import DraggableCompositeViewInterface from "./DraggableCompositeView.interface";
 
 export default interface ViewFactoryInterface {
   createSlider(): ViewInterface;
   createLine(): ViewInterface;
-  createButtons(): DraggableViewInterface[];
+  createButtons(): DraggableCompositeViewInterface;
   createScale(): ViewInterface;
 }

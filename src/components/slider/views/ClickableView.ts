@@ -1,12 +1,9 @@
-import ActiveView from "./ActiveView";
 import ClickableViewInterface from "./Interfaces/ClickableView.interface";
+import View from "./View";
 
 export default class ClickableView
-  extends ActiveView
+  extends View
   implements ClickableViewInterface {
-  protected listeners: { type: string; callback: Function }[] = [];
-  protected position: number = 0;
-
   public render(): HTMLElement {
     this.removeClickEvents();
     this.addClickEvents();
@@ -14,25 +11,23 @@ export default class ClickableView
     return super.render();
   }
 
-  protected addClickEvents() {
+  public onClick(callback: Function) {
+    this.subscribe("onClick", callback);
+  }
+
+  private addClickEvents() {
     this.element.addEventListener("click", this.mouseClickEvent);
   }
 
-  protected removeClickEvents() {
+  private removeClickEvents() {
     this.element.removeEventListener("click", this.mouseClickEvent);
   }
 
   private mouseClickEvent = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setPositionByClientX(event.clientX);
-
-    this.onClickEvent();
+    if (event.target === this.element) {
+      this.notify("onClick", this.getPositionByClientX(event.clientX));
+    }
   };
-
-  private onClickEvent() {
-    this.listeners.forEach((listener) => {
-      if (listener.type === "click") listener.callback(this.position);
-    });
-  }
 }

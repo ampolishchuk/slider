@@ -11,6 +11,10 @@ export default class DraggableView
     return super.render();
   }
 
+  public onDragging(callback: Function) {
+    this.subscribe("dragging", callback);
+  }
+
   private addDraggingEvents() {
     this.element.addEventListener("click", this.mouseClickEvent);
     this.element.addEventListener("mousedown", this.draggingEvent);
@@ -33,19 +37,11 @@ export default class DraggableView
   };
 
   private mouseMoveEvent = (event: MouseEvent) => {
-    this.setPositionByClientX(event.clientX);
-
-    this.onDraggingEvent();
+    this.notify("dragging", this.getPositionByClientX(event.clientX));
   };
 
   private mouseUpEvent = () => {
     document.removeEventListener("mousemove", this.mouseMoveEvent);
     document.removeEventListener("mouseup", this.mouseUpEvent);
   };
-
-  private onDraggingEvent() {
-    this.listeners.forEach((listener) => {
-      if (listener.type === "dragging") listener.callback(this.position);
-    });
-  }
 }

@@ -1,3 +1,5 @@
-import ActiveViewInterface from "./ActiveView.interface";
+import MovableViewInterface from "./MovableView.interface";
 
-export default interface DraggableViewInterface extends ActiveViewInterface {}
+export default interface DraggableViewInterface extends MovableViewInterface {
+  onDragging(callback: Function): void;
+}

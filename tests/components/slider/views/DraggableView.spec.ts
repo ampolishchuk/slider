@@ -1,28 +1,23 @@
 import DraggableView from "../../../../src/components/slider/views/DraggableView";
 
 describe("Testing DraggableView.ts", () => {
-  const draggableView = new DraggableView("button", "test");
-  const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
+  const draggableView = new DraggableView("div", "test");
   const mousedownEvent = new MouseEvent("mousedown");
-  const mousemoveEvent = new MouseEvent("mousemove", {
-    clientX: documentWidth,
-  });
   const mouseupEvent = new MouseEvent("mouseup");
+  const mousemoveEvent = new MouseEvent("mousemove");
 
-  document.body.appendChild(draggableView.render());
+  beforeAll(() => {
+    spyOn(draggableView as any, "getPositionByClientX").and.stub();
+    spyOn(draggableView, "notify").and.stub();
+  });
 
-  it("Should return position on dragging event", () => {
+  it("Should notify listeners on dragging", () => {
     const element = draggableView.render();
-    let position: number = 0;
-
-    draggableView.addEventListener("dragging", (pos: number) => {
-      position = pos;
-    });
 
     element.dispatchEvent(mousedownEvent);
     document.dispatchEvent(mousemoveEvent);
     document.dispatchEvent(mouseupEvent);
 
-    expect(position).toEqual(100);
+    expect(draggableView.notify).toHaveBeenCalled();
   });
 });

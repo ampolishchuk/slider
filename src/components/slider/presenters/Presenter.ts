@@ -17,7 +17,7 @@ export default class Presenter implements PresenterInterface {
       this.viewFacade.setPositions(positions);
     });
 
-    this.viewFacade.onPositionsChange((positions: number[]) => {
+    this.viewFacade.onAction((positions: number[]) => {
       this.modelFacade.setPositions(positions);
     });
   }

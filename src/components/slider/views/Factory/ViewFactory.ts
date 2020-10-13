@@ -1,11 +1,15 @@
 import View from "../View";
+import ClickableView from "../ClickableView";
 import DraggableView from "../DraggableView";
 import ViewFactoryInterface from "../Interfaces/ViewFactory.interface";
 import ViewInterface from "../Interfaces/View.interface";
-import DraggableViewInterface from "../Interfaces/DraggableView.interface";
+import ClickableViewInterface from "../Interfaces/ClickableView.interface";
+
+import DraggableCompositeViewInterface from "../Interfaces/DraggableCompositeView.interface";
+import DraggableCompositeView from "../Composites/DraggableCompositeView";
 
 export default class ViewFactory implements ViewFactoryInterface {
-  private isRange: boolean;
+  private readonly isRange: boolean;
   constructor(isRange: boolean = false) {
     this.isRange = isRange;
   }
@@ -13,21 +17,21 @@ export default class ViewFactory implements ViewFactoryInterface {
     return new View("section", "slider");
   }
 
-  public createLine(): ViewInterface {
-    return new View("div", "slider-line");
+  public createLine(): ClickableViewInterface {
+    return new ClickableView("div", "slider-line");
   }
 
-  public createButtons(): DraggableViewInterface[] {
-    return Array(this.isRange ? 2 : 1)
-      .fill(null)
-      .reduce((buttons) => {
-        const button = new DraggableView("button", "slider-button");
-        buttons.push(button);
-        return buttons;
-      }, []);
+  public createButtons(): DraggableCompositeViewInterface {
+    const views = [];
+
+    for (let i = this.isRange ? 2 : 1; i > 0; i--) {
+      views.push(new DraggableView("button", "slider-button"));
+    }
+
+    return new DraggableCompositeView(views);
   }
 
-  public createScale(): ViewInterface {
-    return new View("div", "slider-scale");
+  public createScale(): ClickableViewInterface {
+    return new ClickableView("div", "slider-scale");
   }
 }

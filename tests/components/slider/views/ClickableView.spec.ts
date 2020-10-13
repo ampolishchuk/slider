@@ -2,23 +2,18 @@ import ClickableView from "../../../../src/components/slider/views/ClickableView
 
 describe("Testing ClickableView.ts", () => {
   const clickableView = new ClickableView("div", "test");
-  const documentWidth = document.body.offsetWidth + document.body.scrollWidth;
-  const clickEvent = new MouseEvent("click", {
-    clientX: documentWidth,
+  const clickEvent = new MouseEvent("click");
+
+  beforeAll(() => {
+    spyOn(clickableView as any, "getPositionByClientX").and.stub();
+    spyOn(clickableView, "notify").and.stub();
   });
 
-  document.body.appendChild(clickableView.render());
-
-  it("Should return position on click event", () => {
+  it("Should notify listeners on click", () => {
     const element = clickableView.render();
-    let position: number = 0;
-
-    clickableView.addEventListener("click", (pos: number) => {
-      position = pos;
-    });
 
     element.dispatchEvent(clickEvent);
 
-    expect(position).toEqual(100);
+    expect(clickableView.notify).toHaveBeenCalled();
   });
 });

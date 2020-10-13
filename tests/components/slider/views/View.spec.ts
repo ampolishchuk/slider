@@ -2,32 +2,45 @@ import View from "../../../../src/components/slider/views/View";
 import ViewInterface from "../../../../src/components/slider/views/Interfaces/View.interface";
 
 describe("Testing View.ts", () => {
-  let abstractView: ViewInterface;
+  let view: ViewInterface;
 
   beforeEach(() => {
-    abstractView = new View("div", "test");
+    view = new View("div", "test");
   });
 
-  it("Should return HTMLElement on render", () => {
-    const element = abstractView.render();
+  it("Should return HTMLElement", () => {
+    const element = view.render();
 
     expect(element instanceof HTMLElement).toBeTrue();
   });
 
-  it("Should append class 'hidden' to element on hide", () => {
-    abstractView.hide();
+  it("Should hide node element from page", () => {
+    view.hide();
 
-    const element = abstractView.render();
+    const element = view.render();
 
     expect(element.classList.contains("hidden")).toBeTrue();
   });
 
-  it("Should remove class 'hidden' to element on show", () => {
-    abstractView.hide();
-    abstractView.show();
+  it("Should show node element on page", () => {
+    view.hide();
+    view.show();
 
-    const element = abstractView.render();
+    const element = view.render();
 
     expect(element.classList.contains("hidden")).toBeFalse();
+  });
+
+  it("Should return relative parental position", () => {
+    const element = view.render();
+
+    document.body.appendChild(element);
+
+    const parent = element.parentElement;
+    const parentWidth =
+      parent.offsetWidth + parent.getBoundingClientRect().left;
+    const relativePosition = (view as any).getPositionByClientX(parentWidth);
+
+    expect(relativePosition).toEqual(100);
   });
 });
