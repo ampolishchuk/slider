@@ -10,8 +10,11 @@ import DraggableCompositeView from "../composites/DraggableCompositeView";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private readonly isRange: boolean;
-  constructor(isRange: boolean = false) {
+  private readonly showScale: boolean;
+
+  constructor(isRange: boolean, showScale: boolean) {
     this.isRange = isRange;
+    this.showScale = showScale;
   }
   public createSlider(): ViewInterface {
     return new View("section", "slider");
@@ -32,6 +35,10 @@ export default class ViewFactory implements ViewFactoryInterface {
   }
 
   public createScale(): ClickableViewInterface {
-    return new ClickableView("div", "slider-scale");
+    const scale = new ClickableView("div", "slider-scale");
+
+    if (!this.showScale) scale.hide();
+
+    return scale;
   }
 }

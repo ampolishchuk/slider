@@ -25,10 +25,10 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
       options
     );
     const modelFacade = createModelFacade(scale);
-    const viewFacade = createViewFacade(range);
+    const viewFacade = createViewFacade(range, showScale);
     const presenter = createPresenter(modelFacade, viewFacade);
 
-    init(presenter, this[0], values, showScale);
+    init(presenter, this[0], values);
 
     return {
       setValues: (values: any[]) => {
@@ -49,15 +49,12 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
   function init(
     presenter: PresenterInterface,
     container: HTMLElement,
-    values: any[],
-    showScale: boolean
+    values: any[]
   ) {
     container.innerHTML = "";
     container.appendChild(presenter.render());
 
     presenter.setValues(values);
-
-    showScale ? presenter.showScale() : presenter.hideScale();
   }
 
   function createModelFacade(scale: number[]): ModelFacadeInterface {
@@ -68,8 +65,11 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
     return new ModelFacade(valuesModel, positionsModel, scaleModel);
   }
 
-  function createViewFacade(range: boolean): ViewFacadeInterface {
-    const factory = new ViewFactory(range);
+  function createViewFacade(
+    range: boolean,
+    showScale: boolean
+  ): ViewFacadeInterface {
+    const factory = new ViewFactory(range, showScale);
     const slider = factory.createSlider();
     const line = factory.createLine();
     const buttons = factory.createButtons();
