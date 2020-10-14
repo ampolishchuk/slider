@@ -18,6 +18,10 @@ export default class View extends EventManager implements ViewInterface {
     return this.element;
   }
 
+  public setPositionLeft(position: string): void {}
+
+  public setPositionRight(position: string): void {}
+
   public addStyle(style: string, value: string): void {
     this.element.style[style as any] = value;
   }

@@ -51,4 +51,20 @@ describe("Testing View.ts", () => {
 
     expect(element.style.width).toEqual("300px");
   });
+
+  it("Should set position left to node element", () => {
+    const element = view.render();
+
+    view.setPositionLeft("100px");
+
+    expect(element.style.left).toEqual("100px");
+  });
+
+  it("Should set position right to node element", () => {
+    const element = view.render();
+
+    view.setPositionRight("100px");
+
+    expect(element.style.right).toEqual("100px");
+  });
 });
