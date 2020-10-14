@@ -28,7 +28,8 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
     const viewFacade = createViewFacade(range, showScale);
     const presenter = createPresenter(modelFacade, viewFacade);
 
-    init(presenter, this[0], values);
+    this[0].appendChild(presenter.render());
+    presenter.setValues(values);
 
     return {
       setValues: (values: any[]) => {
@@ -45,17 +46,6 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
       },
     };
   };
-
-  function init(
-    presenter: PresenterInterface,
-    container: HTMLElement,
-    values: any[]
-  ) {
-    container.innerHTML = "";
-    container.appendChild(presenter.render());
-
-    presenter.setValues(values);
-  }
 
   function createModelFacade(scale: number[]): ModelFacadeInterface {
     const valuesModel = new ValuesModel();
