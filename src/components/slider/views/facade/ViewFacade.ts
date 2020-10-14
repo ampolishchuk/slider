@@ -75,6 +75,10 @@ export default class ViewFacade
       this.updatePositionAndNotify(position);
     });
 
+    this.rangeLine.onClick((position: number) => {
+      this.updatePositionAndNotify(position);
+    });
+
     this.scale.onClick((position: number) => {
       this.updatePositionAndNotify(position);
     });
@@ -82,7 +86,7 @@ export default class ViewFacade
 
   private setRange(positions: number[]) {
     this.rangeLine.setPositionLeft(positions[0] + "%");
-    this.rangeLine.setPositionRight(positions[1] + "%");
+    this.rangeLine.setPositionRight(100 - positions[1] + "%");
   }
 
   private updatePositionAndNotify(position: number) {
