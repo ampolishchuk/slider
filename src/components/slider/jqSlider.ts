@@ -28,7 +28,7 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
     const viewFacade = createViewFacade(range, showScale);
     const presenter = createPresenter(modelFacade, viewFacade);
 
-    this[0].appendChild(presenter.render());
+    presenter.renderInto(this[0]);
     presenter.setValues(values);
 
     return {
