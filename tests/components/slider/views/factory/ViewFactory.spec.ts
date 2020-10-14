@@ -7,21 +7,21 @@ describe("Testing ViewFactory.ts", () => {
   const factory = new ViewFactory(true, true);
 
   it("Should create SliderView of an instance of View", () => {
-    const sliderView = factory.createSlider();
+    const slider = factory.createSlider();
 
-    expect(sliderView instanceof View).toBeTrue();
+    expect(slider instanceof View).toBeTrue();
   });
 
   it("Should create LineView of an instance of ClickableView", () => {
-    const sliderView = factory.createLine();
+    const line = factory.createLine();
 
-    expect(sliderView instanceof ClickableView).toBeTrue();
+    expect(line instanceof ClickableView).toBeTrue();
   });
 
   it("Should create ButtonsView of an instance of DraggableCompositeView", () => {
-    const sliderView = factory.createButtons();
+    const buttons = factory.createButtons();
 
-    expect(sliderView instanceof DraggableCompositeView).toBeTrue();
+    expect(buttons instanceof DraggableCompositeView).toBeTrue();
   });
 
   it("Should create ScaleView of an instance of ClickableView", () => {
