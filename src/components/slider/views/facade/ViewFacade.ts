@@ -9,12 +9,14 @@ export default class ViewFacade
   implements ViewFacadeInterface {
   private slider: ViewInterface;
   private line: ClickableViewInterface;
+  private rangeLine: ClickableViewInterface;
   private buttons: DraggableCompositeViewInterface;
   private scale: ClickableViewInterface;
 
   constructor(
     slider: ViewInterface,
     line: ClickableViewInterface,
+    rangeLine: ClickableViewInterface,
     buttons: DraggableCompositeViewInterface,
     scale: ClickableViewInterface
   ) {
@@ -22,6 +24,7 @@ export default class ViewFacade
 
     this.slider = slider;
     this.line = line;
+    this.rangeLine = rangeLine;
     this.buttons = buttons;
     this.scale = scale;
 
@@ -30,14 +33,17 @@ export default class ViewFacade
 
   public render(): HTMLElement {
     const element = this.slider.render();
-    const lineRender = this.line.render();
+    const line = this.line.render();
+    const rangeLine = this.rangeLine.render();
     const buttons = this.buttons.render();
 
+    line.appendChild(rangeLine);
+
     buttons.forEach((button) => {
-      lineRender.appendChild(button);
+      line.appendChild(button);
     });
 
-    element.appendChild(lineRender);
+    element.appendChild(line);
     element.appendChild(this.scale.render());
 
     return element;
@@ -45,6 +51,7 @@ export default class ViewFacade
 
   public setPositions(positions: number[]) {
     this.buttons.setPositions(positions);
+    this.setRange(positions);
   }
 
   public showScale() {
@@ -71,6 +78,11 @@ export default class ViewFacade
     this.scale.onClick((position: number) => {
       this.updatePositionAndNotify(position);
     });
+  }
+
+  private setRange(positions: number[]) {
+    this.rangeLine.setPositionLeft(positions[0] + "%");
+    this.rangeLine.setPositionRight(positions[1] + "%");
   }
 
   private updatePositionAndNotify(position: number) {

@@ -30,9 +30,9 @@ describe("Testing ViewFactory.ts", () => {
     expect(scale instanceof ClickableView).toBeTrue();
   });
 
-  it("Should create RangeView of an instance of View", () => {
-    const range = factory.createRange();
+  it("Should create RangeLineView of an instance of ClickableView", () => {
+    const range = factory.createRangeLine();
 
-    expect(range instanceof View).toBeTrue();
+    expect(range instanceof ClickableView).toBeTrue();
   });
 });
