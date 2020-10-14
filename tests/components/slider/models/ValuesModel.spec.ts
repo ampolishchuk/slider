@@ -1,5 +1,5 @@
 import ValuesModel from "../../../../src/components/slider/models/ValuesModel";
-import ValuesModelInterface from "../../../../src/components/slider/models/Interfaces/ValuesModel.interface";
+import ValuesModelInterface from "../../../../src/components/slider/models/interfaces/ValuesModel.interface";
 
 describe("Testing ValuesModel.ts", () => {
   let model: ValuesModelInterface;

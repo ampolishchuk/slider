@@ -1,4 +1,4 @@
-import ViewInterface from "./Interfaces/View.interface";
+import ViewInterface from "./interfaces/View.interface";
 import EventManager from "../eventManager/EventManager";
 
 export default class View extends EventManager implements ViewInterface {

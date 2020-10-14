@@ -1,4 +1,4 @@
-import MovableViewInterface from "./Interfaces/MovableView.interface";
+import MovableViewInterface from "./interfaces/MovableView.interface";
 import View from "./View";
 
 export default class MovableView extends View implements MovableViewInterface {

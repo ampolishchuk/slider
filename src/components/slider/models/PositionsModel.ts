@@ -1,4 +1,4 @@
-import PositionsModelInterface from "./Interfaces/PositionsModel.interface";
+import PositionsModelInterface from "./interfaces/PositionsModel.interface";
 import EventManager from "../eventManager/EventManager";
 
 export default class PositionsModel

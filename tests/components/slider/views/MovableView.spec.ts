@@ -1,5 +1,5 @@
 import MovableView from "../../../../src/components/slider/views/MovableView";
-import MovableViewInterface from "../../../../src/components/slider/views/Interfaces/MovableView.interface";
+import MovableViewInterface from "../../../../src/components/slider/views/interfaces/MovableView.interface";
 
 describe("Testing MovableView.ts", () => {
   let movableView: MovableViewInterface;

@@ -1,4 +1,4 @@
-import ValuesModelInterface from "./Interfaces/ValuesModel.interface";
+import ValuesModelInterface from "./interfaces/ValuesModel.interface";
 import EventManager from "../eventManager/EventManager";
 
 export default class ValuesModel

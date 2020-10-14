@@ -1,7 +1,7 @@
-import ViewInterface from "../Interfaces/View.interface";
-import ViewFacadeInterface from "../Interfaces/ViewFacade.interface";
-import ClickableViewInterface from "../Interfaces/ClickableView.interface";
-import DraggableCompositeViewInterface from "../Interfaces/DraggableCompositeView.interface";
+import ViewInterface from "../interfaces/View.interface";
+import ViewFacadeInterface from "./interface/ViewFacade.interface";
+import ClickableViewInterface from "../interfaces/ClickableView.interface";
+import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
 import EventManager from "../../eventManager/EventManager";
 
 export default class ViewFacade

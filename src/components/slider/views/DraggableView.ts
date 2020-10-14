@@ -1,5 +1,5 @@
 import MovableView from "./MovableView";
-import DraggableViewInterface from "./Interfaces/DraggableView.interface";
+import DraggableViewInterface from "./interfaces/DraggableView.interface";
 
 export default class DraggableView
   extends MovableView

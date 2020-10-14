@@ -1,5 +1,5 @@
 import View from "../../../../src/components/slider/views/View";
-import ViewInterface from "../../../../src/components/slider/views/Interfaces/View.interface";
+import ViewInterface from "../../../../src/components/slider/views/interfaces/View.interface";
 
 describe("Testing View.ts", () => {
   let view: ViewInterface;

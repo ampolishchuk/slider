@@ -1,12 +1,12 @@
-import ModelFacade from "../../../../../src/components/slider/models/Facade/ModelFacade";
+import ModelFacade from "../../../../../src/components/slider/models/facade/ModelFacade";
 import ValuesModel from "../../../../../src/components/slider/models/ValuesModel";
 import PositionsModel from "../../../../../src/components/slider/models/PositionsModel";
 import NumericScaleModel from "../../../../../src/components/slider/models/NumericScaleModel";
 
-import ModelFacadeInterface from "../../../../../src/components/slider/models/Interfaces/ModelFacade.interface";
-import ValuesModelInterface from "../../../../../src/components/slider/models/Interfaces/ValuesModel.interface";
-import PositionsModelInterface from "../../../../../src/components/slider/models/Interfaces/PositionsModel.interface";
-import ScaleModelInterface from "../../../../../src/components/slider/models/Interfaces/ScaleModel.interface";
+import ModelFacadeInterface from "../../../../../src/components/slider/models/facade/interface/ModelFacade.interface";
+import ValuesModelInterface from "../../../../../src/components/slider/models/interfaces/ValuesModel.interface";
+import PositionsModelInterface from "../../../../../src/components/slider/models/interfaces/PositionsModel.interface";
+import ScaleModelInterface from "../../../../../src/components/slider/models/interfaces/ScaleModel.interface";
 
 describe("Testing ModelFacade.ts", () => {
   let modelFacade: ModelFacadeInterface;

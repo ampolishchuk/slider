@@ -1,6 +1,6 @@
-import ViewFactory from "../../../../../src/components/slider/views/Factory/ViewFactory";
-import ViewFacade from "../../../../../src/components/slider/views/Facade/ViewFacade";
-import ViewFacadeInterface from "../../../../../src/components/slider/views/Interfaces/ViewFacade.interface";
+import ViewFactory from "../../../../../src/components/slider/views/factory/ViewFactory";
+import ViewFacade from "../../../../../src/components/slider/views/facade/ViewFacade";
+import ViewFacadeInterface from "../../../../../src/components/slider/views/facade/interface/ViewFacade.interface";
 
 describe("Testing ViewFacade.ts", () => {
   const factory = new ViewFactory();

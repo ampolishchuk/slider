@@ -1,6 +1,6 @@
 import CompositeView from "./CompositeView";
-import DraggableCompositeViewInterface from "../Interfaces/DraggableCompositeView.interface";
-import DraggableViewInterface from "../Interfaces/DraggableView.interface";
+import DraggableCompositeViewInterface from "./interfaces/DraggableCompositeView.interface";
+import DraggableViewInterface from "../interfaces/DraggableView.interface";
 
 export default class DraggableCompositeView
   extends CompositeView

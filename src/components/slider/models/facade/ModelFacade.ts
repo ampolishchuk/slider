@@ -1,7 +1,7 @@
-import ModelFacadeInterface from "../Interfaces/ModelFacade.interface";
-import ValuesModelInterface from "../Interfaces/ValuesModel.interface";
-import PositionsModelInterface from "../Interfaces/PositionsModel.interface";
-import ScaleModelInterface from "../Interfaces/ScaleModel.interface";
+import ModelFacadeInterface from "./interface/ModelFacade.interface";
+import ValuesModelInterface from "../interfaces/ValuesModel.interface";
+import PositionsModelInterface from "../interfaces/PositionsModel.interface";
+import ScaleModelInterface from "../interfaces/ScaleModel.interface";
 
 export default class ModelFacade implements ModelFacadeInterface {
   private values: ValuesModelInterface;

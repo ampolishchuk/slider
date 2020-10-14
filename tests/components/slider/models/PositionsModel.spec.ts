@@ -1,4 +1,4 @@
-import PositionsModelInterface from "../../../../src/components/slider/models/Interfaces/PositionsModel.interface";
+import PositionsModelInterface from "../../../../src/components/slider/models/interfaces/PositionsModel.interface";
 import PositionsModel from "../../../../src/components/slider/models/PositionsModel";
 
 describe("Testing PositionsModel.ts", () => {

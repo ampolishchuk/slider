@@ -1,4 +1,4 @@
-import EventManagerInterface from "./Interface/EventManager.interface";
+import EventManagerInterface from "./interface/EventManager.interface";
 
 export default class EventManager implements EventManagerInterface {
   private listeners: { type: string; listener: Function }[] = [];

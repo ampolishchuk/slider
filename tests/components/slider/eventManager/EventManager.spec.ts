@@ -1,5 +1,5 @@
-import EventManagerInterface from "../../../../../src/components/slider/eventManager/Interface/EventManager.interface";
-import EventManager from "../../../../../src/components/slider/eventManager/EventManager";
+import EventManager from "../../../../src/components/slider/eventManager/EventManager";
+import EventManagerInterface from "../../../../src/components/slider/eventManager/interface/EventManager.interface";
 
 describe("Testing EventManager.ts", () => {
   let eventManager: EventManagerInterface;

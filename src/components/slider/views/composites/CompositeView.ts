@@ -1,5 +1,5 @@
-import CompositeViewInterface from "../Interfaces/CompositeView.interface";
-import ViewInterface from "../Interfaces/View.interface";
+import CompositeViewInterface from "./interfaces/CompositeView.interface";
+import ViewInterface from "../interfaces/View.interface";
 import EventManager from "../../eventManager/EventManager";
 
 export default class CompositeView

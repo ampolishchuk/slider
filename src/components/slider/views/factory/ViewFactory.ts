@@ -1,12 +1,12 @@
 import View from "../View";
 import ClickableView from "../ClickableView";
 import DraggableView from "../DraggableView";
-import ViewFactoryInterface from "../Interfaces/ViewFactory.interface";
-import ViewInterface from "../Interfaces/View.interface";
-import ClickableViewInterface from "../Interfaces/ClickableView.interface";
+import ViewFactoryInterface from "./interface/ViewFactory.interface";
+import ViewInterface from "../interfaces/View.interface";
+import ClickableViewInterface from "../interfaces/ClickableView.interface";
 
-import DraggableCompositeViewInterface from "../Interfaces/DraggableCompositeView.interface";
-import DraggableCompositeView from "../Composites/DraggableCompositeView";
+import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
+import DraggableCompositeView from "../composites/DraggableCompositeView";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private readonly isRange: boolean;

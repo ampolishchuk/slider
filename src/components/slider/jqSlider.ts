@@ -1,13 +1,13 @@
 import ValuesModel from "./models/ValuesModel";
 import PositionsModel from "./models/PositionsModel";
 import NumericScaleModel from "./models/NumericScaleModel";
-import ModelFacade from "./models/Facade/ModelFacade";
-import ViewFactory from "./views/Factory/ViewFactory";
-import ViewFacade from "./views/Facade/ViewFacade";
+import ModelFacade from "./models/facade/ModelFacade";
+import ViewFactory from "./views/factory/ViewFactory";
+import ViewFacade from "./views/facade/ViewFacade";
 import Presenter from "./presenters/Presenter";
-import ModelFacadeInterface from "./models/Interfaces/ModelFacade.interface";
-import ViewFacadeInterface from "./views/Interfaces/ViewFacade.interface";
-import PresenterInterface from "./presenters/Interfaces/Presenter.interface";
+import ModelFacadeInterface from "./models/facade/interface/ModelFacade.interface";
+import ViewFacadeInterface from "./views/facade/interface/ViewFacade.interface";
+import PresenterInterface from "./presenters/interface/Presenter.interface";
 
 (function ($) {
   require("./css/Slider.sass");

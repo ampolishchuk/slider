@@ -1,6 +1,6 @@
-import ModelFacadeInterface from "../models/Interfaces/ModelFacade.interface";
-import ViewFacadeInterface from "../views/Interfaces/ViewFacade.interface";
-import PresenterInterface from "./Interfaces/Presenter.interface";
+import ModelFacadeInterface from "../models/facade/interface/ModelFacade.interface";
+import ViewFacadeInterface from "../views/facade/interface/ViewFacade.interface";
+import PresenterInterface from "./interface/Presenter.interface";
 
 export default class Presenter implements PresenterInterface {
   private modelFacade: ModelFacadeInterface;

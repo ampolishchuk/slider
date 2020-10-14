@@ -1,4 +1,4 @@
-import ClickableViewInterface from "./Interfaces/ClickableView.interface";
+import ClickableViewInterface from "./interfaces/ClickableView.interface";
 import View from "./View";
 
 export default class ClickableView
