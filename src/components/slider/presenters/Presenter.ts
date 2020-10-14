@@ -16,8 +16,8 @@ export default class Presenter implements PresenterInterface {
     this.addListeners();
   }
 
-  public render(): HTMLElement {
-    return this.viewFacade.render();
+  public renderInto(container: HTMLElement): void {
+    container.appendChild(this.viewFacade.render());
   }
 
   public setValues(values: any[]) {

@@ -1,5 +1,5 @@
 export default interface PresenterInterface {
-  render(): HTMLElement;
+  renderInto(container: HTMLElement): void;
   setValues(values: any): void;
   onChange(callback: Function): void;
   showScale(): void;
