@@ -4,7 +4,6 @@ export default interface ViewInterface extends EventManagerInterface {
   render(): HTMLElement;
   setPositionLeft(position: string): void;
   setPositionRight(position: string): void;
-  addStyle(type: string, value: string): void;
   show(): void;
   hide(): void;
 }

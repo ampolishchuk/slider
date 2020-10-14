@@ -44,14 +44,6 @@ describe("Testing View.ts", () => {
     expect(relativePosition).toEqual(100);
   });
 
-  it("Should set css styles to node element", () => {
-    const element = view.render();
-
-    view.addStyle("width", "300px");
-
-    expect(element.style.width).toEqual("300px");
-  });
-
   it("Should set position left to node element", () => {
     const element = view.render();
 
