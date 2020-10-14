@@ -15,7 +15,9 @@ export default class MovableView extends View implements MovableViewInterface {
   }
 
   private updateStyles() {
-    this.element.style.left = this.position - this.elementCenter() + "%";
+    const positionLeft = this.position - this.elementCenter() + "%";
+
+    this.setPositionLeft(positionLeft);
   }
 
   private elementCenter(): number {
