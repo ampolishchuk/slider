@@ -29,7 +29,7 @@ describe("Testing ValuesModel.ts", () => {
     expect(model.getValues()).toEqual([200]);
   });
 
-  it("Should calls callbacks on values change", () => {
+  it("Should notify listeners on values change", () => {
     let values: any[] = [];
 
     model.onChange((val: any[]) => {

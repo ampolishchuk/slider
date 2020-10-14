@@ -1,7 +1,9 @@
 import PositionsModelInterface from "./Interfaces/PositionsModel.interface";
+import EventManager from "../eventManager/EventManager";
 
-export default class PositionsModel implements PositionsModelInterface {
-  private listeners: Function[] = [];
+export default class PositionsModel
+  extends EventManager
+  implements PositionsModelInterface {
   private positions: number[] = [];
 
   public getPositions(): number[] {
@@ -11,11 +13,11 @@ export default class PositionsModel implements PositionsModelInterface {
   public setPositions(positions: number[]): void {
     this.positions = this.verifyPositions(positions);
 
-    this.listeners.forEach((callback) => callback(this.positions));
+    this.notify("onChange", this.positions);
   }
 
   public onChange(callback: Function): void {
-    this.listeners.push(callback);
+    this.subscribe("onChange", callback);
   }
 
   private verifyPositions(positions: number[]): number[] {

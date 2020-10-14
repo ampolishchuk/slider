@@ -1,13 +1,15 @@
 import ValuesModelInterface from "./Interfaces/ValuesModel.interface";
+import EventManager from "../eventManager/EventManager";
 
-export default class ValuesModel implements ValuesModelInterface {
-  private listeners: Function[] = [];
+export default class ValuesModel
+  extends EventManager
+  implements ValuesModelInterface {
   private values: any[] = [];
 
   public setValues(values: any[]): void {
     this.values = this.isValidValues(values) ? values : this.values;
 
-    this.listeners.forEach((callback) => callback(this.values));
+    this.notify("onChange", this.values);
   }
 
   public getValues(): any[] {
@@ -15,7 +17,7 @@ export default class ValuesModel implements ValuesModelInterface {
   }
 
   public onChange(callback: Function) {
-    this.listeners.push(callback);
+    this.subscribe("onChange", callback);
   }
 
   private isValidValues(values: any[]): boolean {

@@ -32,7 +32,7 @@ describe("Testing PositionsModel.ts", () => {
     expect(model.getPositions()).toEqual([50]);
   });
 
-  it("Should calls callbacks on positions change", () => {
+  it("Should notify listeners on positions change", () => {
     let positions: number[] = [];
 
     model.onChange((pos: number[]) => {
