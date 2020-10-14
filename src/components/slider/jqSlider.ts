@@ -13,19 +13,22 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
   require("./css/Slider.sass");
 
   const defaultOptions = {
-    scale: false,
     range: false,
-    points: [0, 100],
+    scale: [0, 100],
+    showScale: false,
     values: [0],
   };
 
   $.fn.jqSlider = function (options = {}) {
-    const { scale, range, points, values } = $.extend(defaultOptions, options);
-    const modelFacade = createModelFacade(points);
+    const { scale, showScale, range, values } = $.extend(
+      defaultOptions,
+      options
+    );
+    const modelFacade = createModelFacade(scale);
     const viewFacade = createViewFacade(range);
     const presenter = createPresenter(modelFacade, viewFacade);
 
-    init(presenter, this[0], values, scale);
+    init(presenter, this[0], values, showScale);
 
     return {
       setValues: (values: any[]) => {
@@ -47,14 +50,14 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
     presenter: PresenterInterface,
     container: HTMLElement,
     values: any[],
-    scale: boolean
+    showScale: boolean
   ) {
     container.innerHTML = "";
     container.appendChild(presenter.render());
 
     presenter.setValues(values);
 
-    scale ? presenter.showScale() : presenter.hideScale();
+    showScale ? presenter.showScale() : presenter.hideScale();
   }
 
   function createModelFacade(scale: number[]): ModelFacadeInterface {

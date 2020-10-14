@@ -8,15 +8,17 @@ mainContainer.innerHTML = html;
 document.body.appendChild(mainContainer);
 
 const slider1 = $(".index-container_1").jqSlider();
+
 const slider2 = $(".index-container_2").jqSlider({
-  scale: true,
-  points: [0, 100],
+  scale: [0, 100],
+  showScale: true,
   values: [50, 75],
 });
+
 const slider3 = $(".index-container_3").jqSlider({
-  scale: true,
   range: true,
-  points: [20, 80],
+  scale: [20, 80],
+  showScale: true,
   values: 25,
 });
 

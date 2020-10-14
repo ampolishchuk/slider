@@ -6,9 +6,9 @@ interface jqSlider {
 }
 
 interface OptionsInterface {
-  scale?: boolean;
   range?: boolean;
-  points?: number[];
+  scale?: number[];
+  showScale?: boolean;
   values?: any;
 }
 
