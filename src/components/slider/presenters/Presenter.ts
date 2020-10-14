@@ -13,13 +13,7 @@ export default class Presenter implements PresenterInterface {
     this.modelFacade = modelFacade;
     this.viewFacade = viewFacade;
 
-    this.modelFacade.onPositionsChange((positions: number[]) => {
-      this.viewFacade.setPositions(positions);
-    });
-
-    this.viewFacade.onAction((positions: number[]) => {
-      this.modelFacade.setPositions(positions);
-    });
+    this.addListeners();
   }
 
   public render(): HTMLElement {
@@ -40,5 +34,15 @@ export default class Presenter implements PresenterInterface {
 
   public hideScale() {
     this.viewFacade.hideScale();
+  }
+
+  private addListeners() {
+    this.modelFacade.onPositionsChange((positions: number[]) => {
+      this.viewFacade.setPositions(positions);
+    });
+
+    this.viewFacade.onAction((positions: number[]) => {
+      this.modelFacade.setPositions(positions);
+    });
   }
 }
