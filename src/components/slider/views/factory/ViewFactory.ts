@@ -25,7 +25,11 @@ export default class ViewFactory implements ViewFactoryInterface {
   }
 
   public createRangeLine(): ClickableViewInterface {
-    return new ClickableView("div", "slider-rangeLine");
+    const rangeLine = new ClickableView("div", "slider-rangeLine");
+
+    if (!this.isRange) rangeLine.hide();
+
+    return rangeLine;
   }
 
   public createButtons(): DraggableCompositeViewInterface {
