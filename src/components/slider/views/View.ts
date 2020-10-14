@@ -18,7 +18,9 @@ export default class View extends EventManager implements ViewInterface {
     return this.element;
   }
 
-  public addStyle(type: string, value: string): void {}
+  public addStyle(style: string, value: string): void {
+    this.element.style[style as any] = value;
+  }
 
   public show() {
     if (this.element.classList.contains("hidden")) {
