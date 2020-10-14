@@ -24,6 +24,10 @@ export default class ViewFactory implements ViewFactoryInterface {
     return new ClickableView("div", "slider-line");
   }
 
+  public createRange(): ViewInterface {
+    return new View("div", "slider-range");
+  }
+
   public createButtons(): DraggableCompositeViewInterface {
     const views = [];
 

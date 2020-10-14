@@ -25,8 +25,14 @@ describe("Testing ViewFactory.ts", () => {
   });
 
   it("Should create ScaleView of an instance of ClickableView", () => {
-    const sliderView = factory.createScale();
+    const scale = factory.createScale();
 
-    expect(sliderView instanceof ClickableView).toBeTrue();
+    expect(scale instanceof ClickableView).toBeTrue();
+  });
+
+  it("Should create RangeView of an instance of View", () => {
+    const range = factory.createRange();
+
+    expect(range instanceof View).toBeTrue();
   });
 });
