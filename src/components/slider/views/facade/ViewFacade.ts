@@ -51,7 +51,7 @@ export default class ViewFacade
 
   public setPositions(positions: number[]) {
     this.buttons.setPositions(positions);
-    this.setRange(positions);
+    this.updateRange();
   }
 
   public showScale() {
@@ -84,9 +84,13 @@ export default class ViewFacade
     });
   }
 
-  private setRange(positions: number[]) {
-    this.rangeLine.setPositionLeft(positions[0] + "%");
-    this.rangeLine.setPositionRight(100 - positions[1] + "%");
+  private updateRange() {
+    const positions = this.buttons.getPositions();
+    const start = positions[0] + "%";
+    const end = 100 - positions[1] + "%";
+
+    this.rangeLine.setPositionLeft(start);
+    this.rangeLine.setPositionRight(end);
   }
 
   private updatePositionAndNotify(position: number) {
@@ -104,7 +108,7 @@ export default class ViewFacade
     return array.reduce((indexOfNearest, val, index) => {
       const range = Math.abs(val - value);
 
-      if (!minRange || minRange > range) {
+      if (!minRange || minRange >= range) {
         minRange = range;
         return index;
       }
