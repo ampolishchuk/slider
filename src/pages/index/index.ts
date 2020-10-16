@@ -27,3 +27,7 @@ slider1.setValues([50]);
 slider1.onChange((values: any[]) => {
   console.log(values);
 });
+
+slider3.onChange((values: any[]) => {
+  console.log(values);
+});
