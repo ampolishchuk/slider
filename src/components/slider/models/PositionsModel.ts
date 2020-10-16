@@ -5,6 +5,8 @@ export default class PositionsModel
   extends EventManager
   implements PositionsModelInterface {
   private positions: number[] = [];
+  private readonly MIN_POSITION: number = 0;
+  private readonly MAX_POSITION: number = 100;
 
   public getPositions(): number[] {
     return this.positions;
@@ -21,9 +23,28 @@ export default class PositionsModel
   }
 
   private verifyPositions(positions: number[]): number[] {
+    positions = this.verifyMinMaxPositions(positions);
+    positions = this.verifyRelationshipBetweenPositions(positions);
+
+    return positions;
+  }
+
+  private verifyMinMaxPositions(positions: number[]): number[] {
     return positions.map((position) => {
-      if (position < 0) return 0;
-      if (position > 100) return 100;
+      if (position < this.MIN_POSITION) return this.MIN_POSITION;
+      if (position > this.MAX_POSITION) return this.MAX_POSITION;
+
+      return position;
+    });
+  }
+
+  private verifyRelationshipBetweenPositions(positions: number[]) {
+    return positions.map((position, index) => {
+      const nextPosition = this.positions[index + 1];
+      const previousPosition = this.positions[index - 1];
+
+      if (position > nextPosition) return nextPosition;
+      if (position < previousPosition) return previousPosition;
 
       return position;
     });
