@@ -15,11 +15,11 @@ export default class DraggableCompositeView
   }
 
   public setPositions(positions: number[]): void {
-    this.positions = positions;
-
     this.views.forEach((view, index) => {
       view.setPosition(positions[index]);
     });
+
+    this.positions = this.getPositions();
   }
 
   public getPositions(): number[] {
