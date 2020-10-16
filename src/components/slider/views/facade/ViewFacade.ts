@@ -87,7 +87,7 @@ export default class ViewFacade
   private updateRange() {
     const positions = this.buttons.getPositions();
     const start = positions[0] + "%";
-    const end = 100 - positions[1] + "%";
+    const end = 100 - positions[positions.length - 1] + "%";
 
     this.rangeLine.setPositionLeft(start);
     this.rangeLine.setPositionRight(end);
