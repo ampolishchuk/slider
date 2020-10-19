@@ -71,16 +71,10 @@ export default class ViewFacade
       this.notify("onAction", positions);
     });
 
-    this.line.onClick((position: number) => {
-      this.updatePositionAndNotify(position);
-    });
-
-    this.rangeLine.onClick((position: number) => {
-      this.updatePositionAndNotify(position);
-    });
-
-    this.scale.onClick((position: number) => {
-      this.updatePositionAndNotify(position);
+    [this.line, this.rangeLine, this.scale].forEach((clickableView) => {
+      clickableView.onClick((position: number) => {
+        this.updatePositionAndNotify(position);
+      });
     });
   }
 
