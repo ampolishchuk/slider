@@ -7,6 +7,8 @@ import ClickableViewInterface from "../interfaces/ClickableView.interface";
 
 import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
 import DraggableCompositeView from "../composites/DraggableCompositeView";
+import RangeViewInterface from "../interfaces/RangeView.interface";
+import RangeView from "../RangeView";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private readonly isRange: boolean;
@@ -24,8 +26,8 @@ export default class ViewFactory implements ViewFactoryInterface {
     return new ClickableView("div", "slider-line");
   }
 
-  public createRangeLine(): ClickableViewInterface {
-    const rangeLine = new ClickableView("div", "slider-rangeLine");
+  public createRangeLine(): RangeViewInterface {
+    const rangeLine = new RangeView("div", "slider-rangeLine");
 
     if (!this.isRange) rangeLine.hide();
 

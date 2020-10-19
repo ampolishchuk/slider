@@ -3,20 +3,21 @@ import ViewFacadeInterface from "./interface/ViewFacade.interface";
 import ClickableViewInterface from "../interfaces/ClickableView.interface";
 import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
 import EventManager from "../../eventManager/EventManager";
+import RangeViewInterface from "../interfaces/RangeView.interface";
 
 export default class ViewFacade
   extends EventManager
   implements ViewFacadeInterface {
   private slider: ViewInterface;
   private line: ClickableViewInterface;
-  private rangeLine: ClickableViewInterface;
+  private rangeLine: RangeViewInterface;
   private buttons: DraggableCompositeViewInterface;
   private scale: ClickableViewInterface;
 
   constructor(
     slider: ViewInterface,
     line: ClickableViewInterface,
-    rangeLine: ClickableViewInterface,
+    rangeLine: RangeViewInterface,
     buttons: DraggableCompositeViewInterface,
     scale: ClickableViewInterface
   ) {
@@ -51,7 +52,7 @@ export default class ViewFacade
 
   public setPositions(positions: number[]) {
     this.buttons.setPositions(positions);
-    this.updateRange();
+    this.rangeLine.setRange(positions);
   }
 
   public showScale() {
@@ -76,15 +77,6 @@ export default class ViewFacade
         this.updatePositionAndNotify(position);
       });
     });
-  }
-
-  private updateRange() {
-    const positions = this.buttons.getPositions();
-    const start = positions[0] + "%";
-    const end = 100 - positions[positions.length - 1] + "%";
-
-    this.rangeLine.setPositionLeft(start);
-    this.rangeLine.setPositionRight(end);
   }
 
   private updatePositionAndNotify(position: number) {
