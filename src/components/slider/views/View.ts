@@ -17,12 +17,12 @@ export default class View extends EventManager implements ViewInterface {
     return this.element;
   }
 
-  public setPositionLeft(position: string): void {
-    this.element.style.left = position;
+  public setPositionLeft(position: number): void {
+    this.element.style.left = position - this.elementCenter() + "%";
   }
 
-  public setPositionRight(position: string): void {
-    this.element.style.right = position;
+  public setPositionRight(position: number): void {
+    this.element.style.right = position - this.elementCenter() + "%";
   }
 
   public show() {
@@ -35,6 +35,13 @@ export default class View extends EventManager implements ViewInterface {
     if (!this.element.classList.contains("hidden")) {
       this.element.classList.add("hidden");
     }
+  }
+
+  private elementCenter(): number {
+    const parentWidth = this.element.parentElement.offsetWidth;
+    const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
+
+    return relativeWidth / 2;
   }
 
   protected getPositionByClientX(clientX: number): number {

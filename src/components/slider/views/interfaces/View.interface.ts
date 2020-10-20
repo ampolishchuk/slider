@@ -2,8 +2,8 @@ import EventManagerInterface from "../../eventManager/interface/EventManager.int
 
 export default interface ViewInterface extends EventManagerInterface {
   render(): HTMLElement;
-  setPositionLeft(position: string): void;
-  setPositionRight(position: string): void;
+  setPositionLeft(position: number): void;
+  setPositionRight(position: number): void;
   show(): void;
   hide(): void;
 }

@@ -7,23 +7,10 @@ export default class MovableView extends View implements MovableViewInterface {
   public setPosition(position: number): void {
     this.position = position ?? this.position;
 
-    this.updateStyles();
+    this.setPositionLeft(this.position);
   }
 
   public getPosition(): number {
     return this.position;
-  }
-
-  private updateStyles() {
-    const positionLeft = this.position - this.elementCenter() + "%";
-
-    this.setPositionLeft(positionLeft);
-  }
-
-  private elementCenter(): number {
-    const parentWidth = this.element.parentElement.offsetWidth;
-    const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
-
-    return relativeWidth / 2;
   }
 }
