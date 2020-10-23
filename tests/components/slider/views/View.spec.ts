@@ -43,28 +43,4 @@ describe("Testing View.ts", () => {
 
     expect(relativePosition).toEqual(100);
   });
-
-  it("Should set position left to node element", () => {
-    const element = view.render();
-
-    document.body.appendChild(element);
-
-    const elementCenter = (view as any).elementCenter();
-
-    view.setPositionLeft(100);
-
-    expect(element.style.left).toEqual(Math.ceil(100 - elementCenter) + "%"); // Should be ceiling because it returns 49.999...%
-  });
-
-  it("Should set position right to node element", () => {
-    const element = view.render();
-
-    document.body.appendChild(element);
-
-    const elementCenter = (view as any).elementCenter();
-
-    view.setPositionRight(100);
-
-    expect(element.style.right).toEqual(Math.ceil(100 - elementCenter) + "%"); // Should be ceiling because it returns 49.999...%
-  });
 });

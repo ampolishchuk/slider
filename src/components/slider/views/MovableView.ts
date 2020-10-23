@@ -2,15 +2,18 @@ import MovableViewInterface from "./interfaces/MovableView.interface";
 import View from "./View";
 
 export default class MovableView extends View implements MovableViewInterface {
-  private position: number = 0;
-
-  public setPosition(position: number): void {
-    this.position = position ?? this.position;
-
-    this.setPositionLeft(this.position);
+  public getPosition(): number {
+    return parseFloat(this.element.style.left) + this.elementCenter();
   }
 
-  public getPosition(): number {
-    return this.position;
+  public setPosition(position: number = 0): void {
+    this.element.style.left = position - this.elementCenter() + "%";
+  }
+
+  private elementCenter(): number {
+    const parentWidth = this.element.parentElement.offsetWidth;
+    const relativeWidth = this.element.offsetWidth / (parentWidth / 100);
+
+    return relativeWidth / 2;
   }
 }

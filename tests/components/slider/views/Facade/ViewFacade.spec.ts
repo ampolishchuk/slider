@@ -15,8 +15,7 @@ describe("Testing ViewFacade.ts", () => {
     spyOn(slider, "render").and.returnValue(document.createElement("div"));
     spyOn(line, "render").and.returnValue(document.createElement("div"));
     spyOn(rangeLine, "render").and.returnValue(document.createElement("div"));
-    spyOn(rangeLine, "setPositionLeft").and.stub();
-    spyOn(rangeLine, "setPositionRight").and.stub();
+    spyOn(rangeLine, "setRange").and.stub();
     spyOn(buttons, "render").and.returnValue([document.createElement("div")]);
     spyOn(buttons, "setPositions").and.stub();
     spyOn(scale, "render").and.returnValue(document.createElement("div"));

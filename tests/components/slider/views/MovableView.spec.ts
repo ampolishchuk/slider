@@ -29,4 +29,16 @@ describe("Testing MovableView.ts", () => {
 
     expect(movableView.getPosition()).toEqual(100);
   });
+
+  it("Should set position left to node element", () => {
+    const element = movableView.render();
+
+    document.body.appendChild(element);
+
+    const elementCenter = (movableView as any).elementCenter();
+
+    movableView.setPosition(100);
+
+    expect(element.style.left).toEqual(Math.ceil(100 - elementCenter) + "%"); // Should be ceiling because it returns 49.999...%
+  });
 });

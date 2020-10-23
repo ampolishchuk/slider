@@ -1,14 +1,11 @@
-import ClickableView from "./ClickableView";
 import RangeViewInterface from "./interfaces/RangeView.interface";
+import ClickableView from "./ClickableView";
 
 export default class RangeView
   extends ClickableView
   implements RangeViewInterface {
   public setRange(positions: number[]): void {
-    const start = positions[0];
-    const end = 100 - positions[positions.length - 1];
-
-    this.setPositionLeft(start);
-    this.setPositionRight(end);
+    this.element.style.left = positions[0] + "%";
+    this.element.style.right = 100 - positions[positions.length - 1] + "%";
   }
 }
