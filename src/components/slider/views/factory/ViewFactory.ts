@@ -9,6 +9,9 @@ import DraggableCompositeViewInterface from "../composites/interfaces/DraggableC
 import DraggableCompositeView from "../composites/DraggableCompositeView";
 import RangeViewInterface from "../interfaces/RangeView.interface";
 import RangeView from "../RangeView";
+import MovableView from "../MovableView";
+import MovableCompositeView from "../composites/MovableCompositeView";
+import MovableCompositeViewInterface from "../composites/interfaces/MovableCompositeView.interface";
 
 export default class ViewFactory implements ViewFactoryInterface {
   private readonly isRange: boolean;
@@ -20,6 +23,16 @@ export default class ViewFactory implements ViewFactoryInterface {
   }
   public createSlider(): ViewInterface {
     return new View("section", "slider");
+  }
+
+  public createLabels(): MovableCompositeViewInterface {
+    const views = [];
+
+    for (let i = this.isRange ? 2 : 1; i > 0; i--) {
+      views.push(new MovableView("button", "slider-label"));
+    }
+
+    return new MovableCompositeView(views);
   }
 
   public createLine(): ClickableViewInterface {
