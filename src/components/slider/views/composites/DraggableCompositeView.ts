@@ -1,29 +1,18 @@
 import CompositeView from "./CompositeView";
 import DraggableCompositeViewInterface from "./interfaces/DraggableCompositeView.interface";
 import DraggableViewInterface from "../interfaces/DraggableView.interface";
+import MovableCompositeView from "./MovableCompositeView";
 
 export default class DraggableCompositeView
-  extends CompositeView
+  extends MovableCompositeView
   implements DraggableCompositeViewInterface {
-  private positions: number[] = [];
+  protected positions: number[] = [];
   protected views: DraggableViewInterface[];
 
   constructor(views: DraggableViewInterface[]) {
     super(views);
 
     this.addViewListeners();
-  }
-
-  public setPositions(positions: number[]): void {
-    this.views.forEach((view, index) => {
-      view.setPosition(positions[index]);
-    });
-
-    this.positions = this.getPositions();
-  }
-
-  public getPositions(): number[] {
-    return this.views.map((view) => view.getPosition());
   }
 
   public onDragging(callback: Function): void {

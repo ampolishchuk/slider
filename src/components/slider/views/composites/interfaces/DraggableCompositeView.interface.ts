@@ -1,8 +1,6 @@
-import CompositeViewInterface from "./CompositeView.interface";
+import MovableCompositeViewInterface from "./MovableCompositeView.interface";
 
 export default interface DraggableCompositeViewInterface
-  extends CompositeViewInterface {
+  extends MovableCompositeViewInterface {
   onDragging(callback: Function): void;
-  setPositions(positions: number[]): void;
-  getPositions(): number[];
 }
