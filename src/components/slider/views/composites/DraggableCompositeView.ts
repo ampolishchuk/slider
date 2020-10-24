@@ -6,7 +6,6 @@ import MovableCompositeView from "./MovableCompositeView";
 export default class DraggableCompositeView
   extends MovableCompositeView
   implements DraggableCompositeViewInterface {
-  protected positions: number[] = [];
   protected views: DraggableViewInterface[];
 
   constructor(views: DraggableViewInterface[]) {
@@ -22,8 +21,10 @@ export default class DraggableCompositeView
   private addViewListeners() {
     this.views.forEach((view, index) => {
       view.onDragging((position: number) => {
-        this.positions[index] = position;
-        this.notify("onDragging", this.positions);
+        const positions = this.getPositions();
+        positions[index] = position;
+
+        this.notify("onDragging", positions);
       });
     });
   }
