@@ -8,23 +8,13 @@ export default class DraggableCompositeView
   implements DraggableCompositeViewInterface {
   protected views: DraggableViewInterface[];
 
-  constructor(views: DraggableViewInterface[]) {
-    super(views);
-
-    this.addViewListeners();
-  }
-
   public onDragging(callback: Function): void {
-    this.subscribe("onDragging", callback);
-  }
-
-  private addViewListeners() {
     this.views.forEach((view, index) => {
       view.onDragging((position: number) => {
         const positions = this.getPositions();
         positions[index] = position;
 
-        this.notify("onDragging", positions);
+        callback(positions);
       });
     });
   }
