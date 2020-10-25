@@ -57,6 +57,14 @@ export default class ViewFacade implements ViewFacadeInterface {
     this.rangeLine.setRange(positions);
   }
 
+  public showLabels() {
+    this.labels.show();
+  }
+
+  public hideLabels() {
+    this.labels.hide();
+  }
+
   public showScale() {
     this.scale.show();
   }
