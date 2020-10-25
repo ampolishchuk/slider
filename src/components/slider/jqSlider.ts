@@ -35,6 +35,12 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
       setValues: (values: any[]) => {
         presenter.setValues(values);
       },
+      showLabels: () => {
+        presenter.showLabels();
+      },
+      hideLabels: () => {
+        presenter.hideLabels();
+      },
       showScale: () => {
         presenter.showScale();
       },

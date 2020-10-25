@@ -28,6 +28,14 @@ export default class Presenter implements PresenterInterface {
     this.modelFacade.onValuesChange(callback);
   }
 
+  public showLabels() {
+    this.viewFacade.showLabels();
+  }
+
+  public hideLabels() {
+    this.viewFacade.hideLabels();
+  }
+
   public showScale() {
     this.viewFacade.showScale();
   }
