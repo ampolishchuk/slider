@@ -2,4 +2,6 @@ import EventManagerInterface from "../../../eventManager/interface/EventManager.
 
 export default interface CompositeViewInterface extends EventManagerInterface {
   render(): HTMLElement[];
+  show(): void;
+  hide(): void;
 }

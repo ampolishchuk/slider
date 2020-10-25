@@ -16,4 +16,12 @@ export default class CompositeView
   public render(): HTMLElement[] {
     return this.views.map((view) => view.render());
   }
+
+  public show(): void {
+    this.views.forEach((view) => view.show());
+  }
+
+  public hide(): void {
+    this.views.forEach((view) => view.hide());
+  }
 }
