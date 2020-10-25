@@ -2,12 +2,9 @@ import ViewInterface from "../interfaces/View.interface";
 import ViewFacadeInterface from "./interface/ViewFacade.interface";
 import ClickableViewInterface from "../interfaces/ClickableView.interface";
 import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
-import EventManager from "../../eventManager/EventManager";
 import RangeViewInterface from "../interfaces/RangeView.interface";
 
-export default class ViewFacade
-  extends EventManager
-  implements ViewFacadeInterface {
+export default class ViewFacade implements ViewFacadeInterface {
   private slider: ViewInterface;
   private line: ClickableViewInterface;
   private rangeLine: RangeViewInterface;
@@ -21,15 +18,11 @@ export default class ViewFacade
     buttons: DraggableCompositeViewInterface,
     scale: ClickableViewInterface
   ) {
-    super();
-
     this.slider = slider;
     this.line = line;
     this.rangeLine = rangeLine;
     this.buttons = buttons;
     this.scale = scale;
-
-    this.addListeners();
   }
 
   public render(): HTMLElement {
@@ -64,28 +57,27 @@ export default class ViewFacade
   }
 
   public onAction(callback: Function) {
-    this.subscribe("onAction", callback);
+    this.onDragging(callback);
+    this.onClick(callback);
   }
 
-  private addListeners() {
+  private onDragging(callback: Function) {
     this.buttons.onDragging((positions: number[]) => {
-      this.notify("onAction", positions);
+      callback(positions);
     });
+  }
 
+  private onClick(callback: Function) {
     [this.line, this.rangeLine, this.scale].forEach((clickableView) => {
       clickableView.onClick((position: number) => {
-        this.updatePositionAndNotify(position);
+        const positions = this.buttons.getPositions();
+        const index = this.getIndexOfNearest(positions, position);
+
+        positions[index] = position;
+
+        callback(positions);
       });
     });
-  }
-
-  private updatePositionAndNotify(position: number) {
-    const positions = this.buttons.getPositions();
-    const index = this.getIndexOfNearest(positions, position);
-
-    positions[index] = position;
-
-    this.notify("onAction", positions);
   }
 
   private getIndexOfNearest(array: number[], value: number): number {
