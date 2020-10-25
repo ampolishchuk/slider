@@ -31,6 +31,7 @@ export default class ViewFacade implements ViewFacadeInterface {
 
   public render(): HTMLElement {
     const element = this.slider.render();
+    const labels = this.labels.render();
     const line = this.line.render();
     const rangeLine = this.rangeLine.render();
     const buttons = this.buttons.render();
@@ -41,6 +42,9 @@ export default class ViewFacade implements ViewFacadeInterface {
       line.appendChild(button);
     });
 
+    labels.forEach((label) => {
+      element.appendChild(label);
+    });
     element.appendChild(line);
     element.appendChild(this.scale.render());
 
@@ -48,6 +52,7 @@ export default class ViewFacade implements ViewFacadeInterface {
   }
 
   public setPositions(positions: number[]) {
+    this.labels.setPositions(positions);
     this.buttons.setPositions(positions);
     this.rangeLine.setRange(positions);
   }
