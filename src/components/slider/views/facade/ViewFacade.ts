@@ -3,9 +3,11 @@ import ViewFacadeInterface from "./interface/ViewFacade.interface";
 import ClickableViewInterface from "../interfaces/ClickableView.interface";
 import DraggableCompositeViewInterface from "../composites/interfaces/DraggableCompositeView.interface";
 import RangeViewInterface from "../interfaces/RangeView.interface";
+import MovableCompositeViewInterface from "../composites/interfaces/MovableCompositeView.interface";
 
 export default class ViewFacade implements ViewFacadeInterface {
   private slider: ViewInterface;
+  private labels: MovableCompositeViewInterface;
   private line: ClickableViewInterface;
   private rangeLine: RangeViewInterface;
   private buttons: DraggableCompositeViewInterface;
@@ -13,12 +15,14 @@ export default class ViewFacade implements ViewFacadeInterface {
 
   constructor(
     slider: ViewInterface,
+    labels: MovableCompositeViewInterface,
     line: ClickableViewInterface,
     rangeLine: RangeViewInterface,
     buttons: DraggableCompositeViewInterface,
     scale: ClickableViewInterface
   ) {
     this.slider = slider;
+    this.labels = labels;
     this.line = line;
     this.rangeLine = rangeLine;
     this.buttons = buttons;

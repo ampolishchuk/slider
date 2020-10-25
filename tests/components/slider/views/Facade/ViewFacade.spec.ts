@@ -5,6 +5,7 @@ import ViewFacadeInterface from "../../../../../src/components/slider/views/faca
 describe("Testing ViewFacade.ts", () => {
   const factory = new ViewFactory(true, true);
   const slider = factory.createSlider();
+  const labels = factory.createLabels();
   const line = factory.createLine();
   const rangeLine = factory.createRangeLine();
   const buttons = factory.createButtons();
@@ -14,6 +15,8 @@ describe("Testing ViewFacade.ts", () => {
   beforeEach(() => {
     spyOn(slider, "render").and.returnValue(document.createElement("div"));
     spyOn(line, "render").and.returnValue(document.createElement("div"));
+    spyOn(labels, "render").and.returnValue([document.createElement("div")]);
+    spyOn(labels, "setPositions").and.stub();
     spyOn(rangeLine, "render").and.returnValue(document.createElement("div"));
     spyOn(rangeLine, "setRange").and.stub();
     spyOn(buttons, "render").and.returnValue([document.createElement("div")]);
@@ -22,7 +25,14 @@ describe("Testing ViewFacade.ts", () => {
     spyOn(scale, "hide").and.stub();
     spyOn(scale, "show").and.stub();
 
-    viewFacade = new ViewFacade(slider, line, rangeLine, buttons, scale);
+    viewFacade = new ViewFacade(
+      slider,
+      labels,
+      line,
+      rangeLine,
+      buttons,
+      scale
+    );
   });
 
   it("Should return HTMLElement", () => {

@@ -61,12 +61,13 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
   ): ViewFacadeInterface {
     const factory = new ViewFactory(range, showScale);
     const slider = factory.createSlider();
+    const labels = factory.createLabels();
     const line = factory.createLine();
     const rangeLine = factory.createRangeLine();
     const buttons = factory.createButtons();
     const scale = factory.createScale();
 
-    return new ViewFacade(slider, line, rangeLine, buttons, scale);
+    return new ViewFacade(slider, labels, line, rangeLine, buttons, scale);
   }
 
   function createPresenter(
