@@ -3,7 +3,7 @@ import ViewFacade from "../../../../../src/components/slider/views/facade/ViewFa
 import ViewFacadeInterface from "../../../../../src/components/slider/views/facade/interface/ViewFacade.interface";
 
 describe("Testing ViewFacade.ts", () => {
-  const factory = new ViewFactory(true, true);
+  const factory = new ViewFactory(true, true, true);
   const slider = factory.createSlider();
   const labels = factory.createLabels();
   const line = factory.createLine();

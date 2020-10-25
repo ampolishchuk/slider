@@ -4,7 +4,7 @@ import ClickableView from "../../../../../src/components/slider/views/ClickableV
 import DraggableCompositeView from "../../../../../src/components/slider/views/composites/DraggableCompositeView";
 
 describe("Testing ViewFactory.ts", () => {
-  const factory = new ViewFactory(true, true);
+  const factory = new ViewFactory(true, true, true);
 
   it("Should create SliderView of an instance of View", () => {
     const slider = factory.createSlider();
