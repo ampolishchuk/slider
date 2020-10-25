@@ -15,17 +15,18 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
   const defaultOptions = {
     range: false,
     scale: [0, 100],
+    showLabels: false,
     showScale: false,
     values: [0],
   };
 
   $.fn.jqSlider = function (options = {}) {
-    const { scale, showScale, range, values } = $.extend(
+    const { scale, showLabels, showScale, range, values } = $.extend(
       defaultOptions,
       options
     );
     const modelFacade = createModelFacade(scale);
-    const viewFacade = createViewFacade(range, showScale);
+    const viewFacade = createViewFacade(range, showLabels, showScale);
     const presenter = createPresenter(modelFacade, viewFacade);
 
     presenter.renderInto(this[0]);
@@ -63,9 +64,10 @@ import PresenterInterface from "./presenters/interface/Presenter.interface";
 
   function createViewFacade(
     range: boolean,
+    showLabels: boolean,
     showScale: boolean
   ): ViewFacadeInterface {
-    const factory = new ViewFactory(range, showScale);
+    const factory = new ViewFactory(range, showLabels, showScale);
     const slider = factory.createSlider();
     const labels = factory.createLabels();
     const line = factory.createLine();

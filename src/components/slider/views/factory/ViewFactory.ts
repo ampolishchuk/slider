@@ -15,10 +15,12 @@ import MovableCompositeViewInterface from "../composites/interfaces/MovableCompo
 
 export default class ViewFactory implements ViewFactoryInterface {
   private readonly isRange: boolean;
+  private readonly showLabels: boolean;
   private readonly showScale: boolean;
 
-  constructor(isRange: boolean, showScale: boolean) {
+  constructor(isRange: boolean, showLabels: boolean, showScale: boolean) {
     this.isRange = isRange;
+    this.showLabels = showLabels;
     this.showScale = showScale;
   }
   public createSlider(): ViewInterface {
@@ -32,7 +34,11 @@ export default class ViewFactory implements ViewFactoryInterface {
       views.push(new MovableView("button", "slider-label"));
     }
 
-    return new MovableCompositeView(views);
+    const movableCompositeView = new MovableCompositeView(views);
+
+    if (!this.showLabels) movableCompositeView.hide();
+
+    return movableCompositeView;
   }
 
   public createLine(): ClickableViewInterface {
